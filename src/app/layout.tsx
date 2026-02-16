@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
@@ -17,7 +17,31 @@ export const metadata: Metadata = {
   title: "NEXINOUS's Portal",
   description:
     "NEXINOUS의 모든 서비스를 하나의 포털에서 접근하세요. 빠른 접근, 직관적인 경험.",
-  keywords: ["NEXINOUS", "portal", "서비스", "대시보드"],
+  keywords: ["NEXINOUS", "portal", "서비스", "대시보드", "워크플로우", "개발자"],
+  authors: [{ name: "NEXINOUS" }],
+  openGraph: {
+    title: "NEXINOUS's Portal",
+    description:
+      "NEXINOUS의 모든 서비스를 하나의 포털에서 접근하세요. 빠른 접근, 직관적인 경험.",
+    type: "website",
+    locale: "ko_KR",
+    siteName: "NEXINOUS Portal",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NEXINOUS's Portal",
+    description:
+      "NEXINOUS의 모든 서비스를 하나의 포털에서 접근하세요. 빠른 접근, 직관적인 경험.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

@@ -11,7 +11,7 @@ export function QuickLinksSection() {
     const selected = workflowChains.find((c) => c.id === activeChain)!;
 
     return (
-        <section className="relative w-full px-6 py-24">
+        <section className="relative w-full px-6 pt-12 pb-24">
             <div className="absolute inset-0 bg-muted/30" />
 
             <div className="relative mx-auto max-w-6xl">
@@ -37,8 +37,8 @@ export function QuickLinksSection() {
                                 setSelectedNode(null); // 체인 변경 시 미리보기 닫기
                             }}
                             className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200 ${activeChain === chain.id
-                                    ? "border-foreground/20 bg-foreground text-background shadow-lg"
-                                    : "border-border bg-card text-muted-foreground hover:border-foreground/20 hover:text-foreground"
+                                ? "border-foreground/20 bg-foreground text-background shadow-lg"
+                                : "border-border bg-card text-muted-foreground hover:border-foreground/20 hover:text-foreground"
                                 }`}
                         >
                             <span>{chain.icon}</span>
@@ -64,9 +64,9 @@ export function QuickLinksSection() {
                                 >
                                     {/* 카드 */}
                                     <div
-                                        className={`relative flex h-[100px] w-[120px] flex-col items-center justify-center gap-1.5 rounded-xl border p-3 transition-all duration-300 sm:h-[110px] sm:w-[140px] ${selectedNode?.title === node.title
-                                                ? `border-foreground/50 bg-foreground/5 shadow-xl scale-105 ring-2 ring-primary ring-offset-2 ring-offset-background`
-                                                : "border-border bg-card hover:-translate-y-1 hover:shadow-lg"
+                                        className={`relative flex h-auto min-h-[110px] w-[150px] flex-col items-center justify-center gap-1 rounded-md border p-2 transition-all duration-300 sm:min-h-[120px] sm:w-[180px] ${selectedNode?.title === node.title
+                                            ? `border-foreground/50 bg-foreground/5 shadow-xl scale-105 ring-2 ring-primary ring-offset-2 ring-offset-background`
+                                            : "border-border bg-card hover:-translate-y-1 hover:shadow-lg"
                                             }`}
                                     >
                                         {/* 스텝 번호 */}
@@ -82,7 +82,7 @@ export function QuickLinksSection() {
                                         </span>
 
                                         {/* 역할 */}
-                                        <span className="text-center text-[10px] leading-tight text-muted-foreground sm:text-[11px]">
+                                        <span className="text-center text-[11px] leading-snug text-muted-foreground sm:text-xs text-balance">
                                             {node.role}
                                         </span>
                                     </div>

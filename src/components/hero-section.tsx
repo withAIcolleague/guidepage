@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
     return (
-        <section className="relative flex min-h-[80vh] w-full items-center justify-center overflow-hidden px-6">
+        <section className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-hidden px-6 mt-16">
             {/* 애니메이션 배경 오브 */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div className="animate-float-slow absolute -left-32 -top-32 h-96 w-96 rounded-full bg-violet-500/15 blur-[128px] dark:bg-violet-600/10" />

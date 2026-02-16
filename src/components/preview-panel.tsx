@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
 interface PreviewPanelProps {
@@ -11,8 +11,52 @@ interface PreviewPanelProps {
 }
 
 export function PreviewPanel({ url, title, isOpen, onClose }: PreviewPanelProps) {
+    // iframe 로딩을 차단하는 것으로 알려진 주요 도메인 목록
+    const BLOCK_LIST = [
+        "github.com", "figma.com", "dribbble.com", "google.com", "youtu.be", "youtube.com",
+        "notion.so", "twitter.com", "x.com", "facebook.com", "instagram.com", "linkedin.com",
+        "vercel.com", "netlify.com", "cloudflare.com", "amazon.com", "aws.amazon.com",
+        "medium.com", "dev.to", "stackoverflow.com", "reddit.com", "npmjs.com", "docker.com",
+        "microsoft.com", "visualstudio.com", "apple.com", "adobe.com", "behance.net",
+        "openai.com", "chat.openai.com", "replicate.com", "huggingface.co", "kaggle.com",
+        "paperswithcode.com", "react.dev", "nextjs.org", "tailwindcss.com", "typescriptlang.org",
+        "developer.mozilla.org", "w3schools.com", "freecodecamp.org", "producthunt.com",
+        "ycombinator.com", "baekjoon.ac", "programmers.co.kr", "inflearn.com", "udemy.com",
+        "fastcampus.co.kr", "wanted.co.kr", "rocketpunch.com", "rememberapp.co.kr",
+        "coolors.co", "unsplash.com"
+    ];
+
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
+
+    useEffect(() => {
+        if (!isOpen) return;
+
+        // 1. Blocklist 검사
+        const isBlocked = BLOCK_LIST.some(domain => url.includes(domain));
+        if (isBlocked) {
+            setIsLoading(false);
+            setHasError(true);
+            return;
+        }
+
+        // 2. 초기화 및 타임아웃 설정
+        setIsLoading(true);
+        setHasError(false);
+
+        // 3초 내에 로딩 안 되면 에러 처리 (사용자 요청: "시도는 최대 3번만 하고 stop")
+        const timer = setTimeout(() => {
+            setIsLoading(prev => {
+                if (prev) {
+                    setHasError(true);
+                    return false;
+                }
+                return prev;
+            });
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [url, isOpen]);
 
     if (!isOpen) return null;
 
@@ -96,7 +140,7 @@ export function PreviewPanel({ url, title, isOpen, onClose }: PreviewPanelProps)
                     )}
 
                     {hasError ? (
-                        <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center">
+                        <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center animate-in fade-in zoom-in-95 duration-200">
                             <div className="rounded-full bg-muted p-4">
                                 <span className="text-4xl">🔒</span>
                             </div>
@@ -105,7 +149,9 @@ export function PreviewPanel({ url, title, isOpen, onClose }: PreviewPanelProps)
                                 <p className="max-w-md text-sm text-muted-foreground">
                                     <strong>{new URL(url).hostname}</strong>에서 콘텐츠 표시를 허용하지 않습니다.
                                     <br />
-                                    보안 정책(X-Frame-Options)으로 인해 인앱 브라우저에서 볼 수 없습니다.
+                                    보안 정책으로 인해 인앱 브라우저에서 볼 수 없습니다.
+                                    <br />
+                                    <span className="text-xs opacity-70">(3초 응답 대기 초과)</span>
                                 </p>
                             </div>
                             <Button onClick={() => window.open(url, "_blank")}>
@@ -122,7 +168,7 @@ export function PreviewPanel({ url, title, isOpen, onClose }: PreviewPanelProps)
                                 setIsLoading(false);
                                 setHasError(true);
                             }}
-                            // 샌드박스 정책 완화 (필요시 조정)
+                            // 샌드박스 정책 완화
                             sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
                         />
                     )}

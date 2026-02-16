@@ -17,8 +17,8 @@ export function Header() {
     return (
         <header
             className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${scrolled
-                    ? "border-b border-border bg-background/60 backdrop-blur-xl"
-                    : "bg-transparent"
+                ? "border-b border-border bg-background/60 backdrop-blur-xl"
+                : "bg-transparent"
                 }`}
         >
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
@@ -27,9 +27,14 @@ export function Header() {
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500">
                         <span className="text-sm font-bold text-white">N</span>
                     </div>
-                    <span className="text-sm font-semibold tracking-tight text-foreground">
-                        NEXINOUS
-                    </span>
+                    <div className="flex flex-col leading-none">
+                        <span className="text-sm font-bold tracking-tight text-foreground">
+                            NEXINOUS
+                        </span>
+                        <span className="text-[10px] font-medium text-muted-foreground">
+                            Portal
+                        </span>
+                    </div>
                 </a>
 
                 {/* 네비게이션 + 테마 토글 */}
