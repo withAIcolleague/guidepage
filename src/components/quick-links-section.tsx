@@ -69,10 +69,23 @@ export function QuickLinksSection() {
                                         : "border-border bg-card hover:-translate-y-1 hover:shadow-lg"
                                         }`}
                                 >
-                                    {/* 역할 */}
-                                    <span className="mb-1 border-b border-border/50 pb-1 text-center text-[11px] font-medium leading-snug text-muted-foreground sm:text-[11px]">
-                                        {node.role}
-                                    </span>
+                                    {/* 역할 및 검색 버튼 레이아웃 */}
+                                    <div className="flex w-full items-center justify-between border-b border-border/50 pb-1">
+                                        <span className="text-[10px] font-medium leading-tight text-muted-foreground sm:text-[11px]">
+                                            {node.role}
+                                        </span>
+                                        {node.searchQuery && (
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    window.open(`https://www.google.com/search?q=${encodeURIComponent(node.searchQuery!)}`, '_blank');
+                                                }}
+                                                className="rounded bg-muted px-1.5 py-0.5 text-[9px] font-bold text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground sm:text-[10px]"
+                                            >
+                                                검색
+                                            </button>
+                                        )}
+                                    </div>
 
                                     {/* 서비스명 목록 */}
                                     <div className="flex w-full flex-col gap-1">
@@ -84,8 +97,8 @@ export function QuickLinksSection() {
                                                     setSelectedNode({ node, mode: "tool", toolIndex: tIndex });
                                                 }}
                                                 className={`text-center text-[11px] font-semibold transition-colors sm:text-xs ${selectedNode?.node.role === node.role && selectedNode?.toolIndex === tIndex
-                                                        ? "text-primary"
-                                                        : "text-foreground hover:text-primary"
+                                                    ? "text-primary"
+                                                    : "text-foreground hover:text-primary"
                                                     }`}
                                             >
                                                 {tool.name}
