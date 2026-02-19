@@ -129,7 +129,7 @@ export function PreviewPanel({ url, title, isOpen, onClose }: PreviewPanelProps)
                 </div>
 
                 {/* 브라우저 영역 */}
-                <div className="relative h-[500px] w-full bg-background">
+                <div className="relative h-[600px] w-full bg-background">
                     {isLoading && !hasError && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-background z-10">
                             <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
