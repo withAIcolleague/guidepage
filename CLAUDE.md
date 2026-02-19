@@ -1,18 +1,18 @@
-# NEXINOUS's Portal - 개발 기록
+# CLAUDE.md - 프로젝트 가이드 및 개발 기록
+
+이 파일은 프로젝트의 구조, 실행 방법 및 AI 어시스턴트(Claude Code 등)를 위한 주요 지침을 담고 있습니다.
 
 ## 프로젝트 개요
 - **프로젝트명**: NEXINOUS's Portal
-- **설명**: 외부 서비스 페이지로 연결되는 배너를 탑재한 랜딩 페이지
-- **기술 스택**: Next.js 16.1.6 (App Router), TypeScript, Tailwind CSS v4, shadcn/ui
-- **디렉토리**: `nexinous-portal/`
-- **생성일**: 2026-02-16
+- **설명**: 워크플로우 맵 기반의 서비스 랜딩 페이지
+- **기술 스택**: Next.js 16.1.6 (App Router), TypeScript, Tailwind CSS v4
 
-## 실행 방법
-```bash
-cd nexinous-portal
-npm run dev
-# → http://localhost:3000
-```
+## 주요 명령어 (Claude Code 참고용)
+- **개발 서버 실행**: `npm run dev`
+- **프로젝트 빌드**: `npm run build`
+- **Lint 체크**: `npm run lint`
+
+---
 
 ## 진행 기록
 
