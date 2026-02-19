@@ -35,7 +35,10 @@ npm run dev
 - [x] **[NEW] GitHub 원격 저장소 연동 완료** 🐙
   - Repository: `https://github.com/withAIcolleague/guidepage.git`
   - Initial Commit & Push 완료
-- [x] 빌드 검증 통과
+- [x] **[NEW] 구글 검색(Search) 액션 버튼 추가** 🔍
+  - 각 카드 노드에 역할(Role) 기반 맞춤형 검색어 자동 설정
+  - '검색' 버튼 클릭 시 새 탭에서 구글 검색 결과 즉시 표시 (UX 편의성 증대)
+- [x] 빌드 검증 및 GitHub 푸시 완료
 
 ### 2026-02-19 - 이중 링크 및 다중 도구 지원 시스템 구현 ✅
 - [x] **[NEW] 카드 이중 링크 시스템 도입** 🔗
@@ -89,3 +92,46 @@ nexinous-portal/
 │       ├── banners.ts               # ⭐ 배너 데이터
 │       └── quick-links.ts           # ⭐ 퀵 링크 데이터
 ```
+## 워크플로우 섹션 상세 구조 (Workflow Section Structure)
+
+이 프로젝트의 핵심 기능인 '워크플로우 맵'은 데이터 기반의 동적 UI 시스템으로 설계되었습니다.
+
+### 1. 컴포넌트 계층 구조
+- **QuickLinksSection**: 메인 컨테이너. 탭 전환, 노드 렌더링, 상태 관리를 담당합니다.
+- **PreviewPanel**: 선택된 노드의 상세 정보(이론 또는 실제 웹사이트)를 `iframe`으로 보여주는 슬라이드인 패널입니다.
+
+### 2. 데이터 스키마 (`src/data/quick-links.ts`)
+```typescript
+interface FlowNode {
+  role: string;          // 노드의 역할 (예: 영감 수집)
+  theoryUrl?: string;    // 카드 클릭 시 열리는 이론/개념 링크
+  searchQuery?: string;  // '검색' 버튼 클릭 시 구글로 전달될 키워드
+  tools: {               // 서비스명 클릭 시 열리는 도구 목록
+    name: string;
+    url: string;
+  }[];
+}
+
+interface WorkflowChain {
+  id: string;            // 고유 ID (탭 전환용)
+  name: string;          // 탭에 표시될 이름
+  description: string;   // 체인에 대한 간단한 설명
+  icon: string;          // 이모지 아이콘
+  gradient: string;      // 시각적 강조를 위한 그라데이션 컬러
+  nodes: FlowNode[];     // 연결된 프로세스 노드 배열
+}
+```
+
+### 3. 상호작용 로직 (Interaction)
+| 영역 | 액션 | 결과 |
+| :--- | :--- | :--- |
+| **카드 본체** | 클릭 | `theoryUrl`이 있는 경우, **이론/개념**을 하단 패널(iframe)에서 미리보기 |
+| **서비스명 (텍스트)** | 클릭 | 해당 **서비스/툴** 사이트를 하단 패널(iframe)에서 미리보기 |
+| **검색 버튼** | 클릭 | `searchQuery`를 사용하여 **구글 검색 결과**를 새 탭(`_blank`)에서 열기 |
+| **탭 (상단)** | 클릭 | 활성화된 워크플로우 체인을 즉시 변경 (애니메이션 적용) |
+
+### 4. 주요 UI 특징
+- **가로 스크롤**: 노드가 많아져도 모바일 및 데스크탑에서 자연스럽게 탐색 가능한 가로 스크롤 레이아웃.
+- **커넥터 시스템**: 노드 사이의 화살표(`SVG`)가 프로세스의 선형적 흐름을 시각적으로 연결.
+- **상태 동기화**: `selectedNode` 상태를 통해 현재 보고 있는 툴이나 이론을 강조 표시(`ring`, `shadow`).
+- **보안 대응**: `PreviewPanel`에서 `X-Frame-Options`로 차단된 사이트는 자동으로 감지하여 새 탭 열기를 제안.
