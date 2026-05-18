@@ -1,179 +1,232 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { ExternalLink, Loader2, Lock, RefreshCw, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface PreviewPanelProps {
-    url: string;
-    title: string;
-    isOpen: boolean;
-    onClose: () => void;
+  url: string;
+  title: string;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+type PreviewStatus = "loading" | "ready" | "blocked" | "timeout" | "invalid";
+
+const BLOCKED_DOMAINS = [
+  "github.com",
+  "figma.com",
+  "dribbble.com",
+  "google.com",
+  "youtu.be",
+  "youtube.com",
+  "notion.so",
+  "twitter.com",
+  "x.com",
+  "facebook.com",
+  "instagram.com",
+  "linkedin.com",
+  "vercel.com",
+  "netlify.com",
+  "cloudflare.com",
+  "amazon.com",
+  "aws.amazon.com",
+  "medium.com",
+  "dev.to",
+  "stackoverflow.com",
+  "reddit.com",
+  "npmjs.com",
+  "docker.com",
+  "microsoft.com",
+  "visualstudio.com",
+  "apple.com",
+  "adobe.com",
+  "behance.net",
+  "openai.com",
+  "chat.openai.com",
+  "replicate.com",
+  "huggingface.co",
+  "kaggle.com",
+  "paperswithcode.com",
+  "react.dev",
+  "nextjs.org",
+  "tailwindcss.com",
+  "typescriptlang.org",
+  "developer.mozilla.org",
+  "w3schools.com",
+  "freecodecamp.org",
+  "producthunt.com",
+  "ycombinator.com",
+  "baekjoon.ac",
+  "programmers.co.kr",
+  "inflearn.com",
+  "udemy.com",
+  "fastcampus.co.kr",
+  "wanted.co.kr",
+  "rocketpunch.com",
+  "rememberapp.co.kr",
+  "coolors.co",
+  "unsplash.com",
+];
+
+function parseUrl(value: string) {
+  try {
+    return new URL(value);
+  } catch {
+    return null;
+  }
+}
+
+function isBlockedHost(hostname: string) {
+  return BLOCKED_DOMAINS.some(
+    (domain) => hostname === domain || hostname.endsWith(`.${domain}`),
+  );
 }
 
 export function PreviewPanel({ url, title, isOpen, onClose }: PreviewPanelProps) {
-    // iframe 로딩을 차단하는 것으로 알려진 주요 도메인 목록
-    const BLOCK_LIST = [
-        "github.com", "figma.com", "dribbble.com", "google.com", "youtu.be", "youtube.com",
-        "notion.so", "twitter.com", "x.com", "facebook.com", "instagram.com", "linkedin.com",
-        "vercel.com", "netlify.com", "cloudflare.com", "amazon.com", "aws.amazon.com",
-        "medium.com", "dev.to", "stackoverflow.com", "reddit.com", "npmjs.com", "docker.com",
-        "microsoft.com", "visualstudio.com", "apple.com", "adobe.com", "behance.net",
-        "openai.com", "chat.openai.com", "replicate.com", "huggingface.co", "kaggle.com",
-        "paperswithcode.com", "react.dev", "nextjs.org", "tailwindcss.com", "typescriptlang.org",
-        "developer.mozilla.org", "w3schools.com", "freecodecamp.org", "producthunt.com",
-        "ycombinator.com", "baekjoon.ac", "programmers.co.kr", "inflearn.com", "udemy.com",
-        "fastcampus.co.kr", "wanted.co.kr", "rocketpunch.com", "rememberapp.co.kr",
-        "coolors.co", "unsplash.com"
-    ];
+  const parsedUrl = useMemo(() => parseUrl(url), [url]);
+  const hostname = parsedUrl?.hostname.replace(/^www\./, "") ?? "잘못된 주소";
+  const blocked = parsedUrl ? isBlockedHost(parsedUrl.hostname) : false;
+  const baseStatus: PreviewStatus | null = !parsedUrl
+    ? "invalid"
+    : blocked
+      ? "blocked"
+      : null;
+  const [loadState, setLoadState] = useState<{ key: string; status: PreviewStatus }>({
+    key: "",
+    status: "loading",
+  });
+  const [previewKey, setPreviewKey] = useState(0);
+  const stateKey = `${parsedUrl?.href ?? url}:${previewKey}`;
+  const status = baseStatus ?? (loadState.key === stateKey ? loadState.status : "loading");
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [hasError, setHasError] = useState(false);
+  useEffect(() => {
+    if (!isOpen || !parsedUrl || blocked) return;
 
-    useEffect(() => {
-        if (!isOpen) return;
+    const timer = window.setTimeout(() => {
+      setLoadState((current) =>
+        current.key === stateKey && current.status === "ready"
+          ? current
+          : { key: stateKey, status: "timeout" },
+      );
+    }, 4500);
 
-        // 1. Blocklist 검사
-        const isBlocked = BLOCK_LIST.some(domain => url.includes(domain));
-        if (isBlocked) {
-            setIsLoading(false);
-            setHasError(true);
-            return;
-        }
+    return () => window.clearTimeout(timer);
+  }, [blocked, isOpen, parsedUrl, stateKey]);
 
-        // 2. 초기화 및 타임아웃 설정
-        setIsLoading(true);
-        setHasError(false);
+  if (!isOpen) return null;
 
-        // 3초 내에 로딩 안 되면 에러 처리 (사용자 요청: "시도는 최대 3번만 하고 stop")
-        const timer = setTimeout(() => {
-            setIsLoading(prev => {
-                if (prev) {
-                    setHasError(true);
-                    return false;
-                }
-                return prev;
-            });
-        }, 3000);
+  const isUnavailable = status === "blocked" || status === "timeout" || status === "invalid";
+  const unavailableTitle =
+    status === "timeout"
+      ? "미리보기 응답이 지연됩니다"
+      : status === "invalid"
+        ? "주소를 확인할 수 없습니다"
+        : "미리보기가 제한된 사이트입니다";
+  const unavailableDescription =
+    status === "timeout"
+      ? "사이트가 늦게 응답하거나 iframe 로딩을 제한하고 있습니다. 새 탭에서 여는 편이 안정적입니다."
+      : status === "invalid"
+        ? "등록된 링크 형식이 올바르지 않습니다. 데이터 파일의 URL을 확인해야 합니다."
+        : "이 사이트는 보안 정책상 포털 안에서 직접 표시되지 않습니다. 새 탭으로 안전하게 이동하세요.";
 
-        return () => clearTimeout(timer);
-    }, [url, isOpen]);
-
-    if (!isOpen) return null;
-
-    return (
-        <div className="mt-8 animate-in fade-in slide-in-from-top-4 duration-300">
-            <div className="overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
-                {/* 헤더 바 */}
-                <div className="flex items-center justify-between border-b border-border bg-muted/30 px-4 py-3 backdrop-blur-sm">
-                    <div className="flex items-center gap-3">
-                        <div className="flex gap-1.5">
-                            <div className="h-3 w-3 rounded-full bg-red-500/80" />
-                            <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
-                            <div className="h-3 w-3 rounded-full bg-green-500/80" />
-                        </div>
-                        <div className="h-4 w-px bg-border mx-1" />
-                        <span className="text-sm font-medium text-foreground truncate max-w-[200px] sm:max-w-md">
-                            {title}
-                        </span>
-                        <span className="hidden text-xs text-muted-foreground sm:inline-block">
-                            — {url}
-                        </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-8 gap-2 text-xs"
-                            onClick={() => window.open(url, "_blank")}
-                        >
-                            <span>새 탭으로 열기</span>
-                            <svg
-                                width="12"
-                                height="12"
-                                viewBox="0 0 12 12"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M3.5 1.5H1.5C1.22386 1.5 1 1.72386 1 2V10C1 10.2761 1.22386 10.5 1.5 10.5H9.5C9.77614 10.5 10 10.2761 10 10V8M6 6L11 1M11 1H8M11 1V4"
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8"
-                            onClick={onClose}
-                            aria-label="닫기"
-                        >
-                            <svg
-                                width="16"
-                                height="16"
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M12 4L4 12M4 4L12 12"
-                                    stroke="currentColor"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </Button>
-                    </div>
-                </div>
-
-                {/* 브라우저 영역 */}
-                <div className="relative h-[600px] w-full bg-background">
-                    {isLoading && !hasError && (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-background z-10">
-                            <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-                            <p className="text-sm text-muted-foreground animate-pulse">
-                                페이지를 불러오는 중...
-                            </p>
-                        </div>
-                    )}
-
-                    {hasError ? (
-                        <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center animate-in fade-in zoom-in-95 duration-200">
-                            <div className="rounded-full bg-muted p-4">
-                                <span className="text-4xl">🔒</span>
-                            </div>
-                            <div className="space-y-2">
-                                <h3 className="text-lg font-semibold">연결이 거부되었습니다</h3>
-                                <p className="max-w-md text-sm text-muted-foreground">
-                                    <strong>{new URL(url).hostname}</strong>에서 콘텐츠 표시를 허용하지 않습니다.
-                                    <br />
-                                    보안 정책으로 인해 인앱 브라우저에서 볼 수 없습니다.
-                                    <br />
-                                    <span className="text-xs opacity-70">(3초 응답 대기 초과)</span>
-                                </p>
-                            </div>
-                            <Button onClick={() => window.open(url, "_blank")}>
-                                새 탭에서 보기
-                            </Button>
-                        </div>
-                    ) : (
-                        <iframe
-                            title={`${title} preview`}
-                            src={url}
-                            className="h-full w-full border-0"
-                            onLoad={() => setIsLoading(false)}
-                            onError={() => {
-                                setIsLoading(false);
-                                setHasError(true);
-                            }}
-                            // 샌드박스 정책 완화
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                        />
-                    )}
-                </div>
+  return (
+    <div className="mt-8 animate-in fade-in slide-in-from-top-4 duration-300">
+      <div className="overflow-hidden rounded-lg border border-border bg-card shadow-xl">
+        <div className="flex flex-col gap-3 border-b border-border bg-muted/30 px-4 py-3 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+              <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
+              <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
+              <span className="ml-2 truncate text-sm font-semibold text-foreground">
+                {title}
+              </span>
             </div>
+            <div className="mt-1 truncate text-xs text-muted-foreground">{hostname}</div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {status === "timeout" && parsedUrl && (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="h-8 text-xs"
+                onClick={() => {
+                  setPreviewKey((key) => key + 1);
+                }}
+              >
+                <RefreshCw className="size-3.5" />
+                재시도
+              </Button>
+            )}
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-8 text-xs"
+              onClick={() => parsedUrl && window.open(parsedUrl.href, "_blank")}
+              disabled={!parsedUrl}
+            >
+              <ExternalLink className="size-3.5" />
+              새 탭
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              onClick={onClose}
+              aria-label="미리보기 닫기"
+            >
+              <X className="size-4" />
+            </Button>
+          </div>
         </div>
-    );
+
+        <div className="relative h-[520px] w-full bg-background sm:h-[600px]">
+          {status === "loading" && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-background">
+              <Loader2 className="size-7 animate-spin text-muted-foreground" />
+              <p className="text-sm text-muted-foreground">미리보기를 불러오는 중...</p>
+            </div>
+          )}
+
+          {isUnavailable ? (
+            <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center animate-in fade-in zoom-in-95 duration-200">
+              <div className="rounded-full bg-muted p-4">
+                <Lock className="size-8 text-muted-foreground" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">{unavailableTitle}</h3>
+                <p className="max-w-md text-sm leading-6 text-muted-foreground">
+                  <strong>{hostname}</strong> · {unavailableDescription}
+                </p>
+              </div>
+              <Button
+                type="button"
+                onClick={() => parsedUrl && window.open(parsedUrl.href, "_blank")}
+                disabled={!parsedUrl}
+              >
+                <ExternalLink className="size-4" />
+                새 탭에서 보기
+              </Button>
+            </div>
+          ) : (
+            parsedUrl && (
+              <iframe
+                key={previewKey}
+                title={`${title} preview`}
+                src={parsedUrl.href}
+                className="h-full w-full border-0"
+                onLoad={() => setLoadState({ key: stateKey, status: "ready" })}
+                onError={() => setLoadState({ key: stateKey, status: "timeout" })}
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+              />
+            )
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Banner } from "@/data/banners";
 
@@ -17,12 +18,12 @@ export function BannerCard({ banner }: BannerCardProps) {
         >
             {/* 글로우 효과 배경 */}
             <div
-                className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${banner.gradient} opacity-0 blur-xl transition-all duration-500 group-hover:opacity-100`}
+                className={`absolute -inset-0.5 rounded-lg bg-gradient-to-r ${banner.gradient} opacity-0 blur-xl transition-all duration-500 group-hover:opacity-100`}
             />
 
             {/* 카드 본체 */}
             <div
-                className={`relative flex h-full flex-col gap-4 rounded-2xl border border-border bg-card p-6 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-border/80 group-hover:shadow-xl dark:group-hover:border-white/[0.15] ${banner.glowColor} group-hover:shadow-2xl`}
+                className={`relative flex h-full flex-col gap-4 rounded-lg border border-border bg-card p-6 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-border/80 group-hover:shadow-xl dark:group-hover:border-white/[0.15] ${banner.glowColor} group-hover:shadow-2xl`}
             >
                 {/* 아이콘 */}
                 <div className="flex items-center justify-between">
@@ -50,21 +51,7 @@ export function BannerCard({ banner }: BannerCardProps) {
                 {/* 화살표 인디케이터 */}
                 <div className="flex items-center gap-2 text-sm text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-foreground">
                     <span>바로가기</span>
-                    <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        className="transition-transform duration-300 group-hover:translate-x-1"
-                    >
-                        <path
-                            d="M6 12L10 8L6 4"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
+                    <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
             </div>
         </a>
