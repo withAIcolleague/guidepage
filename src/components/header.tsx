@@ -1,5 +1,7 @@
 "use client";
 
+import { Github } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -23,7 +25,7 @@ export function Header() {
         >
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
                 {/* 로고 */}
-                <a href="/" className="flex items-center gap-2.5">
+                <Link href="/" className="flex items-center gap-2.5">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500">
                         <span className="text-sm font-bold text-white">N</span>
                     </div>
@@ -35,11 +37,17 @@ export function Header() {
                             Portal
                         </span>
                     </div>
-                </a>
+                </Link>
 
                 {/* 네비게이션 + 테마 토글 */}
                 <div className="flex items-center gap-6">
                     <nav className="hidden items-center gap-8 sm:flex">
+                        <a
+                            href="#workflow"
+                            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        >
+                            워크플로우
+                        </a>
                         <a
                             href="#services"
                             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -47,16 +55,13 @@ export function Header() {
                             서비스
                         </a>
                         <a
-                            href="#"
-                            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                            href="https://github.com/withAIcolleague/guidepage"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                         >
-                            소개
-                        </a>
-                        <a
-                            href="#"
-                            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                        >
-                            문의
+                            <Github className="size-4" />
+                            GitHub
                         </a>
                     </nav>
                     <ThemeToggle />
