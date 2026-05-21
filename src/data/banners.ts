@@ -28,15 +28,6 @@ export const banners: Banner[] = [
     glowColor: "group-hover:shadow-cyan-500/25",
   },
   {
-    id: "nexinous-ai",
-    title: "NEXINOUS AI Lab",
-    description: "AI 기반 자동화 워크플로우 엔진입니다.",
-    url: "https://github.com/withAIcolleague",
-    icon: "🧬",
-    gradient: "from-emerald-600/20 via-teal-600/10 to-green-600/20",
-    glowColor: "group-hover:shadow-emerald-500/25",
-  },
-  {
     id: "wgis",
     title: "WGIS",
     description: "웹 기반 GIS 서비스입니다.",
