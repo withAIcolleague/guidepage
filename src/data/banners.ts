@@ -63,4 +63,13 @@ export const banners: Banner[] = [
     gradient: "from-lime-600/20 via-green-600/10 to-emerald-600/20",
     glowColor: "group-hover:shadow-lime-500/25",
   },
+  {
+    id: "my-links",
+    title: "My Links",
+    description: "개인 링크를 모아 관리하는 바로가기 서비스입니다.",
+    url: "https://mylinks-wheat.vercel.app/",
+    icon: "🔗",
+    gradient: "from-indigo-600/20 via-violet-600/10 to-purple-600/20",
+    glowColor: "group-hover:shadow-indigo-500/25",
+  },
 ];
