@@ -11,26 +11,57 @@ import { WorkflowChainTabs } from "@/components/workflow-chain-tabs";
 import { WorkflowDetailPanel } from "@/components/workflow-detail-panel";
 import { WorkflowSearch } from "@/components/workflow-search";
 import type { SelectedWorkflowItem, WorkflowSearchResult } from "@/components/workflow-types";
-import { workflowCategories, type WorkflowCategory } from "@/data/workflow-categories";
+import {
+  workflowCategories,
+  type WorkflowCategory,
+  type WorkflowCategorySection,
+} from "@/data/workflow-categories";
 import { workflowChains, type FlowNode, type WorkflowChain } from "@/data/quick-links";
 
 const normalize = (value: string) => value.trim().toLowerCase();
 
-function findNode(chainId: string, nodeRole: string) {
-  return workflowChains
-    .find((chain) => chain.id === chainId)
-    ?.nodes.find((node) => node.role === nodeRole);
+function chainById(chainId: string) {
+  return workflowChains.find((chain) => chain.id === chainId) ?? null;
 }
 
-function findCategoryByChain(chainId: string) {
-  return workflowCategories.find((category) => category.chainIds.includes(chainId));
+function chainsForSection(section: WorkflowCategorySection | null) {
+  if (!section) return [];
+  return section.chainIds
+    .map((chainId) => chainById(chainId))
+    .filter((chain): chain is WorkflowChain => Boolean(chain));
 }
 
 function chainsForCategory(category: WorkflowCategory | null) {
   if (!category) return [];
-  return category.chainIds
-    .map((chainId) => workflowChains.find((chain) => chain.id === chainId))
-    .filter((chain): chain is WorkflowChain => Boolean(chain));
+  return category.sections.flatMap((section) => chainsForSection(section));
+}
+
+function findNode(chainId: string, nodeRole: string) {
+  return chainById(chainId)?.nodes.find((node) => node.role === nodeRole);
+}
+
+function findTaxonomyByChain(chainId: string) {
+  for (const category of workflowCategories) {
+    for (const section of category.sections) {
+      if (section.chainIds.includes(chainId)) {
+        return { category, section };
+      }
+    }
+  }
+
+  return null;
+}
+
+function countNodes(chains: WorkflowChain[]) {
+  return chains.reduce((count, chain) => count + chain.nodes.length, 0);
+}
+
+function countTools(chains: WorkflowChain[]) {
+  return chains.reduce(
+    (count, chain) =>
+      count + chain.nodes.reduce((nodeCount, node) => nodeCount + node.tools.length, 0),
+    0,
+  );
 }
 
 interface QuickLinksSectionProps {
@@ -39,6 +70,7 @@ interface QuickLinksSectionProps {
 
 export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps) {
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
+  const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
   const [activeChainId, setActiveChainId] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<SelectedWorkflowItem | null>(null);
   const [query, setQuery] = useState("");
@@ -46,10 +78,12 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
 
   const activeCategory =
     workflowCategories.find((category) => category.id === activeCategoryId) ?? null;
-  const categoryChains = chainsForCategory(activeCategory);
+  const activeSection =
+    activeCategory?.sections.find((section) => section.id === activeSectionId) ?? null;
+  const sectionChains = chainsForSection(activeSection);
   const activeChain =
-    categoryChains.find((chain) => chain.id === activeChainId) ?? categoryChains[0] ?? null;
-  const detailMode = Boolean(activeCategory && activeChain);
+    sectionChains.find((chain) => chain.id === activeChainId) ?? null;
+  const detailMode = Boolean(activeCategory);
   const selectedNode = selectedItem
     ? (findNode(selectedItem.chainId, selectedItem.nodeRole) ?? null)
     : null;
@@ -72,52 +106,61 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     return () => onDetailModeChange?.(false);
   }, [detailMode, onDetailModeChange]);
 
-  const totalNodes = workflowChains.reduce(
-    (count, chain) => count + chain.nodes.length,
-    0,
-  );
-  const totalTools = workflowChains.reduce(
-    (count, chain) =>
-      count +
-      chain.nodes.reduce((nodeCount, node) => nodeCount + node.tools.length, 0),
-    0,
-  );
+  const totalNodes = countNodes(workflowChains);
+  const totalTools = countTools(workflowChains);
 
   const searchResults = useMemo<WorkflowSearchResult[]>(() => {
     const normalizedQuery = normalize(query);
     if (!normalizedQuery) return [];
 
-    return workflowChains.flatMap((chain) =>
-      chain.nodes.flatMap((node) =>
-        node.tools.flatMap((tool, toolIndex) => {
-          const haystack = normalize(
-            [
-              chain.name,
-              chain.description,
-              node.role,
-              node.searchQuery ?? "",
-              tool.name,
-              tool.url,
-            ].join(" "),
-          );
+    return workflowCategories.flatMap((category) =>
+      category.sections.flatMap((section) =>
+        section.chainIds.flatMap((chainId) => {
+          const chain = chainById(chainId);
+          if (!chain) return [];
 
-          return haystack.includes(normalizedQuery)
-            ? [{ chain, node, toolIndex }]
-            : [];
+          return chain.nodes.flatMap((node) =>
+            node.tools.flatMap((tool, toolIndex) => {
+              const haystack = normalize(
+                [
+                  category.name,
+                  category.description,
+                  section.name,
+                  section.description,
+                  chain.name,
+                  chain.description,
+                  node.role,
+                  node.searchQuery ?? "",
+                  tool.name,
+                  tool.url,
+                ].join(" "),
+              );
+
+              return haystack.includes(normalizedQuery)
+                ? [{ category, section, chain, node, toolIndex }]
+                : [];
+            }),
+          );
         }),
       ),
     );
   }, [query]);
 
   const openCategory = (category: WorkflowCategory) => {
-    const firstChainId = category.chainIds.find((chainId) =>
-      workflowChains.some((chain) => chain.id === chainId),
-    );
-
-    if (!firstChainId) return;
+    if (chainsForCategory(category).length === 0) return;
 
     setActiveCategoryId(category.id);
-    setActiveChainId(firstChainId);
+    setActiveSectionId(null);
+    setActiveChainId(null);
+    setSelectedItem(null);
+    setQuery("");
+  };
+
+  const selectSection = (section: WorkflowCategorySection) => {
+    if (chainsForSection(section).length === 0) return;
+
+    setActiveSectionId(section.id);
+    setActiveChainId(null);
     setSelectedItem(null);
   };
 
@@ -137,9 +180,10 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
   };
 
   const selectTool = (chainId: string, node: FlowNode, toolIndex: number) => {
-    const category = findCategoryByChain(chainId);
+    const taxonomy = findTaxonomyByChain(chainId);
 
-    setActiveCategoryId(category?.id ?? activeCategoryId);
+    setActiveCategoryId(taxonomy?.category.id ?? activeCategoryId);
+    setActiveSectionId(taxonomy?.section.id ?? activeSectionId);
     setActiveChainId(chainId);
     setSelectedItem({
       chainId,
@@ -147,6 +191,27 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
       mode: "tool",
       toolIndex,
     });
+  };
+
+  const selectSearchResult = (result: WorkflowSearchResult) => {
+    setActiveCategoryId(result.category.id);
+    setActiveSectionId(result.section.id);
+    setActiveChainId(result.chain.id);
+    setSelectedItem({
+      chainId: result.chain.id,
+      nodeRole: result.node.role,
+      mode: "tool",
+      toolIndex: result.toolIndex,
+    });
+    setQuery("");
+  };
+
+  const resetToCategories = () => {
+    setActiveCategoryId(null);
+    setActiveSectionId(null);
+    setActiveChainId(null);
+    setSelectedItem(null);
+    setQuery("");
   };
 
   return (
@@ -176,8 +241,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                   NEXINOUS 워크플로우 맵
                 </h1>
                 <p className="mt-1.5 max-w-3xl text-sm leading-5 text-muted-foreground">
-                  대분류를 먼저 선택한 뒤, 필요한 세부 흐름과 도구를 확인하세요. 복잡한
-                  링크 목록 대신 작업 맥락부터 좁혀갑니다.
+                  대분류에서 중분류, 세부분류, 작업 흐름, 실행 도구 순서로 지식
+                  맥락을 좁혀갑니다.
                 </p>
               </div>
 
@@ -205,24 +270,18 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                 results={searchResults}
                 onQueryChange={setQuery}
                 onClear={() => setQuery("")}
-                onSelectResult={(result) => {
-                  selectTool(result.chain.id, result.node, result.toolIndex);
-                  setQuery("");
-                }}
+                onSelectResult={selectSearchResult}
               />
             </div>
           </>
         )}
 
-        {!activeCategory || !activeChain ? (
+        {!activeCategory ? (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {workflowCategories.map((category) => {
               const chains = chainsForCategory(category);
               const hasChains = chains.length > 0;
-              const nodeCount = chains.reduce(
-                (count, chain) => count + chain.nodes.length,
-                0,
-              );
+              const nodeCount = countNodes(chains);
 
               return (
                 <button
@@ -241,7 +300,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                       {category.icon}
                     </span>
                     <span className="rounded-md bg-muted px-2 py-1 text-[11px] text-muted-foreground">
-                      {hasChains ? `${chains.length}개 세부분류` : "준비 중"}
+                      {hasChains ? `${category.sections.length}개 중분류` : "준비 중"}
                     </span>
                   </div>
                   <h2 className="mt-4 text-lg font-semibold tracking-tight">
@@ -267,23 +326,19 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                   variant="ghost"
                   size="sm"
                   className="mb-2 h-8 px-0 text-muted-foreground hover:bg-transparent hover:text-foreground"
-                  onClick={() => {
-                    setActiveCategoryId(null);
-                    setActiveChainId(null);
-                    setSelectedItem(null);
-                  }}
+                  onClick={resetToCategories}
                 >
                   <ChevronLeft className="size-4" />
                   대분류로 돌아가기
                 </Button>
                 <div className="text-xs font-medium uppercase text-muted-foreground">
-                  {activeCategory.name}
+                  대분류
                 </div>
                 <h2 className="mt-1 text-xl font-semibold tracking-tight">
-                  {activeChain.name}
+                  {activeCategory.name}
                 </h2>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  {activeChain.description}
+                  {activeCategory.description}
                 </p>
               </div>
 
@@ -293,42 +348,95 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                 results={searchResults}
                 onQueryChange={setQuery}
                 onClear={() => setQuery("")}
-                onSelectResult={(result) => {
-                  selectTool(result.chain.id, result.node, result.toolIndex);
-                  setQuery("");
-                }}
+                onSelectResult={selectSearchResult}
               />
             </div>
 
             <div className="mb-4">
-              <WorkflowChainTabs
-                chains={categoryChains}
-                activeChainId={activeChain.id}
-                onSelectChain={selectChain}
-              />
+              <div className="mb-2 text-xs font-semibold uppercase text-muted-foreground">
+                중분류
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
+                {activeCategory.sections.map((section) => {
+                  const chains = chainsForSection(section);
+                  const hasChains = chains.length > 0;
+                  const active = activeSection?.id === section.id;
+
+                  return (
+                    <button
+                      key={section.id}
+                      type="button"
+                      disabled={!hasChains}
+                      onClick={() => selectSection(section)}
+                      className={`rounded-lg border p-3 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                        active
+                          ? "border-foreground/30 bg-foreground text-background"
+                          : hasChains
+                            ? "border-border bg-card hover:border-foreground/20 hover:bg-muted/40"
+                            : "cursor-not-allowed border-border bg-muted/40 text-muted-foreground opacity-75"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <h3 className="text-sm font-semibold">{section.name}</h3>
+                        <span className="rounded-md bg-background/70 px-2 py-0.5 text-[11px] text-muted-foreground">
+                          {hasChains ? `${chains.length}개 세부분류` : "준비 중"}
+                        </span>
+                      </div>
+                      <p className={`mt-2 text-xs leading-5 ${active ? "text-background/75" : "text-muted-foreground"}`}>
+                        {section.description}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="grid gap-4">
-              <WorkflowCanvas
-                chain={activeChain}
-                selectedItem={selectedItem}
-                onSelectNode={(node) => selectNode(activeChain.id, node)}
-                onSelectTool={(node, toolIndex) =>
-                  selectTool(activeChain.id, node, toolIndex)
-                }
-              />
+            {activeSection && sectionChains.length > 0 ? (
+              <div className="mb-4">
+                <div className="mb-2 text-xs font-semibold uppercase text-muted-foreground">
+                  세부분류
+                </div>
+                <WorkflowChainTabs
+                  chains={sectionChains}
+                  activeChainId={activeChain?.id ?? ""}
+                  onSelectChain={selectChain}
+                />
+              </div>
+            ) : (
+              <div className="rounded-lg border border-dashed border-border bg-card p-4 text-sm text-muted-foreground">
+                중분류를 선택하면 그 안의 세부분류와 워크플로우를 확인할 수 있습니다.
+              </div>
+            )}
 
-              <WorkflowDetailPanel
-                chain={activeChain}
-                selectedItem={selectedItem}
-                selectedNode={selectedNode}
-                onSelectTheory={(node) => selectNode(activeChain.id, node)}
-                onSelectTool={(node, toolIndex) =>
-                  selectTool(activeChain.id, node, toolIndex)
-                }
-                compact
-              />
-            </div>
+            {activeSection && !activeChain && sectionChains.length > 0 && (
+              <div className="rounded-lg border border-dashed border-border bg-card p-4 text-sm text-muted-foreground">
+                세부분류를 선택하면 작업 흐름과 관련 도구가 표시됩니다.
+              </div>
+            )}
+
+            {activeChain && (
+              <div className="grid gap-4">
+                <WorkflowCanvas
+                  chain={activeChain}
+                  selectedItem={selectedItem}
+                  onSelectNode={(node) => selectNode(activeChain.id, node)}
+                  onSelectTool={(node, toolIndex) =>
+                    selectTool(activeChain.id, node, toolIndex)
+                  }
+                />
+
+                <WorkflowDetailPanel
+                  chain={activeChain}
+                  selectedItem={selectedItem}
+                  selectedNode={selectedNode}
+                  onSelectTheory={(node) => selectNode(activeChain.id, node)}
+                  onSelectTool={(node, toolIndex) =>
+                    selectTool(activeChain.id, node, toolIndex)
+                  }
+                  compact
+                />
+              </div>
+            )}
           </>
         )}
       </div>

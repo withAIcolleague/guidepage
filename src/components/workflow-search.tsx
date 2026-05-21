@@ -38,7 +38,7 @@ export function WorkflowSearch({
           id="workflow-search"
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
-          placeholder="맥락, 단계, 도구 검색"
+          placeholder="대분류, 중분류, 단계, 도구 검색"
           className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
         />
         {hasQuery && (
@@ -83,7 +83,10 @@ export function WorkflowSearch({
                       {tool.name}
                     </div>
                     <div className="mt-1 truncate text-xs text-muted-foreground">
-                      {result.chain.name} · {result.node.role}
+                      {result.category.name} / {result.section.name}
+                    </div>
+                    <div className="mt-1 truncate text-xs text-muted-foreground">
+                      {result.chain.name} / {result.node.role}
                     </div>
                   </button>
                 );
