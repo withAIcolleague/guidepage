@@ -36,6 +36,10 @@ function chainsForCategory(category: WorkflowCategory | null) {
   return category.sections.flatMap((section) => chainsForSection(section));
 }
 
+function sectionsWithChains(category: WorkflowCategory) {
+  return category.sections.filter((section) => chainsForSection(section).length > 0);
+}
+
 function findNode(chainId: string, nodeRole: string) {
   return chainById(chainId)?.nodes.find((node) => node.role === nodeRole);
 }
@@ -280,6 +284,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {workflowCategories.map((category) => {
               const chains = chainsForCategory(category);
+              const readySections = sectionsWithChains(category);
               const hasChains = chains.length > 0;
               const nodeCount = countNodes(chains);
 
@@ -300,7 +305,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                       {category.icon}
                     </span>
                     <span className="rounded-md bg-muted px-2 py-1 text-[11px] text-muted-foreground">
-                      {hasChains ? `${category.sections.length}개 중분류` : "준비 중"}
+                      {hasChains ? `${readySections.length}개 중분류` : "준비 중"}
                     </span>
                   </div>
                   <h2 className="mt-4 text-lg font-semibold tracking-tight">
@@ -311,7 +316,11 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
                     <Layers className="size-3.5" />
-                    <span>{hasChains ? `${nodeCount}개 단계로 구성` : "분류 기준 먼저 확보"}</span>
+                    <span>
+                      {hasChains
+                        ? `${chains.length}개 세부분류 / ${nodeCount}개 단계`
+                        : "분류 기준 먼저 확보"}
+                    </span>
                   </div>
                 </button>
               );
@@ -340,6 +349,31 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                 <p className="mt-1 text-sm text-muted-foreground">
                   {activeCategory.description}
                 </p>
+                <div className="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+                  <span className="rounded-md border border-border bg-background px-2 py-1">
+                    1 대분류: {activeCategory.name}
+                  </span>
+                  <span aria-hidden="true">/</span>
+                  <span
+                    className={`rounded-md border px-2 py-1 ${
+                      activeSection
+                        ? "border-border bg-background text-foreground"
+                        : "border-dashed border-border bg-muted/40"
+                    }`}
+                  >
+                    2 중분류: {activeSection?.name ?? "선택 필요"}
+                  </span>
+                  <span aria-hidden="true">/</span>
+                  <span
+                    className={`rounded-md border px-2 py-1 ${
+                      activeChain
+                        ? "border-border bg-background text-foreground"
+                        : "border-dashed border-border bg-muted/40"
+                    }`}
+                  >
+                    3 세부분류: {activeChain?.name ?? "선택 필요"}
+                  </span>
+                </div>
               </div>
 
               <WorkflowSearch
@@ -356,7 +390,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
               <div className="mb-2 text-xs font-semibold uppercase text-muted-foreground">
                 중분류
               </div>
-              <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="grid items-stretch gap-2 sm:grid-cols-2 xl:grid-cols-4">
                 {activeCategory.sections.map((section) => {
                   const chains = chainsForSection(section);
                   const hasChains = chains.length > 0;
@@ -368,7 +402,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                       type="button"
                       disabled={!hasChains}
                       onClick={() => selectSection(section)}
-                      className={`rounded-lg border p-3 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      className={`min-h-28 rounded-lg border p-3 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                         active
                           ? "border-foreground/30 bg-foreground text-background"
                           : hasChains
@@ -378,8 +412,18 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                     >
                       <div className="flex items-center justify-between gap-3">
                         <h3 className="text-sm font-semibold">{section.name}</h3>
-                        <span className="rounded-md bg-background/70 px-2 py-0.5 text-[11px] text-muted-foreground">
-                          {hasChains ? `${chains.length}개 세부분류` : "준비 중"}
+                        <span
+                          className={`rounded-md px-2 py-0.5 text-[11px] ${
+                            active
+                              ? "bg-background/15 text-background/80"
+                              : "bg-muted text-muted-foreground"
+                          }`}
+                        >
+                          {active
+                            ? "선택됨"
+                            : hasChains
+                              ? `${chains.length}개 세부분류`
+                              : "준비 중"}
                         </span>
                       </div>
                       <p className={`mt-2 text-xs leading-5 ${active ? "text-background/75" : "text-muted-foreground"}`}>
@@ -393,8 +437,13 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
 
             {activeSection && sectionChains.length > 0 ? (
               <div className="mb-4">
-                <div className="mb-2 text-xs font-semibold uppercase text-muted-foreground">
-                  세부분류
+                <div className="mb-2 flex items-center justify-between gap-3">
+                  <div className="text-xs font-semibold uppercase text-muted-foreground">
+                    세부분류
+                  </div>
+                  <div className="truncate text-xs text-muted-foreground">
+                    {activeSection.name}
+                  </div>
                 </div>
                 <WorkflowChainTabs
                   chains={sectionChains}
@@ -410,7 +459,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
 
             {activeSection && !activeChain && sectionChains.length > 0 && (
               <div className="rounded-lg border border-dashed border-border bg-card p-4 text-sm text-muted-foreground">
-                세부분류를 선택하면 작업 흐름과 관련 도구가 표시됩니다.
+                세부분류를 선택하면 워크플로우 단계와 관련 도구가 표시됩니다.
               </div>
             )}
 
