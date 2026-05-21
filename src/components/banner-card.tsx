@@ -1,72 +1,32 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight } from "lucide-react";
 import type { Banner } from "@/data/banners";
 
 interface BannerCardProps {
-    banner: Banner;
+  banner: Banner;
 }
 
 export function BannerCard({ banner }: BannerCardProps) {
-    return (
-        <a
-            href={banner.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative block"
-        >
-            {/* 글로우 효과 배경 */}
-            <div
-                className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${banner.gradient} opacity-0 blur-xl transition-all duration-500 group-hover:opacity-100`}
-            />
-
-            {/* 카드 본체 */}
-            <div
-                className={`relative flex h-full flex-col gap-4 rounded-2xl border border-border bg-card p-6 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-border/80 group-hover:shadow-xl dark:group-hover:border-white/[0.15] ${banner.glowColor} group-hover:shadow-2xl`}
-            >
-                {/* 아이콘 */}
-                <div className="flex items-center justify-between">
-                    <span className="text-4xl transition-transform duration-300 group-hover:scale-110">
-                        {banner.icon}
-                    </span>
-                    <Badge
-                        variant="outline"
-                        className="border-border bg-muted/50 text-xs text-muted-foreground"
-                    >
-                        서비스
-                    </Badge>
-                </div>
-
-                {/* 텍스트 */}
-                <div className="flex flex-1 flex-col gap-2">
-                    <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors">
-                        {banner.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                        {banner.description}
-                    </p>
-                </div>
-
-                {/* 화살표 인디케이터 */}
-                <div className="flex items-center gap-2 text-sm text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-foreground">
-                    <span>바로가기</span>
-                    <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        className="transition-transform duration-300 group-hover:translate-x-1"
-                    >
-                        <path
-                            d="M6 12L10 8L6 4"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
-                </div>
-            </div>
-        </a>
-    );
+  return (
+    <a
+      href={banner.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={banner.description}
+      className="group flex w-20 flex-col items-center gap-2 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    >
+      <div
+        className={`relative flex size-11 items-center justify-center rounded-2xl border border-border bg-card shadow-sm transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-emerald-400/60 group-hover:shadow-md ${banner.glowColor}`}
+      >
+        <span className="text-xl leading-none transition-transform duration-200 group-hover:scale-105">
+          {banner.icon}
+        </span>
+        <ArrowUpRight className="absolute -right-1 -top-1 size-3.5 rounded-full bg-background p-0.5 text-muted-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100" />
+      </div>
+      <span className="line-clamp-2 min-h-8 text-xs leading-4 text-foreground">
+        {banner.title}
+      </span>
+    </a>
+  );
 }
