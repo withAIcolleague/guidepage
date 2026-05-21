@@ -1,6 +1,6 @@
 # NEXINOUS Guidepage
 
-NEXINOUS Guidepage is a workflow-first portal for collecting services, tools, and learning links around practical task flows. Instead of showing every link at once, it starts from encyclopedia-level academic categories, narrows into detailed workflow chains, and opens previews in a split browser panel.
+NEXINOUS Guidepage is a workflow-first portal for collecting services, tools, and learning links around practical task flows. Instead of showing every link at once, it starts from encyclopedia-level academic categories, narrows through intermediate fields into detailed workflow chains, and opens previews in a split browser panel.
 
 ## Tech Stack
 
@@ -32,7 +32,7 @@ On Windows PowerShell, use `npm.cmd` instead of `npm` if script execution policy
 ## Project Shape
 
 - `src/data/quick-links.ts`: workflow chain data.
-- `src/data/workflow-categories.ts`: university-faculty-level category grouping for workflow chains.
+- `src/data/workflow-categories.ts`: category -> section -> workflow chain taxonomy.
 - `src/data/banners.ts`: direct service portal cards.
 - `src/components/quick-links-section.tsx`: workflow dashboard state and composition.
 - `src/components/workflow-*.tsx`: category search, chain tabs, canvas, and detail panel UI.
