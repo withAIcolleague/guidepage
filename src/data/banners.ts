@@ -8,17 +8,6 @@ export interface Banner {
   glowColor: string;
 }
 
-/**
- * 배너 데이터 배열
- * 새 서비스 배너를 추가하려면 이 배열에 객체를 추가하세요.
- * - id: 고유 식별자
- * - title: 배너 제목
- * - description: 배너 설명
- * - url: 이동할 서비스 URL
- * - icon: 이모지 아이콘
- * - gradient: 배경 그래디언트 CSS
- * - glowColor: 호버 시 글로우 색상
- */
 export const banners: Banner[] = [
   {
     id: "andong-intro",
@@ -41,10 +30,37 @@ export const banners: Banner[] = [
   {
     id: "nexinous-ai",
     title: "NEXINOUS AI Lab",
-    description: "AI 기반 자동화 워크플로우 엔진 (Coming Soon)",
+    description: "AI 기반 자동화 워크플로우 엔진입니다.",
     url: "https://github.com/withAIcolleague",
     icon: "🧬",
     gradient: "from-emerald-600/20 via-teal-600/10 to-green-600/20",
     glowColor: "group-hover:shadow-emerald-500/25",
+  },
+  {
+    id: "wgis",
+    title: "WGIS",
+    description: "웹 기반 GIS 서비스입니다.",
+    url: "https://wgis.vercel.app/",
+    icon: "🗺️",
+    gradient: "from-sky-600/20 via-cyan-600/10 to-blue-600/20",
+    glowColor: "group-hover:shadow-sky-500/25",
+  },
+  {
+    id: "write-partner",
+    title: "Write Partner",
+    description: "글쓰기 작업을 돕는 파트너 서비스입니다.",
+    url: "https://write-partner-opal.vercel.app/",
+    icon: "✍️",
+    gradient: "from-amber-600/20 via-orange-600/10 to-rose-600/20",
+    glowColor: "group-hover:shadow-amber-500/25",
+  },
+  {
+    id: "sticky-memo",
+    title: "Sticky Memo",
+    description: "빠르게 메모를 붙이고 관리하는 서비스입니다.",
+    url: "https://sticky-memo-app.vercel.app/",
+    icon: "📝",
+    gradient: "from-lime-600/20 via-green-600/10 to-emerald-600/20",
+    glowColor: "group-hover:shadow-lime-500/25",
   },
 ];
