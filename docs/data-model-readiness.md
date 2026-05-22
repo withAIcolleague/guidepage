@@ -142,6 +142,16 @@ iframe 미리보기 제한 도메인은 `src/components/preview-panel.tsx`의 `B
 GitHub, Figma, Google, YouTube처럼 iframe 제한 가능성이 높은 서비스는 포털 내부 미리보기보다
 새 탭 CTA를 우선한다.
 
+현재 데이터 계약은 아래 명령으로 점검한다.
+
+```bash
+npm.cmd run validate:data
+```
+
+이 명령은 누락 필드, 중복 ID, 깨진 체인 참조, 잘못된 URL, 같은 단계 안의 중복 도구 URL을
+오류로 처리한다. 이론 링크가 도구 URL과 같은 경우처럼 데이터 품질을 낮출 수 있지만 즉시
+빌드를 막을 필요는 없는 항목은 경고로 표시한다.
+
 ## Expansion Checklist
 
 새 워크플로우 체인을 추가할 때마다 아래를 확인한다.
