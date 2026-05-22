@@ -277,7 +277,7 @@ export const workflowChains: WorkflowChain[] = [
                     { name: "Tate(Contemporary art)", url: "https://www.tate.org.uk/art/art-terms/c/contemporary-art" }
                 ],
                 role: "포스트모던/동시대: 혼성 & 인용, 매체 융합(설치·영상·AI)",
-                theoryUrl: "https://ko.wikipedia.org/wiki/포스트모더니즘",
+                theoryUrl: "https://ko.wikipedia.org/wiki/동시대_미술",
                 searchQuery: "동시대미술 설치미술 영상미술 NFT AI아트 트렌드"
             }
         ],
