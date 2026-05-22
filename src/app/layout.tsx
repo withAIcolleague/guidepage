@@ -1,28 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "NEXINOUS's Portal",
   description:
-    "NEXINOUS의 모든 서비스를 하나의 포털에서 접근하세요. 빠른 접근, 직관적인 경험.",
-  keywords: ["NEXINOUS", "portal", "서비스", "대시보드", "워크플로우", "개발자"],
+    "대분류에서 세부분류와 실행 도구까지 탐색하는 NEXINOUS 지식 워크플로우 포털.",
+  keywords: ["NEXINOUS", "portal", "지식 포털", "대시보드", "워크플로우", "분류"],
   authors: [{ name: "NEXINOUS" }],
   openGraph: {
     title: "NEXINOUS's Portal",
     description:
-      "NEXINOUS의 모든 서비스를 하나의 포털에서 접근하세요. 빠른 접근, 직관적인 경험.",
+      "대분류에서 세부분류와 실행 도구까지 탐색하는 NEXINOUS 지식 워크플로우 포털.",
     type: "website",
     locale: "ko_KR",
     siteName: "NEXINOUS Portal",
@@ -31,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NEXINOUS's Portal",
     description:
-      "NEXINOUS의 모든 서비스를 하나의 포털에서 접근하세요. 빠른 접근, 직관적인 경험.",
+      "대분류에서 세부분류와 실행 도구까지 탐색하는 NEXINOUS 지식 워크플로우 포털.",
   },
   robots: {
     index: true,
@@ -51,9 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
-      >
+      <body className="font-sans antialiased">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
