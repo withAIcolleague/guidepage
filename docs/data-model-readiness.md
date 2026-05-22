@@ -170,6 +170,6 @@ npm.cmd run validate:data
 
 ## Next Implementation Candidates
 
-1. 대분류별 1차 중분류 후보를 작성한다.
+1. 대분류별 1차 중분류 후보는 [Taxonomy Expansion Candidates](./taxonomy-expansion-candidates.md)를 기준으로 검토한다.
 2. 빈 대분류의 첫 워크플로우 후보를 하나씩 채운다.
-3. 새 체인 추가 PR에 `npm.cmd run validate:data`를 필수 검증으로 사용한다.
+3. 새 체인 추가 PR은 [Workflow Chain Template](./workflow-chain-template.md)로 설계한 뒤 `npm.cmd run validate:data`를 필수 검증으로 사용한다.
