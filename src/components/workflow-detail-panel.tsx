@@ -2,9 +2,9 @@
 
 import { BookOpen, ExternalLink, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { SelectedWorkflowItem } from "@/components/workflow-types";
 import type { FlowNode, WorkflowChain } from "@/data/quick-links";
 import { googleSearchUrl, openExternalUrl } from "@/lib/external-links";
-import type { SelectedWorkflowItem } from "@/components/workflow-types";
 
 interface WorkflowDetailPanelProps {
   chain: WorkflowChain;
@@ -13,6 +13,7 @@ interface WorkflowDetailPanelProps {
   onSelectTheory: (node: FlowNode) => void;
   onSelectTool: (node: FlowNode, toolIndex: number) => void;
   compact?: boolean;
+  sticky?: boolean;
 }
 
 export function WorkflowDetailPanel({
@@ -22,12 +23,13 @@ export function WorkflowDetailPanel({
   onSelectTheory,
   onSelectTool,
   compact = false,
+  sticky = true,
 }: WorkflowDetailPanelProps) {
   if (!selectedNode || !selectedItem) {
     return (
       <aside
         className={`rounded-lg border border-border bg-card shadow-sm ${
-          compact ? "p-3" : "min-h-[420px] p-5 lg:sticky lg:top-24"
+          compact ? "p-3" : `min-h-[320px] p-5 ${sticky ? "lg:sticky lg:top-24" : ""}`
         }`}
       >
         <div className="text-xs font-medium uppercase text-muted-foreground">
@@ -62,7 +64,7 @@ export function WorkflowDetailPanel({
   return (
     <aside
       className={`rounded-lg border border-border bg-card shadow-sm ${
-        compact ? "p-3" : "min-h-[520px] p-5 lg:sticky lg:top-24"
+        compact ? "p-3" : `min-h-[360px] p-5 ${sticky ? "lg:sticky lg:top-24" : ""}`
       }`}
     >
       <div className="flex items-start justify-between gap-3">
@@ -136,8 +138,7 @@ export function WorkflowDetailPanel({
 
       {selectedUrl && selectedTitle && (
         <p className="mt-4 rounded-md border border-dashed border-border px-3 py-2 text-xs leading-5 text-muted-foreground">
-          선택한 링크는 화면을 양분한 미리보기 패널에서 열립니다. 제한된 사이트는 새
-          탭 이동 버튼을 사용하세요.
+          선택한 링크는 오른쪽 미리보기 패널에서 열립니다. 제한된 사이트는 새 탭 버튼을 사용하세요.
         </p>
       )}
     </aside>

@@ -9,8 +9,9 @@ interface PreviewPanelProps {
   url: string;
   title: string;
   isOpen: boolean;
-  side: "left" | "right";
-  onToggleSide: () => void;
+  side?: "left" | "right";
+  mode?: "fixed" | "embedded";
+  onToggleSide?: () => void;
   onClose: () => void;
 }
 
@@ -90,7 +91,8 @@ export function PreviewPanel({
   url,
   title,
   isOpen,
-  side,
+  side = "right",
+  mode = "fixed",
   onToggleSide,
   onClose,
 }: PreviewPanelProps) {
@@ -139,28 +141,25 @@ export function PreviewPanel({
       : status === "invalid"
         ? "등록된 링크 형식이 올바르지 않습니다."
         : "보안 정책상 포털 안에서 직접 표시되지 않습니다.";
-
-  return (
-    <div
-      className={`fixed inset-x-3 bottom-3 top-3 z-[60] flex flex-col overflow-hidden rounded-lg border border-border bg-background shadow-2xl lg:inset-x-auto lg:w-[calc(50vw-1.5rem)] ${
-        side === "left" ? "lg:left-3" : "lg:right-3"
-      }`}
-    >
+  const frame = (
+    <>
       <div className="flex items-center justify-between gap-3 border-b border-border bg-muted/30 px-4 py-3">
         <div className="min-w-0">
           <div className="truncate text-sm font-semibold">{title}</div>
           <div className="truncate text-xs text-muted-foreground">{hostname}</div>
         </div>
         <div className="flex shrink-0 items-center gap-1">
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={onToggleSide}
-            className="hidden h-8 text-xs lg:inline-flex"
-          >
-            {side === "left" ? "오른쪽" : "왼쪽"}
-          </Button>
+          {mode === "fixed" && onToggleSide && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={onToggleSide}
+              className="hidden h-8 text-xs lg:inline-flex"
+            >
+              {side === "left" ? "오른쪽" : "왼쪽"}
+            </Button>
+          )}
           {status === "timeout" && parsedUrl && (
             <Button
               type="button"
@@ -236,6 +235,24 @@ export function PreviewPanel({
           )
         )}
       </div>
+    </>
+  );
+
+  if (mode === "embedded") {
+    return (
+      <div className="flex min-h-[360px] flex-1 flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm lg:min-h-[calc(50vh-1rem)]">
+        {frame}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`fixed inset-x-3 bottom-3 top-3 z-[60] flex flex-col overflow-hidden rounded-lg border border-border bg-background shadow-2xl lg:inset-x-auto lg:w-[calc(50vw-1.5rem)] ${
+        side === "left" ? "lg:left-3" : "lg:right-3"
+      }`}
+    >
+      {frame}
     </div>
   );
 }
