@@ -10,6 +10,7 @@ import { WorkflowCanvas } from "@/components/workflow-canvas";
 import { WorkflowChainTabs } from "@/components/workflow-chain-tabs";
 import { WorkflowDetailPanel } from "@/components/workflow-detail-panel";
 import { WorkflowSearch } from "@/components/workflow-search";
+import { WorkflowSearchResults } from "@/components/workflow-search-results";
 import type { SelectedWorkflowItem, WorkflowSearchResult } from "@/components/workflow-types";
 import {
   workflowCategories,
@@ -78,7 +79,6 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
   const [activeChainId, setActiveChainId] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<SelectedWorkflowItem | null>(null);
   const [query, setQuery] = useState("");
-  const [previewSide, setPreviewSide] = useState<"left" | "right">("right");
 
   const activeCategory =
     workflowCategories.find((category) => category.id === activeCategoryId) ?? null;
@@ -104,6 +104,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
         : selectedNode.tools[selectedItem.toolIndex ?? 0]?.name
       : undefined;
   const previewOpen = Boolean(selectedUrl && selectedTitle);
+  const hasSearchQuery = query.trim().length > 0;
 
   useEffect(() => {
     onDetailModeChange?.(detailMode);
@@ -221,14 +222,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
   return (
     <section
       id="workflow"
-      className={`relative w-full px-4 transition-[padding] duration-300 sm:px-6 ${
-        detailMode ? "min-h-screen pb-6 pt-4" : "pb-16 pt-6"
-      } ${
-        previewOpen
-          ? previewSide === "left"
-            ? "lg:pl-[50vw]"
-            : "lg:pr-[50vw]"
-          : ""
+      className={`relative w-full px-4 sm:px-6 ${
+        detailMode ? "min-h-screen pb-6 pt-3" : "pb-16 pt-6"
       }`}
     >
       <div className="absolute inset-0 bg-muted/30" />
@@ -327,7 +322,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
             })}
           </div>
         ) : (
-          <>
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(420px,50vw)] lg:items-start">
+            <div className="min-w-0">
             <div className="mb-4 rounded-lg border border-border bg-card p-3 shadow-sm">
               <div className="mb-3">
                 <Button
@@ -383,6 +379,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                 onQueryChange={setQuery}
                 onClear={() => setQuery("")}
                 onSelectResult={selectSearchResult}
+                showResults={false}
               />
             </div>
 
@@ -464,7 +461,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
             )}
 
             {activeChain && (
-              <div className="grid gap-4">
+              <div>
                 <WorkflowCanvas
                   chain={activeChain}
                   selectedItem={selectedItem}
@@ -473,35 +470,68 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                     selectTool(activeChain.id, node, toolIndex)
                   }
                 />
-
-                <WorkflowDetailPanel
-                  chain={activeChain}
-                  selectedItem={selectedItem}
-                  selectedNode={selectedNode}
-                  onSelectTheory={(node) => selectNode(activeChain.id, node)}
-                  onSelectTool={(node, toolIndex) =>
-                    selectTool(activeChain.id, node, toolIndex)
-                  }
-                  compact
-                />
               </div>
             )}
-          </>
+            </div>
+
+            <aside className="space-y-3 lg:sticky lg:top-3 lg:max-h-[calc(100vh-1.5rem)] lg:overflow-y-auto">
+              {hasSearchQuery ? (
+                <div className="rounded-lg border border-border bg-card p-4 shadow-sm">
+                  <div className="mb-3">
+                    <div className="text-xs font-medium uppercase text-muted-foreground">
+                      맥락 검색
+                    </div>
+                    <h2 className="mt-1 text-lg font-semibold tracking-tight">
+                      오른쪽 결과 패널
+                    </h2>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                      현재 입력한 검색어와 연결되는 세부분류, 단계, 도구를 이 영역에서 확인합니다.
+                    </p>
+                  </div>
+                  <WorkflowSearchResults
+                    results={searchResults}
+                    onSelectResult={selectSearchResult}
+                  />
+                </div>
+              ) : activeChain ? (
+                <>
+                  <WorkflowDetailPanel
+                    chain={activeChain}
+                    selectedItem={selectedItem}
+                    selectedNode={selectedNode}
+                    onSelectTheory={(node) => selectNode(activeChain.id, node)}
+                    onSelectTool={(node, toolIndex) =>
+                      selectTool(activeChain.id, node, toolIndex)
+                    }
+                    sticky={false}
+                  />
+
+                  {selectedUrl && selectedTitle && (
+                    <PreviewPanel
+                      url={selectedUrl}
+                      title={selectedTitle}
+                      isOpen={previewOpen}
+                      mode="embedded"
+                      onClose={() => setSelectedItem(null)}
+                    />
+                  )}
+                </>
+              ) : (
+                <div className="rounded-lg border border-dashed border-border bg-card p-5 text-sm text-muted-foreground shadow-sm">
+                  <div className="text-xs font-medium uppercase">분류 기준</div>
+                  <h2 className="mt-2 text-lg font-semibold tracking-tight text-foreground">
+                    {activeSection?.name ?? activeCategory.name}
+                  </h2>
+                  <p className="mt-2 leading-6">
+                    왼쪽에서 중분류와 세부분류를 선택하면 이 영역이 검색 결과, 이론,
+                    도구 미리보기 패널로 전환됩니다.
+                  </p>
+                </div>
+              )}
+            </aside>
+          </div>
         )}
       </div>
-
-      {selectedUrl && selectedTitle && (
-        <PreviewPanel
-          url={selectedUrl}
-          title={selectedTitle}
-          isOpen={previewOpen}
-          side={previewSide}
-          onToggleSide={() =>
-            setPreviewSide((current) => (current === "left" ? "right" : "left"))
-          }
-          onClose={() => setSelectedItem(null)}
-        />
-      )}
     </section>
   );
 }
