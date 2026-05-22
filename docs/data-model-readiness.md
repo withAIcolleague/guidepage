@@ -166,9 +166,10 @@ npm.cmd run validate:data
 - [ ] 모바일 카드 페이징에서 단계명이 지나치게 길지 않은가
 - [ ] build와 lint가 통과하는가
 
+새 체인을 작성할 때는 [Workflow Chain Template](./workflow-chain-template.md)을 기준으로 한다.
+
 ## Next Implementation Candidates
 
-1. 데이터 검증 스크립트를 추가한다.
-2. 확장용 샘플 체인 템플릿을 문서화한다.
-3. 대분류별 1차 중분류 후보를 작성한다.
-4. 빈 대분류의 첫 워크플로우 후보를 하나씩 채운다.
+1. 대분류별 1차 중분류 후보를 작성한다.
+2. 빈 대분류의 첫 워크플로우 후보를 하나씩 채운다.
+3. 새 체인 추가 PR에 `npm.cmd run validate:data`를 필수 검증으로 사용한다.
