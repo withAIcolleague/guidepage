@@ -445,7 +445,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                   중분류
                 </div>
                 {activeCategory.sections.length > 1 && (
-                  <div className="flex items-center gap-2 sm:hidden">
+                  <div className="flex items-center gap-2">
                     <button
                       type="button"
                       onClick={() => setSectionPage((page) => Math.max(page - 1, 0))}
@@ -475,11 +475,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                 )}
               </div>
               {visibleSection && (
-                <div className="sm:hidden">{renderSectionButton(visibleSection)}</div>
+                <div>{renderSectionButton(visibleSection)}</div>
               )}
-              <div className="hidden items-stretch gap-2 sm:grid sm:grid-cols-2 xl:grid-cols-4">
-                {activeCategory.sections.map((section) => renderSectionButton(section))}
-              </div>
             </div>
 
             {activeSection && sectionChains.length > 0 ? (

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, ChevronLeft, ChevronRight, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { useState } from "react";
 import type { FlowNode, WorkflowChain } from "@/data/quick-links";
 import { googleSearchUrl, openExternalUrl } from "@/lib/external-links";
@@ -19,18 +19,18 @@ export function WorkflowCanvas({
   onSelectNode,
   onSelectTool,
 }: WorkflowCanvasProps) {
-  const [mobilePage, setMobilePage] = useState({ chainId: chain.id, index: 0 });
+  const [nodePage, setNodePage] = useState({ chainId: chain.id, index: 0 });
   const selectedNodeIndex =
     selectedItem?.chainId === chain.id
       ? chain.nodes.findIndex((node) => node.role === selectedItem.nodeRole)
       : -1;
-  const mobileIndex =
-    mobilePage.chainId === chain.id
-      ? mobilePage.index
+  const nodeIndex =
+    nodePage.chainId === chain.id
+      ? nodePage.index
       : selectedNodeIndex >= 0
         ? selectedNodeIndex
         : 0;
-  const visibleIndex = Math.min(mobileIndex, Math.max(chain.nodes.length - 1, 0));
+  const visibleIndex = Math.min(nodeIndex, Math.max(chain.nodes.length - 1, 0));
   const visibleNode = chain.nodes[visibleIndex];
 
   const renderNodeCard = (node: FlowNode, className: string) => {
@@ -101,12 +101,12 @@ export function WorkflowCanvas({
   return (
     <div className="pb-4">
       {visibleNode && (
-        <div className="sm:hidden">
+        <div>
           <div className="mb-2 flex items-center justify-between gap-3">
             <button
               type="button"
               onClick={() =>
-                setMobilePage((page) => ({
+                setNodePage((page) => ({
                   chainId: chain.id,
                   index: Math.max((page.chainId === chain.id ? page.index : visibleIndex) - 1, 0),
                 }))
@@ -123,7 +123,7 @@ export function WorkflowCanvas({
             <button
               type="button"
               onClick={() =>
-                setMobilePage((page) => ({
+                setNodePage((page) => ({
                   chainId: chain.id,
                   index: Math.min(
                     (page.chainId === chain.id ? page.index : visibleIndex) + 1,
@@ -141,26 +141,6 @@ export function WorkflowCanvas({
           {renderNodeCard(visibleNode, "w-full")}
         </div>
       )}
-
-      <div className="hidden overflow-x-auto sm:block">
-        <div className="relative flex min-w-max items-stretch gap-2">
-        {chain.nodes.map((node, index) => {
-          return (
-            <div key={node.role} className="flex items-center">
-              {renderNodeCard(node, "w-[176px]")}
-
-              {index < chain.nodes.length - 1 && (
-                <div className="flex items-center px-1 text-muted-foreground">
-                  <div className="h-px w-5 bg-border" />
-                  <ArrowRight className="size-4" />
-                  <div className="h-px w-5 bg-border" />
-                </div>
-              )}
-            </div>
-          );
-        })}
-        </div>
-      </div>
     </div>
   );
 }
