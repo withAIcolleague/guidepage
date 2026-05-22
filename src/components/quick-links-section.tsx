@@ -105,6 +105,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
       : undefined;
   const previewOpen = Boolean(selectedUrl && selectedTitle);
   const hasSearchQuery = query.trim().length > 0;
+  const searchScopeLabel = activeSection?.name ?? activeCategory?.name ?? "전체 워크플로우";
 
   useEffect(() => {
     onDetailModeChange?.(detailMode);
@@ -118,8 +119,12 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     const normalizedQuery = normalize(query);
     if (!normalizedQuery) return [];
 
-    return workflowCategories.flatMap((category) =>
-      category.sections.flatMap((section) =>
+    const scopedCategories = activeCategory ? [activeCategory] : workflowCategories;
+
+    return scopedCategories.flatMap((category) => {
+      const scopedSections = activeSection ? [activeSection] : category.sections;
+
+      return scopedSections.flatMap((section) =>
         section.chainIds.flatMap((chainId) => {
           const chain = chainById(chainId);
           if (!chain) return [];
@@ -147,9 +152,9 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
             }),
           );
         }),
-      ),
-    );
-  }, [query]);
+      );
+    });
+  }, [activeCategory, activeSection, query]);
 
   const openCategory = (category: WorkflowCategory) => {
     if (chainsForCategory(category).length === 0) return;
@@ -485,7 +490,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                       오른쪽 결과 패널
                     </h2>
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                      현재 입력한 검색어와 연결되는 세부분류, 단계, 도구를 이 영역에서 확인합니다.
+                      {searchScopeLabel} 안에서 검색어와 연결되는 세부분류, 단계,
+                      도구를 확인합니다.
                     </p>
                   </div>
                   <WorkflowSearchResults
