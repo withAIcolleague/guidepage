@@ -118,7 +118,7 @@ export const workflowCategories: WorkflowCategory[] = [
         id: "health-systems",
         name: "보건·의료 체계",
         description: "건강, 임상, 공중보건, 의료 시스템의 작동 구조",
-        chainIds: [],
+        chainIds: ["health-information-verification"],
       },
     ],
   },

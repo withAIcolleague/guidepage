@@ -1123,6 +1123,69 @@ export const workflowChains: WorkflowChain[] = [
                 searchQuery: "환경과학 데이터 해석 기후 생태 오염"
             }
         ],
+    },
+    {
+        id: "health-information-verification",
+        name: "건강 정보 검증 플로우",
+        description: "건강 문제를 정의하고 신뢰 가능한 출처, 연구 근거, 의료 상담 준비까지 연결하는 흐름",
+        icon: "⚕️",
+        gradient: "from-rose-500 to-red-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "MedlinePlus", url: "https://medlineplus.gov" },
+                    { name: "Mayo Clinic", url: "https://www.mayoclinic.org" }
+                ],
+                role: "증상과 건강 문제의 기본 정보 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/증상",
+                searchQuery: "증상 건강 문제 기본 정보 신뢰할 수 있는 출처"
+            },
+            {
+                tools: [
+                    { name: "WHO", url: "https://www.who.int" },
+                    { name: "CDC", url: "https://www.cdc.gov" }
+                ],
+                role: "공중보건 기관의 권고와 위험 요인 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/공중보건",
+                searchQuery: "공중보건 권고 위험 요인 WHO CDC"
+            },
+            {
+                tools: [
+                    { name: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov" },
+                    { name: "Cochrane Library", url: "https://www.cochranelibrary.com" }
+                ],
+                role: "의학 연구 근거와 체계적 문헌 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/근거중심의학",
+                searchQuery: "근거중심의학 체계적 문헌고찰 의학 연구 확인"
+            },
+            {
+                tools: [
+                    { name: "NICE Guidance", url: "https://www.nice.org.uk/guidance" },
+                    { name: "USPSTF", url: "https://www.uspreventiveservicestaskforce.org" }
+                ],
+                role: "진료 지침과 예방 권고 비교",
+                theoryUrl: "https://ko.wikipedia.org/wiki/임상진료지침",
+                searchQuery: "진료 지침 예방 권고 비교 건강 정보"
+            },
+            {
+                tools: [
+                    { name: "ClinicalTrials.gov", url: "https://clinicaltrials.gov" },
+                    { name: "ISRCTN Registry", url: "https://www.isrctn.com" }
+                ],
+                role: "임상시험과 치료 근거의 현재 단계 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/임상시험",
+                searchQuery: "임상시험 치료 근거 단계 ClinicalTrials"
+            },
+            {
+                tools: [
+                    { name: "Google Docs", url: "https://docs.google.com" },
+                    { name: "Notion", url: "https://www.notion.so" }
+                ],
+                role: "의료 상담 질문과 개인 기록 정리",
+                theoryUrl: "https://ko.wikipedia.org/wiki/의무기록",
+                searchQuery: "진료 상담 질문 준비 건강 기록 정리"
+            }
+        ],
     }
 
 ];
