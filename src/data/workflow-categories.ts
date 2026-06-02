@@ -58,7 +58,7 @@ export const workflowCategories: WorkflowCategory[] = [
         id: "physical-life-sciences",
         name: "물질·생명·지구",
         description: "자연 현상을 관찰하고 원리와 모델로 설명하는 영역",
-        chainIds: [],
+        chainIds: ["climate-environment-data"],
       },
     ],
   },

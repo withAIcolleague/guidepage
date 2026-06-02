@@ -1060,6 +1060,69 @@ export const workflowChains: WorkflowChain[] = [
                 searchQuery: "의사결정 매트릭스 대안 비교 시각화"
             }
         ],
+    },
+    {
+        id: "climate-environment-data",
+        name: "기후·환경 데이터 탐색 플로우",
+        description: "관측 데이터 수집부터 지표 해석, 지도화, 환경 변화 판단까지 자연과학 탐구를 구조화하는 흐름",
+        icon: "🌦️",
+        gradient: "from-emerald-500 to-cyan-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "NASA Earthdata", url: "https://www.earthdata.nasa.gov" },
+                    { name: "NOAA Climate Data", url: "https://www.ncei.noaa.gov" }
+                ],
+                role: "지구 관측 데이터 수집",
+                theoryUrl: "https://ko.wikipedia.org/wiki/원격탐사",
+                searchQuery: "지구 관측 데이터 원격탐사 기후 환경"
+            },
+            {
+                tools: [
+                    { name: "Copernicus Climate Data Store", url: "https://cds.climate.copernicus.eu" },
+                    { name: "Climate Reanalyzer", url: "https://climatereanalyzer.org" }
+                ],
+                role: "기후 지표와 장기 변화 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/기후변화",
+                searchQuery: "기후 지표 장기 변화 분석 방법"
+            },
+            {
+                tools: [
+                    { name: "GBIF", url: "https://www.gbif.org" },
+                    { name: "iNaturalist", url: "https://www.inaturalist.org" }
+                ],
+                role: "생물다양성과 생태 관찰 데이터 탐색",
+                theoryUrl: "https://ko.wikipedia.org/wiki/생물_다양성",
+                searchQuery: "생물다양성 관찰 데이터 생태 변화 분석"
+            },
+            {
+                tools: [
+                    { name: "World Air Quality Index", url: "https://waqi.info" },
+                    { name: "OpenAQ", url: "https://openaq.org" }
+                ],
+                role: "대기질과 오염 지표 비교",
+                theoryUrl: "https://ko.wikipedia.org/wiki/대기_오염",
+                searchQuery: "대기질 오염 지표 PM2.5 데이터 비교"
+            },
+            {
+                tools: [
+                    { name: "Google Earth", url: "https://earth.google.com" },
+                    { name: "ArcGIS Living Atlas", url: "https://livingatlas.arcgis.com" }
+                ],
+                role: "공간 데이터 지도화와 지역 비교",
+                theoryUrl: "https://ko.wikipedia.org/wiki/지리정보시스템",
+                searchQuery: "GIS 환경 데이터 지도화 지역 비교"
+            },
+            {
+                tools: [
+                    { name: "Our World in Data", url: "https://ourworldindata.org/environment" },
+                    { name: "UNEP Data", url: "https://wesr.unep.org" }
+                ],
+                role: "환경 변화 해석과 근거 정리",
+                theoryUrl: "https://ko.wikipedia.org/wiki/환경과학",
+                searchQuery: "환경과학 데이터 해석 기후 생태 오염"
+            }
+        ],
     }
 
 ];
