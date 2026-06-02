@@ -132,7 +132,7 @@ export const workflowCategories: WorkflowCategory[] = [
         id: "bio-resources",
         name: "생명자원·생산",
         description: "식량, 생태, 바이오 자원과 생산 시스템을 연결",
-        chainIds: [],
+        chainIds: ["crop-cultivation-research"],
       },
     ],
   },

@@ -1249,6 +1249,69 @@ export const workflowChains: WorkflowChain[] = [
                 searchQuery: "정책 변경 기록 컴플라이언스 검토 메모"
             }
         ],
+    },
+    {
+        id: "crop-cultivation-research",
+        name: "작물 재배 정보 탐색 플로우",
+        description: "작물 선택부터 토양·기후 조건, 병해충, 재배 지침, 유통 판단까지 농업 생산 정보를 연결하는 흐름",
+        icon: "🌾",
+        gradient: "from-lime-500 to-emerald-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "FAOSTAT", url: "https://www.fao.org/faostat" },
+                    { name: "USDA NASS", url: "https://www.nass.usda.gov" }
+                ],
+                role: "작물 생산량과 재배 지역 현황 파악",
+                theoryUrl: "https://ko.wikipedia.org/wiki/농업",
+                searchQuery: "작물 생산량 재배 지역 통계 FAOSTAT USDA"
+            },
+            {
+                tools: [
+                    { name: "ISRIC SoilGrids", url: "https://soilgrids.org" },
+                    { name: "USDA Web Soil Survey", url: "https://websoilsurvey.nrcs.usda.gov" }
+                ],
+                role: "토양 특성과 재배 적합성 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/토양학",
+                searchQuery: "토양 특성 작물 재배 적합성 토양지도"
+            },
+            {
+                tools: [
+                    { name: "WorldClim", url: "https://www.worldclim.org" },
+                    { name: "NASA POWER", url: "https://power.larc.nasa.gov" }
+                ],
+                role: "기후 조건과 생육 환경 비교",
+                theoryUrl: "https://ko.wikipedia.org/wiki/농업기상학",
+                searchQuery: "농업 기상 작물 생육 온도 강수 일사량"
+            },
+            {
+                tools: [
+                    { name: "CABI Invasive Species Compendium", url: "https://www.cabidigitallibrary.org/product/qi" },
+                    { name: "PlantwisePlus", url: "https://www.plantwise.org" }
+                ],
+                role: "병해충 위험과 관리 방법 탐색",
+                theoryUrl: "https://ko.wikipedia.org/wiki/식물병리학",
+                searchQuery: "작물 병해충 관리 식물병리학 방제 방법"
+            },
+            {
+                tools: [
+                    { name: "RDA 농사로", url: "https://www.nongsaro.go.kr" },
+                    { name: "eXtension", url: "https://extension.org" }
+                ],
+                role: "재배 지침과 현장 기술 자료 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/재배",
+                searchQuery: "작물 재배 지침 파종 수확 농업 기술"
+            },
+            {
+                tools: [
+                    { name: "Tridge", url: "https://www.tridge.com" },
+                    { name: "AgFunderNews", url: "https://agfundernews.com" }
+                ],
+                role: "시장·유통 정보와 생산 계획 정리",
+                theoryUrl: "https://ko.wikipedia.org/wiki/농산물_유통",
+                searchQuery: "농산물 유통 시장 가격 생산 계획"
+            }
+        ],
     }
 
 ];
