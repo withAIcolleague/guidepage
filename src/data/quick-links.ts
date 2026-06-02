@@ -1186,6 +1186,69 @@ export const workflowChains: WorkflowChain[] = [
                 searchQuery: "진료 상담 질문 준비 건강 기록 정리"
             }
         ],
+    },
+    {
+        id: "terms-policy-review",
+        name: "서비스 약관·정책 검토 플로우",
+        description: "서비스 약관, 개인정보 처리, 규제 기준, 변경 기록을 함께 확인하는 법·정책 검토 흐름",
+        icon: "⚖️",
+        gradient: "from-amber-500 to-orange-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "TermsFeed", url: "https://www.termsfeed.com" },
+                    { name: "Iubenda", url: "https://www.iubenda.com" }
+                ],
+                role: "서비스 약관과 정책 문서 구조 파악",
+                theoryUrl: "https://ko.wikipedia.org/wiki/이용약관",
+                searchQuery: "서비스 이용약관 개인정보 처리방침 구조"
+            },
+            {
+                tools: [
+                    { name: "GDPR.eu", url: "https://gdpr.eu" },
+                    { name: "ICO Guide to GDPR", url: "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources" }
+                ],
+                role: "개인정보 보호 원칙과 처리 근거 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/일반_개인정보_보호법",
+                searchQuery: "개인정보 보호 원칙 처리 근거 GDPR"
+            },
+            {
+                tools: [
+                    { name: "KISA 개인정보보호 포털", url: "https://www.privacy.go.kr" },
+                    { name: "개인정보보호위원회", url: "https://www.pipc.go.kr" }
+                ],
+                role: "국내 개인정보 정책과 신고 기준 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/개인정보_보호법",
+                searchQuery: "개인정보보호법 처리방침 신고 기준"
+            },
+            {
+                tools: [
+                    { name: "FTC", url: "https://www.ftc.gov" },
+                    { name: "OECD AI Policy Observatory", url: "https://oecd.ai" }
+                ],
+                role: "플랫폼 규제와 소비자 보호 쟁점 탐색",
+                theoryUrl: "https://ko.wikipedia.org/wiki/소비자_보호",
+                searchQuery: "플랫폼 규제 소비자 보호 서비스 정책"
+            },
+            {
+                tools: [
+                    { name: "Google Transparency Report", url: "https://transparencyreport.google.com" },
+                    { name: "Meta Transparency Center", url: "https://transparency.meta.com" }
+                ],
+                role: "정책 집행과 투명성 보고 비교",
+                theoryUrl: "https://ko.wikipedia.org/wiki/투명성",
+                searchQuery: "플랫폼 투명성 보고 정책 집행 비교"
+            },
+            {
+                tools: [
+                    { name: "GitBook", url: "https://www.gitbook.com" },
+                    { name: "Notion", url: "https://www.notion.so" }
+                ],
+                role: "정책 변경 기록과 검토 메모 정리",
+                theoryUrl: "https://ko.wikipedia.org/wiki/규정준수",
+                searchQuery: "정책 변경 기록 컴플라이언스 검토 메모"
+            }
+        ],
     }
 
 ];

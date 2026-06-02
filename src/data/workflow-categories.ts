@@ -180,7 +180,7 @@ export const workflowCategories: WorkflowCategory[] = [
         id: "law-governance",
         name: "규범·거버넌스",
         description: "법, 정책, 공공 의사결정과 사회적 합의 구조",
-        chainIds: [],
+        chainIds: ["terms-policy-review"],
       },
     ],
   },
