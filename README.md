@@ -23,6 +23,8 @@ Open `http://localhost:3000`.
 ## Verification
 
 ```bash
+npm.cmd run validate:data
+npm.cmd run validate:search
 npm.cmd run lint
 npm.cmd run build
 ```
@@ -32,12 +34,15 @@ On Windows PowerShell, use `npm.cmd` instead of `npm` if script execution policy
 The app uses system fonts instead of remote Google Fonts, so `npm.cmd run build`
 does not require network access for font downloads.
 
-## Contribution Flow
+## Delivery Flow
 
-1. Work from a `codex/*` branch.
-2. Keep each PR focused on one improvement area.
-3. Run `npm.cmd run lint` and `npm.cmd run build` before opening a PR.
-4. Merge PRs into `main` in dependency order when branches are stacked.
+1. Keep each change focused on one improvement area.
+2. Run the verification commands before committing.
+3. Push verified changes directly to `origin/main`.
+4. Treat Vercel production as the deployment source of truth.
+5. Do not use Netlify automatic deploys as an operating or verification target.
+
+See [Deployment Routine](./docs/deployment-routine.md) for the exact production check flow.
 
 ## Project Shape
 
