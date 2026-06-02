@@ -1186,6 +1186,132 @@ export const workflowChains: WorkflowChain[] = [
                 searchQuery: "진료 상담 질문 준비 건강 기록 정리"
             }
         ],
+    },
+    {
+        id: "terms-policy-review",
+        name: "서비스 약관·정책 검토 플로우",
+        description: "서비스 약관, 개인정보 처리, 규제 기준, 변경 기록을 함께 확인하는 법·정책 검토 흐름",
+        icon: "⚖️",
+        gradient: "from-amber-500 to-orange-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "TermsFeed", url: "https://www.termsfeed.com" },
+                    { name: "Iubenda", url: "https://www.iubenda.com" }
+                ],
+                role: "서비스 약관과 정책 문서 구조 파악",
+                theoryUrl: "https://ko.wikipedia.org/wiki/이용약관",
+                searchQuery: "서비스 이용약관 개인정보 처리방침 구조"
+            },
+            {
+                tools: [
+                    { name: "GDPR.eu", url: "https://gdpr.eu" },
+                    { name: "ICO Guide to GDPR", url: "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources" }
+                ],
+                role: "개인정보 보호 원칙과 처리 근거 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/일반_개인정보_보호법",
+                searchQuery: "개인정보 보호 원칙 처리 근거 GDPR"
+            },
+            {
+                tools: [
+                    { name: "KISA 개인정보보호 포털", url: "https://www.privacy.go.kr" },
+                    { name: "개인정보보호위원회", url: "https://www.pipc.go.kr" }
+                ],
+                role: "국내 개인정보 정책과 신고 기준 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/개인정보_보호법",
+                searchQuery: "개인정보보호법 처리방침 신고 기준"
+            },
+            {
+                tools: [
+                    { name: "FTC", url: "https://www.ftc.gov" },
+                    { name: "OECD AI Policy Observatory", url: "https://oecd.ai" }
+                ],
+                role: "플랫폼 규제와 소비자 보호 쟁점 탐색",
+                theoryUrl: "https://ko.wikipedia.org/wiki/소비자_보호",
+                searchQuery: "플랫폼 규제 소비자 보호 서비스 정책"
+            },
+            {
+                tools: [
+                    { name: "Google Transparency Report", url: "https://transparencyreport.google.com" },
+                    { name: "Meta Transparency Center", url: "https://transparency.meta.com" }
+                ],
+                role: "정책 집행과 투명성 보고 비교",
+                theoryUrl: "https://ko.wikipedia.org/wiki/투명성",
+                searchQuery: "플랫폼 투명성 보고 정책 집행 비교"
+            },
+            {
+                tools: [
+                    { name: "GitBook", url: "https://www.gitbook.com" },
+                    { name: "Notion", url: "https://www.notion.so" }
+                ],
+                role: "정책 변경 기록과 검토 메모 정리",
+                theoryUrl: "https://ko.wikipedia.org/wiki/규정준수",
+                searchQuery: "정책 변경 기록 컴플라이언스 검토 메모"
+            }
+        ],
+    },
+    {
+        id: "crop-cultivation-research",
+        name: "작물 재배 정보 탐색 플로우",
+        description: "작물 선택부터 토양·기후 조건, 병해충, 재배 지침, 유통 판단까지 농업 생산 정보를 연결하는 흐름",
+        icon: "🌾",
+        gradient: "from-lime-500 to-emerald-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "FAOSTAT", url: "https://www.fao.org/faostat" },
+                    { name: "USDA NASS", url: "https://www.nass.usda.gov" }
+                ],
+                role: "작물 생산량과 재배 지역 현황 파악",
+                theoryUrl: "https://ko.wikipedia.org/wiki/농업",
+                searchQuery: "작물 생산량 재배 지역 통계 FAOSTAT USDA"
+            },
+            {
+                tools: [
+                    { name: "ISRIC SoilGrids", url: "https://soilgrids.org" },
+                    { name: "USDA Web Soil Survey", url: "https://websoilsurvey.nrcs.usda.gov" }
+                ],
+                role: "토양 특성과 재배 적합성 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/토양학",
+                searchQuery: "토양 특성 작물 재배 적합성 토양지도"
+            },
+            {
+                tools: [
+                    { name: "WorldClim", url: "https://www.worldclim.org" },
+                    { name: "NASA POWER", url: "https://power.larc.nasa.gov" }
+                ],
+                role: "기후 조건과 생육 환경 비교",
+                theoryUrl: "https://ko.wikipedia.org/wiki/농업기상학",
+                searchQuery: "농업 기상 작물 생육 온도 강수 일사량"
+            },
+            {
+                tools: [
+                    { name: "CABI Invasive Species Compendium", url: "https://www.cabidigitallibrary.org/product/qi" },
+                    { name: "PlantwisePlus", url: "https://www.plantwise.org" }
+                ],
+                role: "병해충 위험과 관리 방법 탐색",
+                theoryUrl: "https://ko.wikipedia.org/wiki/식물병리학",
+                searchQuery: "작물 병해충 관리 식물병리학 방제 방법"
+            },
+            {
+                tools: [
+                    { name: "RDA 농사로", url: "https://www.nongsaro.go.kr" },
+                    { name: "eXtension", url: "https://extension.org" }
+                ],
+                role: "재배 지침과 현장 기술 자료 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/재배",
+                searchQuery: "작물 재배 지침 파종 수확 농업 기술"
+            },
+            {
+                tools: [
+                    { name: "Tridge", url: "https://www.tridge.com" },
+                    { name: "AgFunderNews", url: "https://agfundernews.com" }
+                ],
+                role: "시장·유통 정보와 생산 계획 정리",
+                theoryUrl: "https://ko.wikipedia.org/wiki/농산물_유통",
+                searchQuery: "농산물 유통 시장 가격 생산 계획"
+            }
+        ],
     }
 
 ];
