@@ -105,6 +105,8 @@ function validate() {
       continue;
     }
 
+    let categoryValidChainCount = 0;
+
     pushDuplicateErrors(
       category.sections.map((section) => section.id),
       `WorkflowCategorySection.id in ${category.id}`,
@@ -138,8 +140,14 @@ function validate() {
       for (const chainId of section.chainIds) {
         if (!chainIdSet.has(chainId)) {
           errors.push(`Section ${section.id} references missing WorkflowChain.id: ${chainId}`);
+        } else {
+          categoryValidChainCount += 1;
         }
       }
+    }
+
+    if (categoryValidChainCount === 0) {
+      errors.push(`WorkflowCategory must reference at least one valid chain: ${category.id}`);
     }
   }
 
