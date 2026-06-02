@@ -1,7 +1,7 @@
 "use client";
 
-import { ChevronLeft, Layers } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight, Layers } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { BannerGrid } from "@/components/banner-grid";
 import { Button } from "@/components/ui/button";
@@ -78,6 +78,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
   const [activeChainId, setActiveChainId] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<SelectedWorkflowItem | null>(null);
+  const [sectionPage, setSectionPage] = useState(0);
   const [query, setQuery] = useState("");
 
   const activeCategory =
@@ -105,6 +106,11 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
       : undefined;
   const previewOpen = Boolean(selectedUrl && selectedTitle);
   const hasSearchQuery = query.trim().length > 0;
+  const searchScopeLabel = activeSection?.name ?? activeCategory?.name ?? "전체 워크플로우";
+  const sectionPageIndex = activeCategory
+    ? Math.min(sectionPage, Math.max(activeCategory.sections.length - 1, 0))
+    : 0;
+  const visibleSection = activeCategory?.sections[sectionPageIndex] ?? null;
 
   useEffect(() => {
     onDetailModeChange?.(detailMode);
@@ -114,12 +120,16 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
   const totalNodes = countNodes(workflowChains);
   const totalTools = countTools(workflowChains);
 
-  const searchResults = useMemo<WorkflowSearchResult[]>(() => {
+  const searchResults: WorkflowSearchResult[] = (() => {
     const normalizedQuery = normalize(query);
     if (!normalizedQuery) return [];
 
-    return workflowCategories.flatMap((category) =>
-      category.sections.flatMap((section) =>
+    const scopedCategories = activeCategory ? [activeCategory] : workflowCategories;
+
+    return scopedCategories.flatMap((category) => {
+      const scopedSections = activeSection ? [activeSection] : category.sections;
+
+      return scopedSections.flatMap((section) =>
         section.chainIds.flatMap((chainId) => {
           const chain = chainById(chainId);
           if (!chain) return [];
@@ -147,9 +157,9 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
             }),
           );
         }),
-      ),
-    );
-  }, [query]);
+      );
+    });
+  })();
 
   const openCategory = (category: WorkflowCategory) => {
     if (chainsForCategory(category).length === 0) return;
@@ -158,12 +168,14 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     setActiveSectionId(null);
     setActiveChainId(null);
     setSelectedItem(null);
+    setSectionPage(0);
     setQuery("");
   };
 
   const selectSection = (section: WorkflowCategorySection) => {
     if (chainsForSection(section).length === 0) return;
 
+    setSectionPage(activeCategory?.sections.findIndex((item) => item.id === section.id) ?? 0);
     setActiveSectionId(section.id);
     setActiveChainId(null);
     setSelectedItem(null);
@@ -199,9 +211,14 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
   };
 
   const selectSearchResult = (result: WorkflowSearchResult) => {
+    const sectionIndex = result.category.sections.findIndex(
+      (section) => section.id === result.section.id,
+    );
+
     setActiveCategoryId(result.category.id);
     setActiveSectionId(result.section.id);
     setActiveChainId(result.chain.id);
+    setSectionPage(sectionIndex >= 0 ? sectionIndex : 0);
     setSelectedItem({
       chainId: result.chain.id,
       nodeRole: result.node.role,
@@ -216,7 +233,46 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     setActiveSectionId(null);
     setActiveChainId(null);
     setSelectedItem(null);
+    setSectionPage(0);
     setQuery("");
+  };
+
+  const renderSectionButton = (section: WorkflowCategorySection) => {
+    const chains = chainsForSection(section);
+    const hasChains = chains.length > 0;
+    const active = activeSection?.id === section.id;
+
+    return (
+      <button
+        key={section.id}
+        type="button"
+        disabled={!hasChains}
+        onClick={() => selectSection(section)}
+        className={`min-h-28 rounded-lg border p-3 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+          active
+            ? "border-foreground/30 bg-foreground text-background"
+            : hasChains
+              ? "border-border bg-card hover:border-foreground/20 hover:bg-muted/40"
+              : "cursor-not-allowed border-border bg-muted/40 text-muted-foreground opacity-75"
+        }`}
+      >
+        <div className="flex items-center justify-between gap-3">
+          <h3 className="text-sm font-semibold">{section.name}</h3>
+          <span
+            className={`rounded-md px-2 py-0.5 text-[11px] ${
+              active
+                ? "bg-background/15 text-background/80"
+                : "bg-muted text-muted-foreground"
+            }`}
+          >
+            {active ? "선택됨" : hasChains ? `${chains.length}개 세부분류` : "준비 중"}
+          </span>
+        </div>
+        <p className={`mt-2 text-xs leading-5 ${active ? "text-background/75" : "text-muted-foreground"}`}>
+          {section.description}
+        </p>
+      </button>
+    );
   };
 
   return (
@@ -384,52 +440,43 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
             </div>
 
             <div className="mb-4">
-              <div className="mb-2 text-xs font-semibold uppercase text-muted-foreground">
-                중분류
-              </div>
-              <div className="grid items-stretch gap-2 sm:grid-cols-2 xl:grid-cols-4">
-                {activeCategory.sections.map((section) => {
-                  const chains = chainsForSection(section);
-                  const hasChains = chains.length > 0;
-                  const active = activeSection?.id === section.id;
-
-                  return (
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <div className="text-xs font-semibold uppercase text-muted-foreground">
+                  중분류
+                </div>
+                {activeCategory.sections.length > 1 && (
+                  <div className="flex items-center gap-2">
                     <button
-                      key={section.id}
                       type="button"
-                      disabled={!hasChains}
-                      onClick={() => selectSection(section)}
-                      className={`min-h-28 rounded-lg border p-3 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                        active
-                          ? "border-foreground/30 bg-foreground text-background"
-                          : hasChains
-                            ? "border-border bg-card hover:border-foreground/20 hover:bg-muted/40"
-                            : "cursor-not-allowed border-border bg-muted/40 text-muted-foreground opacity-75"
-                      }`}
+                      onClick={() => setSectionPage((page) => Math.max(page - 1, 0))}
+                      disabled={sectionPageIndex === 0}
+                      className="inline-flex size-8 items-center justify-center rounded-md border border-border bg-card text-muted-foreground shadow-sm transition-colors disabled:opacity-40"
+                      aria-label="이전 중분류"
                     >
-                      <div className="flex items-center justify-between gap-3">
-                        <h3 className="text-sm font-semibold">{section.name}</h3>
-                        <span
-                          className={`rounded-md px-2 py-0.5 text-[11px] ${
-                            active
-                              ? "bg-background/15 text-background/80"
-                              : "bg-muted text-muted-foreground"
-                          }`}
-                        >
-                          {active
-                            ? "선택됨"
-                            : hasChains
-                              ? `${chains.length}개 세부분류`
-                              : "준비 중"}
-                        </span>
-                      </div>
-                      <p className={`mt-2 text-xs leading-5 ${active ? "text-background/75" : "text-muted-foreground"}`}>
-                        {section.description}
-                      </p>
+                      <ChevronLeft className="size-4" />
                     </button>
-                  );
-                })}
+                    <span className="min-w-10 text-center text-xs text-muted-foreground">
+                      {sectionPageIndex + 1} / {activeCategory.sections.length}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setSectionPage((page) =>
+                          Math.min(page + 1, activeCategory.sections.length - 1),
+                        )
+                      }
+                      disabled={sectionPageIndex === activeCategory.sections.length - 1}
+                      className="inline-flex size-8 items-center justify-center rounded-md border border-border bg-card text-muted-foreground shadow-sm transition-colors disabled:opacity-40"
+                      aria-label="다음 중분류"
+                    >
+                      <ChevronRight className="size-4" />
+                    </button>
+                  </div>
+                )}
               </div>
+              {visibleSection && (
+                <div>{renderSectionButton(visibleSection)}</div>
+              )}
             </div>
 
             {activeSection && sectionChains.length > 0 ? (
@@ -485,7 +532,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                       오른쪽 결과 패널
                     </h2>
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                      현재 입력한 검색어와 연결되는 세부분류, 단계, 도구를 이 영역에서 확인합니다.
+                      {searchScopeLabel} 안에서 검색어와 연결되는 세부분류, 단계,
+                      도구를 확인합니다.
                     </p>
                   </div>
                   <WorkflowSearchResults
