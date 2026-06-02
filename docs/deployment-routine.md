@@ -23,6 +23,7 @@ npm.cmd run validate:theme
 npm.cmd run validate:layout
 npm.cmd run lint
 npm.cmd run build
+npm.cmd run qa:mobile
 ```
 
 3. 변경을 커밋한다.
@@ -48,5 +49,6 @@ git push origin HEAD:main
    - 중분류/세부분류/단계 화살표 이동
    - 검색 결과 선택
    - iframe 제한 사이트의 새 탭 CTA 표시
+5. 모바일 viewport 확인은 `npm.cmd run qa:mobile`로 수행한다.
 
 브라우저 자동화가 불안정한 환경에서는 실제 화면 QA 항목을 완료 처리하지 않는다. 해당 항목은 사람이 production 화면에서 직접 확인한 뒤 체크한다.
