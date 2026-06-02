@@ -30,6 +30,7 @@ npm.cmd run validate:layout
 npm.cmd run lint
 npm.cmd run build
 npm.cmd run qa:mobile
+npm.cmd run qa:desktop
 ```
 
 On Windows PowerShell, use `npm.cmd` instead of `npm` if script execution policy blocks `npm.ps1`.

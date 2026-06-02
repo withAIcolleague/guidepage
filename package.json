@@ -11,7 +11,8 @@
     "validate:search": "node scripts/validate-search.mjs",
     "validate:theme": "node scripts/validate-theme.mjs",
     "validate:layout": "node scripts/validate-layout.mjs",
-    "qa:mobile": "node scripts/mobile-qa.mjs"
+    "qa:mobile": "node scripts/mobile-qa.mjs",
+    "qa:desktop": "node scripts/mobile-qa.mjs --desktop"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

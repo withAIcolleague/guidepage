@@ -67,10 +67,21 @@ const checks = [
       /basis-0/.test(previewPanelSource),
   },
   {
+    name: "embedded iframe preview has bounded desktop height",
+    pass:
+      /data-preview-panel="embedded"/.test(previewPanelSource) &&
+      /data-preview-frame="true"/.test(previewPanelSource) &&
+      /lg:h-\[60vh\]/.test(previewPanelSource) &&
+      /lg:min-h-\[460px\]/.test(previewPanelSource) &&
+      /lg:max-h-\[680px\]/.test(previewPanelSource),
+  },
+  {
     name: "workflow nodes page one card with arrow controls",
     pass:
       /const \[nodePage, setNodePage\]/.test(workflowCanvasSource) &&
       /const visibleNode = chain\.nodes\[visibleIndex\]/.test(workflowCanvasSource) &&
+      /data-workflow-node-select="true"/.test(workflowCanvasSource) &&
+      /data-workflow-tool-button="true"/.test(workflowCanvasSource) &&
       /aria-label="이전 단계"/.test(workflowCanvasSource) &&
       /aria-label="다음 단계"/.test(workflowCanvasSource),
   },

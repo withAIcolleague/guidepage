@@ -236,6 +236,7 @@ export function PreviewPanel({
               key={previewKey}
               title={`${title} preview`}
               src={parsedUrl.href}
+              data-preview-frame="true"
               className="h-full w-full border-0"
               onLoad={() => setLoadState({ key: stateKey, status: "ready" })}
               onError={() => setLoadState({ key: stateKey, status: "timeout" })}
@@ -249,7 +250,10 @@ export function PreviewPanel({
 
   if (mode === "embedded") {
     return (
-      <div className="flex h-[70vh] min-h-[520px] max-h-[720px] flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm lg:h-[calc(100vh-1.5rem)] lg:min-h-[560px] lg:max-h-none">
+      <div
+        data-preview-panel="embedded"
+        className="flex h-[70vh] min-h-[520px] max-h-[720px] flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm lg:h-[60vh] lg:min-h-[460px] lg:max-h-[680px]"
+      >
         {frame}
       </div>
     );

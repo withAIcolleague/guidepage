@@ -39,6 +39,7 @@ export function WorkflowCanvas({
 
     return (
       <div
+        data-workflow-node-card="true"
         className={`flex min-h-[150px] flex-col gap-3 rounded-lg border p-3 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
           activeNode
             ? "border-foreground/40 bg-foreground/[0.04] shadow-md ring-1 ring-foreground/10"
@@ -48,6 +49,7 @@ export function WorkflowCanvas({
         <div className="flex items-start justify-between gap-2 border-b border-border/70 pb-2">
           <button
             type="button"
+            data-workflow-node-select="true"
             onClick={() => onSelectNode(node)}
             className="min-w-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
@@ -82,6 +84,7 @@ export function WorkflowCanvas({
               <button
                 key={tool.name}
                 type="button"
+                data-workflow-tool-button="true"
                 onClick={() => onSelectTool(node, toolIndex)}
                 className={`rounded-md px-2 py-1.5 text-center text-xs font-medium transition-colors ${
                   activeTool
@@ -99,7 +102,7 @@ export function WorkflowCanvas({
   };
 
   return (
-    <div className="pb-4">
+    <div className="pb-4" data-workflow-canvas="true">
       {visibleNode && (
         <div>
           <div className="mb-2 flex items-center justify-between gap-3">

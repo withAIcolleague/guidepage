@@ -24,6 +24,7 @@ npm.cmd run validate:layout
 npm.cmd run lint
 npm.cmd run build
 npm.cmd run qa:mobile
+npm.cmd run qa:desktop
 ```
 
 3. 변경을 커밋한다.
