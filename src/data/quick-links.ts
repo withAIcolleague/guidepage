@@ -997,6 +997,69 @@ export const workflowChains: WorkflowChain[] = [
                 searchQuery: "미니멀 음악 전자 음악 특징"
             }
         ],
+    },
+    {
+        id: "decision-analysis",
+        name: "개인 의사결정 분석 플로우",
+        description: "문제 정의부터 편향 점검, 근거 수집, 선택안 비교까지 개인 의사결정을 구조화하는 흐름",
+        icon: "🧭",
+        gradient: "from-sky-500 to-cyan-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "Notion", url: "https://www.notion.so" },
+                    { name: "Miro", url: "https://miro.com" }
+                ],
+                role: "의사결정 문제와 선택지 정의",
+                theoryUrl: "https://ko.wikipedia.org/wiki/의사결정",
+                searchQuery: "의사결정 문제 정의 선택지 구조화 방법"
+            },
+            {
+                tools: [
+                    { name: "Google Scholar", url: "https://scholar.google.com" },
+                    { name: "Semantic Scholar", url: "https://www.semanticscholar.org" }
+                ],
+                role: "관련 연구와 판단 기준 탐색",
+                theoryUrl: "https://ko.wikipedia.org/wiki/문헌고찰",
+                searchQuery: "의사결정 연구 문헌고찰 판단 기준"
+            },
+            {
+                tools: [
+                    { name: "Pew Research Center", url: "https://www.pewresearch.org" },
+                    { name: "Our World in Data", url: "https://ourworldindata.org" }
+                ],
+                role: "사회적 맥락과 근거 데이터 수집",
+                theoryUrl: "https://ko.wikipedia.org/wiki/사회과학",
+                searchQuery: "사회과학 데이터 근거 기반 의사결정"
+            },
+            {
+                tools: [
+                    { name: "Google Forms", url: "https://forms.google.com" },
+                    { name: "Typeform", url: "https://www.typeform.com" }
+                ],
+                role: "피드백과 선호 데이터 수집",
+                theoryUrl: "https://ko.wikipedia.org/wiki/설문조사",
+                searchQuery: "설문조사 선호도 조사 의사결정"
+            },
+            {
+                tools: [
+                    { name: "The Decision Lab", url: "https://thedecisionlab.com" },
+                    { name: "Noba Project", url: "https://nobaproject.com" }
+                ],
+                role: "인지 편향과 행동 요인 점검",
+                theoryUrl: "https://ko.wikipedia.org/wiki/인지_편향",
+                searchQuery: "인지 편향 행동경제학 의사결정 오류"
+            },
+            {
+                tools: [
+                    { name: "Datawrapper", url: "https://www.datawrapper.de" },
+                    { name: "Flourish", url: "https://flourish.studio" }
+                ],
+                role: "선택안 비교와 판단 결과 시각화",
+                theoryUrl: "https://ko.wikipedia.org/wiki/데이터_시각화",
+                searchQuery: "의사결정 매트릭스 대안 비교 시각화"
+            }
+        ],
     }
 
 ];
