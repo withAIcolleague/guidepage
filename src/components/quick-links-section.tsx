@@ -319,7 +319,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
 
             <BannerGrid />
 
-            <div className="mb-4">
+            <div className="mb-3">
               <WorkflowSearch
                 query={query}
                 results={searchResults}
@@ -332,7 +332,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
         )}
 
         {!activeCategory ? (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {workflowCategories.map((category) => {
               const chains = chainsForCategory(category);
               const readySections = sectionsWithChains(category);
@@ -345,27 +345,30 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                   type="button"
                   disabled={!hasChains}
                   onClick={() => openCategory(category)}
-                  className={`group rounded-lg border border-border p-4 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  className={`group min-h-[188px] rounded-lg border border-border p-5 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     hasChains
-                      ? "bg-card hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-md"
+                      ? "bg-card hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md"
                       : "cursor-not-allowed bg-muted/40 text-muted-foreground opacity-75"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <span className="text-2xl" aria-hidden="true">
-                      {category.icon}
+                    <span
+                      className="flex size-10 items-center justify-center rounded-lg border border-border bg-background text-2xl"
+                      aria-hidden="true"
+                    >
+                      <span>{category.icon}</span>
                     </span>
                     <span className="rounded-md bg-muted px-2 py-1 text-[11px] text-muted-foreground">
                       {hasChains ? `${readySections.length}개 중분류` : "준비 중"}
                     </span>
                   </div>
-                  <h2 className="mt-4 text-lg font-semibold tracking-tight">
+                  <h2 className="mt-5 text-xl font-semibold tracking-tight">
                     {category.name}
                   </h2>
                   <p className="mt-2 min-h-16 text-sm leading-6 text-muted-foreground">
                     {category.description}
                   </p>
-                  <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
+                  <div className="mt-5 flex items-center gap-2 border-t border-border pt-3 text-xs text-muted-foreground">
                     <Layers className="size-3.5" />
                     <span>
                       {hasChains
@@ -529,11 +532,11 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                       맥락 검색
                     </div>
                     <h2 className="mt-1 text-lg font-semibold tracking-tight">
-                      오른쪽 결과 패널
+                      검색 결과
                     </h2>
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                      {searchScopeLabel} 안에서 검색어와 연결되는 세부분류, 단계,
-                      도구를 확인합니다.
+                      {searchScopeLabel} 안에서 연결되는 세부분류, 단계, 도구를
+                      확인합니다.
                     </p>
                   </div>
                   <WorkflowSearchResults
@@ -573,8 +576,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                     {activeSection?.name ?? activeCategory.name}
                   </h2>
                   <p className="mt-2 leading-6">
-                    왼쪽에서 중분류와 세부분류를 선택하면 이 영역이 검색 결과, 이론,
-                    도구 미리보기 패널로 전환됩니다.
+                    중분류와 세부분류를 선택하면 이 영역이 해당 맥락의 검색 결과,
+                    이론 링크, 실행 도구, 미리보기 패널로 전환됩니다.
                   </p>
                 </div>
               )}
