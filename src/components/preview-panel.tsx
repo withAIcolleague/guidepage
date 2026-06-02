@@ -199,7 +199,7 @@ export function PreviewPanel({
         </div>
       </div>
 
-      <div className="relative min-h-0 flex-1 bg-background">
+      <div className="relative min-h-0 flex-1 basis-0 bg-background">
         {status === "loading" && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-background">
             <Loader2 className="size-6 animate-spin text-muted-foreground" />
@@ -249,7 +249,7 @@ export function PreviewPanel({
 
   if (mode === "embedded") {
     return (
-      <div className="flex min-h-[360px] flex-1 flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm lg:min-h-[calc(50vh-1rem)]">
+      <div className="flex h-[70vh] min-h-[520px] max-h-[720px] flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm lg:h-[calc(100vh-1.5rem)] lg:min-h-[560px] lg:max-h-none">
         {frame}
       </div>
     );

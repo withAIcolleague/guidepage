@@ -60,6 +60,13 @@ const checks = [
       /openExternalUrl\(parsedUrl\.href\)/.test(previewPanelSource),
   },
   {
+    name: "embedded iframe preview has explicit mobile height",
+    pass:
+      /h-\[70vh\]/.test(previewPanelSource) &&
+      /min-h-\[520px\]/.test(previewPanelSource) &&
+      /basis-0/.test(previewPanelSource),
+  },
+  {
     name: "workflow nodes page one card with arrow controls",
     pass:
       /const \[nodePage, setNodePage\]/.test(workflowCanvasSource) &&
