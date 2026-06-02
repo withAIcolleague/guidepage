@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "validate:data": "node scripts/validate-data.mjs"
+    "validate:data": "node scripts/validate-data.mjs",
+    "validate:search": "node scripts/validate-search.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

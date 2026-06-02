@@ -147,11 +147,15 @@ GitHub, Figma, Google, YouTube처럼 iframe 제한 가능성이 높은 서비스
 
 ```bash
 npm.cmd run validate:data
+npm.cmd run validate:search
 ```
 
 이 명령은 누락 필드, 중복 ID, 깨진 체인 참조, 체인이 없는 대분류, 잘못된 URL, 같은 단계 안의
 중복 도구 URL을 오류로 처리한다. 이론 링크가 도구 URL과 같은 경우처럼 데이터 품질을 낮출 수
 있지만 즉시 빌드를 막을 필요는 없는 항목은 경고로 표시한다.
+
+검색 검증은 UI 검색과 같은 필드를 대상으로 대표 검색어가 기대 워크플로우 체인을 찾는지 확인한다.
+대표 검색어는 1차 확장 체인과 주요 기존 체인을 함께 포함한다.
 
 ## Expansion Checklist
 

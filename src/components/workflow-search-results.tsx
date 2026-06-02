@@ -7,6 +7,8 @@ interface WorkflowSearchResultsProps {
   onSelectResult: (result: WorkflowSearchResult) => void;
   compact?: boolean;
   maxResults?: number;
+  query?: string;
+  scopeLabel?: string;
 }
 
 export function WorkflowSearchResults({
@@ -14,7 +16,11 @@ export function WorkflowSearchResults({
   onSelectResult,
   compact = false,
   maxResults = 12,
+  query = "",
+  scopeLabel = "현재 분류",
 }: WorkflowSearchResultsProps) {
+  const trimmedQuery = query.trim();
+
   return (
     <div>
       <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
@@ -52,8 +58,21 @@ export function WorkflowSearchResults({
           })}
         </div>
       ) : (
-        <div className="rounded-md border border-dashed border-border px-3 py-5 text-center text-sm text-muted-foreground">
-          일치하는 도구가 없습니다.
+        <div className="rounded-md border border-dashed border-border bg-muted/20 px-4 py-5 text-center text-sm text-muted-foreground">
+          <p className="font-medium text-foreground">일치하는 결과가 없습니다.</p>
+          <p className="mt-2 leading-6">
+            {trimmedQuery ? (
+              <>
+                <strong className="font-semibold text-foreground">{trimmedQuery}</strong>
+                {" "}검색어는 {scopeLabel} 안에서 찾지 못했습니다.
+              </>
+            ) : (
+              "검색어를 입력하면 현재 맥락 안의 세부분류, 단계, 도구를 찾습니다."
+            )}
+          </p>
+          <p className="mt-1 text-xs leading-5">
+            더 넓게 찾으려면 상위 분류로 돌아가거나, 검색어를 더 짧게 입력하세요.
+          </p>
         </div>
       )}
     </div>
