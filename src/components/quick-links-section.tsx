@@ -539,6 +539,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                   <WorkflowSearchResults
                     results={searchResults}
                     onSelectResult={selectSearchResult}
+                    query={query}
+                    scopeLabel={searchScopeLabel}
                   />
                 </div>
               ) : activeChain ? (

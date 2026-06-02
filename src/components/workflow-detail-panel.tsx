@@ -42,11 +42,14 @@ export function WorkflowDetailPanel({
           {chain.description}
         </p>
         <div
-          className={`rounded-md border border-dashed border-border text-sm text-muted-foreground ${
+          className={`rounded-md border border-dashed border-border bg-muted/20 text-sm text-muted-foreground ${
             compact ? "mt-3 p-3" : "mt-5 p-4"
           }`}
         >
-          왼쪽의 단계를 선택하면 이론, 검색, 관련 도구를 한 번에 확인할 수 있습니다.
+          <p className="font-medium text-foreground">단계를 선택해 세부 맥락을 여세요.</p>
+          <p className="mt-1 leading-6">
+            이론 링크, Google 검색, 실행 도구와 미리보기가 이 패널에 이어서 표시됩니다.
+          </p>
         </div>
       </aside>
     );
@@ -137,9 +140,12 @@ export function WorkflowDetailPanel({
       </div>
 
       {selectedUrl && selectedTitle && (
-        <p className="mt-4 rounded-md border border-dashed border-border px-3 py-2 text-xs leading-5 text-muted-foreground">
-          선택한 링크는 오른쪽 미리보기 패널에서 열립니다. 제한된 사이트는 새 탭 버튼을 사용하세요.
-        </p>
+        <div className="mt-4 rounded-md border border-dashed border-border bg-muted/20 px-3 py-2 text-xs leading-5 text-muted-foreground">
+          <p className="font-medium text-foreground">선택한 링크가 아래 미리보기로 열립니다.</p>
+          <p className="mt-1">
+            iframe이 제한된 사이트는 미리보기 대신 새 탭 CTA가 표시됩니다.
+          </p>
+        </div>
       )}
     </aside>
   );

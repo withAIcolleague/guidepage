@@ -137,10 +137,16 @@ export function PreviewPanel({
         : "미리보기가 제한된 사이트입니다";
   const unavailableDescription =
     status === "timeout"
-      ? "사이트가 늦게 응답하거나 iframe 로딩을 제한하고 있습니다."
+      ? "응답이 늦거나 iframe 로딩이 제한되어 포털 안에서 표시하지 못했습니다."
       : status === "invalid"
         ? "등록된 링크 형식이 올바르지 않습니다."
-        : "보안 정책상 포털 안에서 직접 표시되지 않습니다.";
+        : "이 도메인은 보안 정책상 포털 안에서 직접 표시되지 않습니다.";
+  const unavailableAction =
+    status === "timeout"
+      ? "다시 시도하거나 새 탭에서 원본 페이지를 여세요."
+      : status === "invalid"
+        ? "데이터의 URL 값을 점검해야 합니다."
+        : "새 탭에서 열면 원본 사이트를 바로 확인할 수 있습니다.";
   const frame = (
     <>
       <div className="flex items-center justify-between gap-3 border-b border-border bg-muted/30 px-4 py-3">
@@ -210,6 +216,9 @@ export function PreviewPanel({
               <h3 className="text-base font-semibold">{unavailableTitle}</h3>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 <strong>{hostname}</strong> · {unavailableDescription}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                {unavailableAction}
               </p>
             </div>
             <Button
