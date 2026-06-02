@@ -35,6 +35,12 @@ export const workflowCategories: WorkflowCategory[] = [
     icon: "🌐",
     sections: [
       {
+        id: "psychology-behavior",
+        name: "심리·행동과학",
+        description: "개인 행동, 인지, 감정, 동기와 의사결정을 분석",
+        chainIds: ["decision-analysis"],
+      },
+      {
         id: "society-institutions",
         name: "사회·제도 연구",
         description: "사회 구조, 제도, 정책, 집단 행동을 다루는 분석 영역",
