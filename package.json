@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "validate:data": "node scripts/validate-data.mjs",
-    "validate:search": "node scripts/validate-search.mjs"
+    "validate:search": "node scripts/validate-search.mjs",
+    "validate:theme": "node scripts/validate-theme.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

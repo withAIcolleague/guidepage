@@ -25,6 +25,7 @@ Open `http://localhost:3000`.
 ```bash
 npm.cmd run validate:data
 npm.cmd run validate:search
+npm.cmd run validate:theme
 npm.cmd run lint
 npm.cmd run build
 ```
