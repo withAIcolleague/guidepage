@@ -1251,6 +1251,69 @@ export const workflowChains: WorkflowChain[] = [
         ],
     },
     {
+        id: "lifestyle-health-planning",
+        name: "생활습관 건강 계획 플로우",
+        description: "공식 건강 권고를 확인하고 식이, 운동, 수면, 기록, 상담 질문을 안전하게 정리하는 흐름",
+        icon: "🥗",
+        gradient: "from-lime-500 to-emerald-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "MedlinePlus Healthy Living", url: "https://medlineplus.gov/preventingdiseaseandstayinghealthy.html" },
+                    { name: "WHO Health Topics", url: "https://www.who.int/health-topics" }
+                ],
+                role: "건강 목표와 제한 조건 기록",
+                theoryUrl: "https://ko.wikipedia.org/wiki/건강증진",
+                searchQuery: "생활습관 건강 목표 제한 조건 기록"
+            },
+            {
+                tools: [
+                    { name: "WHO Physical Activity", url: "https://www.who.int/news-room/fact-sheets/detail/physical-activity" },
+                    { name: "CDC Physical Activity", url: "https://www.cdc.gov/healthy-weight-growth/physical-activity/" }
+                ],
+                role: "신체활동 권고와 위험 요인 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/신체활동",
+                searchQuery: "WHO CDC 신체활동 권고 생활습관 건강"
+            },
+            {
+                tools: [
+                    { name: "MedlinePlus Nutrition", url: "https://medlineplus.gov/nutrition.html" },
+                    { name: "MyPlate", url: "https://www.myplate.gov" }
+                ],
+                role: "식이 패턴과 영양 정보 정리",
+                theoryUrl: "https://ko.wikipedia.org/wiki/영양",
+                searchQuery: "건강한 식이 패턴 영양 정보 정리"
+            },
+            {
+                tools: [
+                    { name: "NHLBI Sleep", url: "https://www.nhlbi.nih.gov/health/sleep/why-sleep-important" },
+                    { name: "NIH Health Information", url: "https://www.nih.gov/health-information" }
+                ],
+                role: "수면과 회복 지표 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/수면",
+                searchQuery: "수면 건강 회복 지표 생활습관"
+            },
+            {
+                tools: [
+                    { name: "Cronometer", url: "https://cronometer.com" },
+                    { name: "Google Fit", url: "https://www.google.com/fit/" }
+                ],
+                role: "식이·활동 기록 도구 선택",
+                theoryUrl: "https://ko.wikipedia.org/wiki/자기추적",
+                searchQuery: "식이 운동 수면 기록 앱 건강 추적"
+            },
+            {
+                tools: [
+                    { name: "AHRQ Question Builder", url: "https://www.ahrq.gov/es/questions/question-builder/online.html" },
+                    { name: "Google Docs", url: "https://docs.google.com" }
+                ],
+                role: "의료 상담 질문과 관찰 메모 준비",
+                theoryUrl: "https://ko.wikipedia.org/wiki/건강정보이해능력",
+                searchQuery: "의료 상담 질문 준비 건강 기록 메모"
+            }
+        ],
+    },
+    {
         id: "terms-policy-review",
         name: "서비스 약관·정책 검토 플로우",
         description: "서비스 약관, 개인정보 처리, 규제 기준, 변경 기록을 함께 확인하는 법·정책 검토 흐름",

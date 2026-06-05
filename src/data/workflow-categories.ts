@@ -120,6 +120,12 @@ export const workflowCategories: WorkflowCategory[] = [
         description: "건강, 임상, 공중보건, 의료 시스템의 작동 구조",
         chainIds: ["health-information-verification"],
       },
+      {
+        id: "nutrition-exercise-health",
+        name: "영양·운동건강",
+        description: "식이, 신체활동, 수면, 생활습관 기록과 예방적 건강 관리를 다루는 영역",
+        chainIds: ["lifestyle-health-planning"],
+      },
     ],
   },
   {

@@ -78,6 +78,7 @@ const checks = [
   { query: "지역사회", expectedChainId: "community-issue-analysis" },
   { query: "기후", expectedChainId: "climate-environment-data" },
   { query: "건강 정보", expectedChainId: "health-information-verification" },
+  { query: "생활습관", expectedChainId: "lifestyle-health-planning" },
   { query: "서비스 약관", expectedChainId: "terms-policy-review" },
   { query: "작물 재배", expectedChainId: "crop-cultivation-research" },
   { query: "AI 서비스", expectedChainId: "ai-service-build" },
