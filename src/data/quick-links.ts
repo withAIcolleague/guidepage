@@ -1440,6 +1440,69 @@ export const workflowChains: WorkflowChain[] = [
         ],
     },
     {
+        id: "food-safety-verification",
+        name: "식품 안전 정보 검증 플로우",
+        description: "식품 또는 원료를 정의하고 위해 요인, 기준, 표시, 보관, 회수 정보를 공식 출처로 확인하는 흐름",
+        icon: "🧪",
+        gradient: "from-green-500 to-lime-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "FoodSafety.gov", url: "https://www.foodsafety.gov" },
+                    { name: "식품안전나라", url: "https://www.foodsafetykorea.go.kr" }
+                ],
+                role: "식품·원료와 사용 상황 정의",
+                theoryUrl: "https://ko.wikipedia.org/wiki/식품안전",
+                searchQuery: "식품 안전 원료 사용 상황 정의"
+            },
+            {
+                tools: [
+                    { name: "FDA Foodborne Pathogens", url: "https://www.fda.gov/food/outbreaks-foodborne-illness/foodborne-pathogens" },
+                    { name: "FoodSafety.gov Bacteria and Viruses", url: "https://www.foodsafety.gov/food-poisoning/bacteria-and-viruses" }
+                ],
+                role: "위해 요인과 식중독 원인 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/식중독",
+                searchQuery: "식품 위해 요인 식중독 원인 병원체"
+            },
+            {
+                tools: [
+                    { name: "FDA Safe Food Handling", url: "https://www.fda.gov/food/buy-store-serve-safe-food/safe-food-handling" },
+                    { name: "USDA Food Safety Basics", url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics" }
+                ],
+                role: "취급·조리·보관 기준 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/식품위생",
+                searchQuery: "식품 취급 조리 보관 기준 안전"
+            },
+            {
+                tools: [
+                    { name: "Codex Alimentarius", url: "https://www.fao.org/fao-who-codexalimentarius" },
+                    { name: "MFDS", url: "https://www.mfds.go.kr/english/index.do" }
+                ],
+                role: "표시·인증·국제 기준 비교",
+                theoryUrl: "https://ko.wikipedia.org/wiki/국제식품규격위원회",
+                searchQuery: "식품 표시 인증 Codex 국제 기준"
+            },
+            {
+                tools: [
+                    { name: "FDA Recalls", url: "https://www.fda.gov/food/recalls-outbreaks-emergencies" },
+                    { name: "USDA Recalls", url: "https://www.fsis.usda.gov/recalls" }
+                ],
+                role: "회수·경보와 유통 이슈 점검",
+                theoryUrl: "https://ko.wikipedia.org/wiki/제품_리콜",
+                searchQuery: "식품 회수 경보 리콜 유통 이슈"
+            },
+            {
+                tools: [
+                    { name: "Google Docs", url: "https://docs.google.com" },
+                    { name: "Notion", url: "https://www.notion.so" }
+                ],
+                role: "소비자 안내 문구와 확인 메모 작성",
+                theoryUrl: "https://ko.wikipedia.org/wiki/위험_커뮤니케이션",
+                searchQuery: "식품 안전 소비자 안내 문구 위험 커뮤니케이션"
+            }
+        ],
+    },
+    {
         id: "crop-cultivation-research",
         name: "작물 재배 정보 탐색 플로우",
         description: "작물 선택부터 토양·기후 조건, 병해충, 재배 지침, 유통 판단까지 농업 생산 정보를 연결하는 흐름",

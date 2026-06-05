@@ -140,6 +140,12 @@ export const workflowCategories: WorkflowCategory[] = [
         description: "식량, 생태, 바이오 자원과 생산 시스템을 연결",
         chainIds: ["crop-cultivation-research"],
       },
+      {
+        id: "food-safety-systems",
+        name: "축산·식품시스템",
+        description: "식품 원료, 위해 요인, 표시, 보관, 회수와 식품 공급망 안전을 다루는 영역",
+        chainIds: ["food-safety-verification"],
+      },
     ],
   },
   {
