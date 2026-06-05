@@ -20,12 +20,16 @@ export function WorkflowSearchResults({
   scopeLabel = "현재 분류",
 }: WorkflowSearchResultsProps) {
   const trimmedQuery = query.trim();
+  const visibleResults = results.slice(0, maxResults);
+  const hiddenCount = Math.max(results.length - visibleResults.length, 0);
 
   return (
     <div>
       <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
         <span>검색 결과</span>
-        <span>{results.length}개</span>
+        <span>
+          {results.length}개{hiddenCount > 0 ? ` / 상위 ${visibleResults.length}개` : ""}
+        </span>
       </div>
 
       {results.length > 0 ? (
@@ -34,7 +38,7 @@ export function WorkflowSearchResults({
             compact ? "max-h-56 overflow-y-auto pr-1" : "max-h-[48vh] overflow-y-auto pr-1"
           }`}
         >
-          {results.slice(0, maxResults).map((result) => {
+          {visibleResults.map((result) => {
             const tool = result.node.tools[result.toolIndex];
 
             return (
@@ -44,14 +48,24 @@ export function WorkflowSearchResults({
                 onClick={() => onSelectResult(result)}
                 className="rounded-md border border-border bg-card px-3 py-2 text-left transition-colors hover:border-foreground/30 hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <div className="truncate text-sm font-semibold text-foreground">
-                  {tool.name}
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="truncate text-sm font-semibold text-foreground">
+                      {tool.name}
+                    </div>
+                    <div className="mt-1 truncate text-xs text-muted-foreground">
+                      {result.chain.name}
+                    </div>
+                  </div>
+                  <span className="shrink-0 rounded-md bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
+                    도구
+                  </span>
                 </div>
-                <div className="mt-1 truncate text-xs text-muted-foreground">
+                <div className="mt-2 truncate border-t border-border/70 pt-2 text-xs text-muted-foreground">
                   {result.category.name} / {result.section.name}
                 </div>
                 <div className="mt-1 truncate text-xs text-muted-foreground">
-                  {result.chain.name} / {result.node.role}
+                  {result.node.role}
                 </div>
               </button>
             );

@@ -70,16 +70,18 @@ function countTools(chains: WorkflowChain[]) {
 
 function landingCardClassName(index: number, hasChains: boolean) {
   const shapeClasses = [
-    "lg:col-span-2 lg:min-h-[250px]",
-    "lg:mt-10 lg:min-h-[210px]",
-    "lg:min-h-[190px]",
+    "lg:col-span-3 lg:min-h-[260px] lg:-rotate-[0.25deg]",
+    "lg:col-span-2 lg:mt-12 lg:min-h-[215px] lg:rotate-[0.2deg]",
+    "lg:col-span-1 lg:min-h-[210px]",
+    "lg:col-span-2 lg:-mt-2 lg:min-h-[230px] lg:rotate-[0.15deg]",
+    "lg:col-span-3 lg:mt-8 lg:min-h-[245px] lg:-rotate-[0.15deg]",
+    "lg:col-span-1 lg:mt-2 lg:min-h-[205px]",
     "lg:col-span-2 lg:min-h-[220px]",
-    "lg:mt-6 lg:min-h-[230px]",
-    "lg:min-h-[190px]",
+    "lg:col-span-2 lg:mt-10 lg:min-h-[230px] lg:rotate-[0.2deg]",
   ];
   const shapeClass = shapeClasses[index % shapeClasses.length];
 
-  return `group rounded-lg border border-border p-5 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-6 ${shapeClass} ${
+  return `group rounded-lg border border-border p-5 text-left shadow-sm transition-[border-color,box-shadow,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-6 ${shapeClass} ${
     hasChains
       ? "bg-card hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md"
       : "cursor-not-allowed bg-muted/40 text-muted-foreground opacity-75"
@@ -304,7 +306,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
       <div className="relative mx-auto max-w-7xl">
         {!detailMode && (
           <>
-            <div className="mb-7 grid gap-5 py-4 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
+            <div className="mb-5 grid gap-5 py-3 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
               <div className="max-w-3xl">
                 <div className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
                   Knowledge Dashboard
@@ -349,7 +351,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
         )}
 
         {!activeCategory ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:items-start">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:items-start">
             {workflowCategories.map((category, index) => {
               const chains = chainsForCategory(category);
               const readySections = sectionsWithChains(category);
@@ -589,8 +591,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                     {activeSection?.name ?? activeCategory.name}
                   </h2>
                   <p className="mt-2 leading-6">
-                    중분류와 세부분류를 선택하면 이 영역이 해당 맥락의 검색 결과,
-                    이론 링크, 실행 도구, 미리보기 패널로 전환됩니다.
+                    중분류와 세부분류를 선택하면 이 영역이 해당 맥락의 검색,
+                    이론, 도구, 미리보기 패널로 전환됩니다.
                   </p>
                 </div>
               )}

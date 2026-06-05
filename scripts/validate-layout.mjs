@@ -15,11 +15,14 @@ const checks = [
   },
   {
     name: "asymmetric landing spans",
-    pass: /lg:col-span-2/.test(quickLinksSource) && /lg:mt-10/.test(quickLinksSource),
+    pass:
+      /lg:col-span-3/.test(quickLinksSource) &&
+      /lg:mt-12/.test(quickLinksSource) &&
+      /lg:-rotate-\[0\.25deg\]/.test(quickLinksSource),
   },
   {
     name: "landing grid supports irregular cards",
-    pass: /lg:grid-cols-4/.test(quickLinksSource) && /lg:items-start/.test(quickLinksSource),
+    pass: /lg:grid-cols-6/.test(quickLinksSource) && /lg:items-start/.test(quickLinksSource),
   },
   {
     name: "detail workflow split remains structured",

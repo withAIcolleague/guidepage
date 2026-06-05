@@ -46,9 +46,9 @@ export function WorkflowDetailPanel({
             compact ? "mt-3 p-3" : "mt-5 p-4"
           }`}
         >
-          <p className="font-medium text-foreground">단계를 선택해 세부 맥락을 여세요.</p>
+          <p className="font-medium text-foreground">왼쪽 단계 카드를 선택하세요.</p>
           <p className="mt-1 leading-6">
-            이론 링크, Google 검색, 실행 도구와 미리보기가 이 패널에 이어서 표시됩니다.
+            선택한 단계의 이론, 검색, 관련 도구, 미리보기가 이 영역에 정리됩니다.
           </p>
         </div>
       </aside>
@@ -141,9 +141,9 @@ export function WorkflowDetailPanel({
 
       {selectedUrl && selectedTitle && (
         <div className="mt-4 rounded-md border border-dashed border-border bg-muted/20 px-3 py-2 text-xs leading-5 text-muted-foreground">
-          <p className="font-medium text-foreground">선택한 링크가 아래 미리보기로 열립니다.</p>
+          <p className="font-medium text-foreground">선택한 링크를 아래에서 확인합니다.</p>
           <p className="mt-1">
-            iframe이 제한된 사이트는 미리보기 대신 새 탭 CTA가 표시됩니다.
+            미리보기가 막힌 사이트는 새 탭 CTA로 바로 전환됩니다.
           </p>
         </div>
       )}
