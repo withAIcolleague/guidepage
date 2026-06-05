@@ -1062,6 +1062,69 @@ export const workflowChains: WorkflowChain[] = [
         ],
     },
     {
+        id: "community-issue-analysis",
+        name: "지역사회 이슈 분석 플로우",
+        description: "지역 문제를 정의하고 통계, 이해관계자, 제도 쟁점을 연결해 실행 메모로 정리하는 흐름",
+        icon: "🏘️",
+        gradient: "from-teal-500 to-sky-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "Notion", url: "https://www.notion.so" },
+                    { name: "Miro", url: "https://miro.com" }
+                ],
+                role: "문제 범위와 지역 단위 정의",
+                theoryUrl: "https://ko.wikipedia.org/wiki/지역사회",
+                searchQuery: "지역사회 문제 정의 지역 단위 설정 방법"
+            },
+            {
+                tools: [
+                    { name: "KOSIS 국가통계포털", url: "https://kosis.kr" },
+                    { name: "공공데이터포털", url: "https://www.data.go.kr" }
+                ],
+                role: "인구·지역 통계와 기초 지표 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/인구통계학",
+                searchQuery: "지역 인구 통계 생활 지표 분석"
+            },
+            {
+                tools: [
+                    { name: "Kumu", url: "https://kumu.io" },
+                    { name: "Miro", url: "https://miro.com" }
+                ],
+                role: "이해관계자와 영향 범위 지도화",
+                theoryUrl: "https://en.wikipedia.org/wiki/Stakeholder_analysis",
+                searchQuery: "이해관계자 분석 영향 범위 지도화"
+            },
+            {
+                tools: [
+                    { name: "Google Scholar", url: "https://scholar.google.com" },
+                    { name: "OECD iLibrary", url: "https://www.oecd-ilibrary.org" }
+                ],
+                role: "유사 지역 사례와 연구 근거 탐색",
+                theoryUrl: "https://ko.wikipedia.org/wiki/사례_연구",
+                searchQuery: "지역사회 문제 해결 사례 연구"
+            },
+            {
+                tools: [
+                    { name: "국가법령정보센터", url: "https://www.law.go.kr" },
+                    { name: "자치법규정보시스템", url: "https://www.elis.go.kr" }
+                ],
+                role: "정책·제도 쟁점과 담당 기관 정리",
+                theoryUrl: "https://ko.wikipedia.org/wiki/공공정책",
+                searchQuery: "지역 정책 제도 쟁점 담당 기관 분석"
+            },
+            {
+                tools: [
+                    { name: "Google Docs", url: "https://docs.google.com" },
+                    { name: "Notion", url: "https://www.notion.so" }
+                ],
+                role: "실행 메모와 후속 질문 작성",
+                theoryUrl: "https://en.wikipedia.org/wiki/Policy_brief",
+                searchQuery: "정책 브리프 실행 메모 작성 방법"
+            }
+        ],
+    },
+    {
         id: "climate-environment-data",
         name: "기후·환경 데이터 탐색 플로우",
         description: "관측 데이터 수집부터 지표 해석, 지도화, 환경 변화 판단까지 자연과학 탐구를 구조화하는 흐름",
