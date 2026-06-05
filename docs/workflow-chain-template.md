@@ -52,6 +52,8 @@
         {
           name: "도구명",
           url: "https://example.com",
+          // 후속 확장 후보:
+          // checklist: ["이 도구에서 확인할 것"],
         },
       ],
     },
@@ -143,7 +145,15 @@
 - 긴 설명은 `description`이나 `searchQuery`로 보낸다.
 - 카드에서 핵심 단어가 앞쪽에 오게 쓴다.
 
-## 7. Pre-PR Checklist
+## 7. ResourcePreview Rules
+
+ResourcePreview 기준:
+
+- 모든 도구는 기본적으로 link-card와 새 탭 CTA가 표시된다.
+- iframe은 가능한 사이트에서만 보조로 표시된다.
+- 중요한 도구는 후속 확장 시 `checklist`를 추가해 도메인 기본 체크리스트보다 구체적으로 안내한다.
+
+## 8. Pre-PR Checklist
 
 새 체인을 추가한 PR은 아래 명령을 통과해야 한다.
 
@@ -163,7 +173,7 @@ npm.cmd run build
 - [ ] 각 단계에 `searchQuery` 또는 `theoryUrl`이 있다.
 - [ ] 모바일 단일 카드에서 이름이 지나치게 길지 않다.
 
-## 8. Minimal Example
+## 9. Minimal Example
 
 ```ts
 {

@@ -199,6 +199,9 @@ async function readMobileState(client) {
       const body = document.body;
       const previewPanel = document.querySelector('[data-preview-panel="embedded"]');
       const previewFrame = document.querySelector('[data-preview-frame="true"]');
+      const resourceCard = document.querySelector('[data-resource-preview-card="true"]');
+      const resourceChecklist = document.querySelector('[data-resource-checklist="true"]');
+      const resourceFallback = document.querySelector('[data-resource-preview-fallback="true"]');
       const sectionCard =
         document.querySelector('[data-workflow-section-button="true"]') ??
         [...document.querySelectorAll("button")].find((button) =>
@@ -231,6 +234,9 @@ async function readMobileState(client) {
         preview: {
           hasPanel: Boolean(previewPanel),
           hasFrame: Boolean(previewFrame),
+          hasResourceCard: Boolean(resourceCard),
+          hasResourceChecklist: Boolean(resourceChecklist),
+          hasResourceFallback: Boolean(resourceFallback),
           panelHeight: previewPanelRect?.height ?? 0,
           panelWidth: previewPanelRect?.width ?? 0,
           frameHeight: previewFrameRect?.height ?? 0,
@@ -358,13 +364,15 @@ try {
   const minimumPreviewHeight = QA_MODE === "desktop" ? 420 : 500;
   const theoryPreview = detail.preview;
   assert(detail.preview.hasPanel, "Embedded theory preview panel did not open.");
+  assert(detail.preview.hasResourceCard, "Resource preview card did not render for theory link.");
+  assert(detail.preview.hasResourceChecklist, "Resource checklist did not render for theory link.");
   assert(detail.preview.hasFrame, "Embedded theory preview iframe did not open.");
   assert(
     detail.preview.panelHeight >= minimumPreviewHeight,
     `Embedded theory preview panel is too short on ${QA_MODE}: ${detail.preview.panelHeight}px.`,
   );
   assert(
-    detail.preview.frameHeight >= minimumPreviewHeight - 80,
+    detail.preview.frameHeight >= minimumPreviewHeight - 180,
     `Embedded theory preview iframe is too short on ${QA_MODE}: ${detail.preview.frameHeight}px.`,
   );
 
@@ -375,13 +383,16 @@ try {
   detail = await readMobileState(client);
   const toolPreview = detail.preview;
   assert(detail.preview.hasPanel, "Embedded preview panel did not open.");
+  assert(detail.preview.hasResourceCard, "Resource preview card did not render for selected tool.");
+  assert(detail.preview.hasResourceChecklist, "Resource checklist did not render for selected tool.");
+  assert(detail.hasPreviewFallbackCopy, "Resource preview fallback or new-tab CTA copy is missing.");
   assert(
     detail.preview.panelHeight >= minimumPreviewHeight,
     `Embedded preview panel is too short on ${QA_MODE}: ${detail.preview.panelHeight}px.`,
   );
   if (detail.preview.hasFrame) {
     assert(
-      detail.preview.frameHeight >= minimumPreviewHeight - 80,
+      detail.preview.frameHeight >= minimumPreviewHeight - 180,
       `Embedded preview iframe is too short on ${QA_MODE}: ${detail.preview.frameHeight}px.`,
     );
   }

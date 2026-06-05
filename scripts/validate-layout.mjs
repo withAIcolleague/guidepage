@@ -57,31 +57,34 @@ const checks = [
       /toolIndex: result\.toolIndex/.test(quickLinksSource),
   },
   {
-    name: "iframe blocked domains show new-tab fallback",
+    name: "resource preview supports link-card fallback",
     pass:
       /const BLOCKED_DOMAINS = \[/.test(previewPanelSource) &&
       /"github\.com"/.test(previewPanelSource) &&
       /"figma\.com"/.test(previewPanelSource) &&
       /"google\.com"/.test(previewPanelSource) &&
       /"youtube\.com"/.test(previewPanelSource) &&
+      /data-resource-preview-card="true"/.test(previewPanelSource) &&
+      /data-resource-checklist="true"/.test(previewPanelSource) &&
+      /data-resource-preview-fallback="true"/.test(previewPanelSource) &&
       /새 탭에서 보기/.test(previewPanelSource) &&
       /openExternalUrl\(parsedUrl\.href\)/.test(previewPanelSource),
   },
   {
-    name: "embedded iframe preview has explicit mobile height",
+    name: "embedded resource preview has explicit mobile height",
     pass:
-      /h-\[70vh\]/.test(previewPanelSource) &&
-      /min-h-\[520px\]/.test(previewPanelSource) &&
+      /h-\[88vh\]/.test(previewPanelSource) &&
+      /min-h-\[720px\]/.test(previewPanelSource) &&
       /basis-0/.test(previewPanelSource),
   },
   {
-    name: "embedded iframe preview has bounded desktop height",
+    name: "embedded resource preview has bounded desktop height",
     pass:
       /data-preview-panel="embedded"/.test(previewPanelSource) &&
       /data-preview-frame="true"/.test(previewPanelSource) &&
-      /lg:h-\[60vh\]/.test(previewPanelSource) &&
-      /lg:min-h-\[460px\]/.test(previewPanelSource) &&
-      /lg:max-h-\[680px\]/.test(previewPanelSource),
+      /lg:h-\[72vh\]/.test(previewPanelSource) &&
+      /lg:min-h-\[620px\]/.test(previewPanelSource) &&
+      /lg:max-h-\[820px\]/.test(previewPanelSource),
   },
   {
     name: "workflow nodes page one card with arrow controls",
