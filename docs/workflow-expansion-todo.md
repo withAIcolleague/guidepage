@@ -18,6 +18,13 @@
 - [x] 사회과학: `여론·미디어 반응 분석 플로우` 추가
 - [x] QA: 새 지식DB 체인을 직접 찾는 대분류별 smoke test 추가
 
+## Next Round Todo
+
+- [x] 운영: Vercel production smoke QA를 배포 루틴에 반영
+- [ ] UX: 랜딩 페이지 대분류 카드를 더 단순하고 비정형적인 구조로 조정
+- [ ] QA: 중분류/세부분류/단계 화살표 페이징을 자동 QA에서 직접 검출
+- [ ] 지식DB: 3차 확장 후보를 `workflow-chain-template.md` 기준으로 구체화
+
 ## Done In Previous Round
 
 - [x] 사회과학: `지역사회 이슈 분석 플로우`

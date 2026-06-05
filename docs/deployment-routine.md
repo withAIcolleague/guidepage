@@ -23,6 +23,7 @@ npm.cmd run validate:theme
 npm.cmd run validate:layout
 npm.cmd run lint
 npm.cmd run build
+npm.cmd run qa:workflow-smoke
 npm.cmd run qa:mobile
 npm.cmd run qa:desktop
 ```
@@ -44,12 +45,14 @@ git push origin HEAD:main
 1. GitHub `main`의 최신 커밋이 방금 push한 커밋인지 확인한다.
 2. Vercel production deployment가 새 커밋으로 생성되었는지 확인한다.
 3. `https://guidepage-gray.vercel.app/`에서 최신 UI가 반영되었는지 확인한다.
-4. production에서 최소 흐름을 확인한다.
+4. production smoke QA를 실행해 대표 지식DB 검색 흐름을 확인한다.
+   - `npm.cmd run qa:workflow-smoke`
+5. production에서 최소 흐름을 확인한다.
    - 메인 대분류 카드 표시
    - 대분류 진입
    - 중분류/세부분류/단계 화살표 이동
    - 검색 결과 선택
    - iframe 제한 사이트의 새 탭 CTA 표시
-5. 모바일 viewport 확인은 `npm.cmd run qa:mobile`로 수행한다.
+6. 모바일 viewport 확인은 `npm.cmd run qa:mobile`로 수행한다.
 
 브라우저 자동화가 불안정한 환경에서는 실제 화면 QA 항목을 완료 처리하지 않는다. 해당 항목은 사람이 production 화면에서 직접 확인한 뒤 체크한다.
