@@ -70,18 +70,18 @@ function countTools(chains: WorkflowChain[]) {
 
 function landingCardClassName(index: number, hasChains: boolean) {
   const shapeClasses = [
-    "lg:col-span-3 lg:min-h-[260px] lg:-rotate-[0.25deg]",
-    "lg:col-span-2 lg:mt-12 lg:min-h-[215px] lg:rotate-[0.2deg]",
-    "lg:col-span-1 lg:min-h-[210px]",
-    "lg:col-span-2 lg:-mt-2 lg:min-h-[230px] lg:rotate-[0.15deg]",
-    "lg:col-span-3 lg:mt-8 lg:min-h-[245px] lg:-rotate-[0.15deg]",
-    "lg:col-span-1 lg:mt-2 lg:min-h-[205px]",
-    "lg:col-span-2 lg:min-h-[220px]",
-    "lg:col-span-2 lg:mt-10 lg:min-h-[230px] lg:rotate-[0.2deg]",
+    "lg:basis-[34rem] lg:min-h-[278px] lg:-rotate-[0.18deg]",
+    "lg:basis-[19rem] lg:mt-10 lg:min-h-[226px] lg:rotate-[0.16deg]",
+    "lg:basis-[22rem] lg:min-h-[236px]",
+    "lg:basis-[16rem] lg:mt-5 lg:min-h-[252px] lg:rotate-[0.12deg]",
+    "lg:basis-[30rem] lg:-mt-2 lg:min-h-[250px] lg:-rotate-[0.14deg]",
+    "lg:basis-[18rem] lg:mt-12 lg:min-h-[218px]",
+    "lg:basis-[25rem] lg:min-h-[240px]",
+    "lg:basis-[20rem] lg:mt-7 lg:min-h-[230px] lg:rotate-[0.16deg]",
   ];
   const shapeClass = shapeClasses[index % shapeClasses.length];
 
-  return `group rounded-lg border border-border p-5 text-left shadow-sm transition-[border-color,box-shadow,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-6 ${shapeClass} ${
+  return `group min-h-[220px] rounded-lg border border-border p-5 text-left shadow-sm transition-[border-color,box-shadow,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-6 lg:grow ${shapeClass} ${
     hasChains
       ? "bg-card hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md"
       : "cursor-not-allowed bg-muted/40 text-muted-foreground opacity-75"
@@ -351,7 +351,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
         )}
 
         {!activeCategory ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:items-start">
+          <div className="grid gap-4 sm:grid-cols-2 lg:flex lg:flex-wrap lg:items-start lg:gap-4">
             {workflowCategories.map((category, index) => {
               const chains = chainsForCategory(category);
               const readySections = sectionsWithChains(category);

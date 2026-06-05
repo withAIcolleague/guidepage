@@ -14,15 +14,20 @@ const checks = [
     pass: /function landingCardClassName/.test(quickLinksSource),
   },
   {
-    name: "asymmetric landing spans",
+    name: "asymmetric landing card sizes",
     pass:
-      /lg:col-span-3/.test(quickLinksSource) &&
+      /lg:basis-\[34rem\]/.test(quickLinksSource) &&
+      /lg:basis-\[16rem\]/.test(quickLinksSource) &&
       /lg:mt-12/.test(quickLinksSource) &&
-      /lg:-rotate-\[0\.25deg\]/.test(quickLinksSource),
+      /lg:-rotate-\[0\.18deg\]/.test(quickLinksSource),
   },
   {
-    name: "landing grid supports irregular cards",
-    pass: /lg:grid-cols-6/.test(quickLinksSource) && /lg:items-start/.test(quickLinksSource),
+    name: "landing layout supports masonry-like flex cards",
+    pass:
+      /lg:flex/.test(quickLinksSource) &&
+      /lg:flex-wrap/.test(quickLinksSource) &&
+      /lg:grow/.test(quickLinksSource) &&
+      /lg:items-start/.test(quickLinksSource),
   },
   {
     name: "detail workflow split remains structured",
