@@ -1188,6 +1188,69 @@ export const workflowChains: WorkflowChain[] = [
         ],
     },
     {
+        id: "life-science-literature-review",
+        name: "생명과학 논문 탐색 플로우",
+        description: "생명 현상 키워드 정의부터 문헌, 실험 방법, 데이터베이스, 연구 공백 정리까지 연결하는 흐름",
+        icon: "🧬",
+        gradient: "from-emerald-500 to-teal-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "NCBI", url: "https://www.ncbi.nlm.nih.gov" },
+                    { name: "UniProt", url: "https://www.uniprot.org" }
+                ],
+                role: "생명 현상과 핵심 키워드 정의",
+                theoryUrl: "https://ko.wikipedia.org/wiki/생명과학",
+                searchQuery: "생명과학 연구 키워드 생명 현상 정의"
+            },
+            {
+                tools: [
+                    { name: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov" },
+                    { name: "Europe PMC", url: "https://europepmc.org" }
+                ],
+                role: "리뷰 논문과 핵심 문헌 탐색",
+                theoryUrl: "https://ko.wikipedia.org/wiki/문헌고찰",
+                searchQuery: "생명과학 리뷰 논문 핵심 문헌 탐색 PubMed"
+            },
+            {
+                tools: [
+                    { name: "bioRxiv", url: "https://www.biorxiv.org" },
+                    { name: "Google Scholar", url: "https://scholar.google.com" }
+                ],
+                role: "최신 preprint와 연구 동향 확인",
+                theoryUrl: "https://en.wikipedia.org/wiki/Preprint",
+                searchQuery: "생명과학 preprint 최신 연구 동향 bioRxiv"
+            },
+            {
+                tools: [
+                    { name: "protocols.io", url: "https://www.protocols.io" },
+                    { name: "Addgene Protocols", url: "https://www.addgene.org/protocols/" }
+                ],
+                role: "주요 실험 방법과 프로토콜 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/실험",
+                searchQuery: "생명과학 실험 방법 프로토콜 재현성"
+            },
+            {
+                tools: [
+                    { name: "NCBI Gene", url: "https://www.ncbi.nlm.nih.gov/gene" },
+                    { name: "EMBL-EBI", url: "https://www.ebi.ac.uk" }
+                ],
+                role: "유전자·단백질·데이터베이스 교차 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/생물정보학",
+                searchQuery: "유전자 단백질 생물정보학 데이터베이스 교차 확인"
+            },
+            {
+                tools: [
+                    { name: "Zotero", url: "https://www.zotero.org" },
+                    { name: "Notion", url: "https://www.notion.so" }
+                ],
+                role: "연구 공백과 후속 질문 정리",
+                theoryUrl: "https://ko.wikipedia.org/wiki/연구",
+                searchQuery: "연구 공백 후속 질문 문헌 정리"
+            }
+        ],
+    },
+    {
         id: "health-information-verification",
         name: "건강 정보 검증 플로우",
         description: "건강 문제를 정의하고 신뢰 가능한 출처, 연구 근거, 의료 상담 준비까지 연결하는 흐름",

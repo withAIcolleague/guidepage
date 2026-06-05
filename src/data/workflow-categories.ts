@@ -60,6 +60,12 @@ export const workflowCategories: WorkflowCategory[] = [
         description: "자연 현상을 관찰하고 원리와 모델로 설명하는 영역",
         chainIds: ["climate-environment-data"],
       },
+      {
+        id: "life-sciences",
+        name: "생명과학",
+        description: "세포, 유전, 생태, 진화와 생명 시스템 연구를 다루는 영역",
+        chainIds: ["life-science-literature-review"],
+      },
     ],
   },
   {

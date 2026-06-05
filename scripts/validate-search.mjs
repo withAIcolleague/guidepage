@@ -83,6 +83,7 @@ const checks = [
   { query: "정책 제안", expectedChainId: "policy-proposal-review" },
   { query: "식품 안전", expectedChainId: "food-safety-verification" },
   { query: "작물 재배", expectedChainId: "crop-cultivation-research" },
+  { query: "생명과학 논문", expectedChainId: "life-science-literature-review" },
   { query: "AI 서비스", expectedChainId: "ai-service-build" },
   { query: "프론트엔드", expectedChainId: "frontend-stack" },
   { query: "투자", expectedChainId: "investment-analysis" },
