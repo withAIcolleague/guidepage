@@ -199,6 +199,15 @@ async function readMobileState(client) {
       const body = document.body;
       const previewPanel = document.querySelector('[data-preview-panel="embedded"]');
       const previewFrame = document.querySelector('[data-preview-frame="true"]');
+      const sectionCard =
+        document.querySelector('[data-workflow-section-button="true"]') ??
+        [...document.querySelectorAll("button")].find((button) =>
+          button.textContent?.includes("개 세부분류")
+        );
+      const chainTab =
+        document.querySelector('[data-workflow-chain-tab="true"]') ??
+        document.querySelector('button[role="tab"]');
+      const nodeCard = document.querySelector('[data-workflow-node-card="true"]');
       const previewPanelRect = previewPanel?.getBoundingClientRect();
       const previewFrameRect = previewFrame?.getBoundingClientRect();
       const buttons = [...document.querySelectorAll("button")].map((button) => ({
@@ -226,6 +235,11 @@ async function readMobileState(client) {
           panelWidth: previewPanelRect?.width ?? 0,
           frameHeight: previewFrameRect?.height ?? 0,
           frameWidth: previewFrameRect?.width ?? 0,
+        },
+        paging: {
+          sectionCardText: sectionCard?.textContent?.replace(/\\s+/g, " ").trim() ?? "",
+          chainTabText: chainTab?.textContent?.replace(/\\s+/g, " ").trim() ?? "",
+          nodeCardText: nodeCard?.textContent?.replace(/\\s+/g, " ").trim() ?? "",
         },
         buttons,
       };
@@ -286,26 +300,54 @@ try {
   assert(detail.hasMiddleCategoryLabel, "Middle category label is missing.");
   assert(!detail.overflowX, `Detail page has horizontal overflow on ${QA_MODE}.`);
 
-  await clickByAriaLabel(client, "다음 중분류");
+  const initialSectionText = detail.paging.sectionCardText;
+  const pagedMiddleCategory = await clickByAriaLabel(client, "다음 중분류");
+  assert(pagedMiddleCategory, "Could not page to the next middle category.");
   await delay(300);
   detail = await readMobileState(client);
+  assert(
+    detail.paging.sectionCardText && detail.paging.sectionCardText !== initialSectionText,
+    "Middle category paging did not change the visible card.",
+  );
   assert(!detail.overflowX, "Middle category paging caused horizontal overflow.");
+
+  const returnedMiddleCategory = await clickByAriaLabel(client, "이전 중분류");
+  assert(returnedMiddleCategory, "Could not page back to the previous middle category.");
+  await delay(300);
+  detail = await readMobileState(client);
+  assert(
+    detail.paging.sectionCardText === initialSectionText,
+    "Middle category previous paging did not restore the first card.",
+  );
 
   const selectedSection = await clickByText(client, "개 세부분류");
   assert(selectedSection, "Could not select a middle category card.");
   await delay(500);
 
-  const selectedChain = await clickBySelector(client, 'button[role="tab"]');
-  assert(selectedChain, "Could not select a workflow chain.");
-  await delay(500);
+  detail = await readMobileState(client);
+  const initialChainText = detail.paging.chainTabText;
+  const pagedChain = await clickByAriaLabel(client, "다음 세부분류");
+  assert(pagedChain, "Could not page to the next workflow chain.");
+  await delay(300);
+  detail = await readMobileState(client);
+  assert(
+    detail.paging.chainTabText && detail.paging.chainTabText !== initialChainText,
+    "Workflow chain paging did not change the visible card.",
+  );
 
   detail = await readMobileState(client);
   assert(detail.hasDetailCategoryLabel, "Detail category area is missing.");
   assert(!detail.overflowX, "Workflow card paging has horizontal overflow.");
 
-  await clickByAriaLabel(client, "다음 단계");
+  const initialNodeText = detail.paging.nodeCardText;
+  const pagedNode = await clickByAriaLabel(client, "다음 단계");
+  assert(pagedNode, "Could not page to the next workflow node.");
   await delay(300);
   detail = await readMobileState(client);
+  assert(
+    detail.paging.nodeCardText && detail.paging.nodeCardText !== initialNodeText,
+    "Workflow node paging did not change the visible card.",
+  );
   assert(!detail.overflowX, "Node paging caused horizontal overflow.");
 
   const openedTheory = await clickBySelector(client, '[data-workflow-node-select="true"]');

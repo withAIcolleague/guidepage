@@ -47,6 +47,7 @@ export function WorkflowChainTabs({
         <button
           type="button"
           role="tab"
+          data-workflow-chain-tab="true"
           aria-selected={activeChainId === visibleChain.id}
           onClick={() => onSelectChain(visibleChain.id)}
           className={`flex h-10 w-full items-center justify-center gap-2 rounded-md border px-3 text-sm font-medium transition-colors ${

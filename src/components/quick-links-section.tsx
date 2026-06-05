@@ -265,6 +265,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
       <button
         key={section.id}
         type="button"
+        data-workflow-section-button="true"
         disabled={!hasChains}
         onClick={() => selectSection(section)}
         className={`min-h-28 rounded-lg border p-3 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${

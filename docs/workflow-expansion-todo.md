@@ -22,7 +22,7 @@
 
 - [x] 운영: Vercel production smoke QA를 배포 루틴에 반영
 - [x] UX: 랜딩 페이지 대분류 카드를 더 단순하고 비정형적인 구조로 조정
-- [ ] QA: 중분류/세부분류/단계 화살표 페이징을 자동 QA에서 직접 검출
+- [x] QA: 중분류/세부분류/단계 화살표 페이징을 자동 QA에서 직접 검출
 - [ ] 지식DB: 3차 확장 후보를 `workflow-chain-template.md` 기준으로 구체화
 
 ## Done In Previous Round
