@@ -1377,6 +1377,69 @@ export const workflowChains: WorkflowChain[] = [
         ],
     },
     {
+        id: "policy-proposal-review",
+        name: "정책 제안 검토 플로우",
+        description: "정책 문제 정의부터 법적 근거, 이해관계자, 유사 정책, 비용과 리스크를 점검하는 흐름",
+        icon: "📜",
+        gradient: "from-indigo-500 to-violet-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "Notion", url: "https://www.notion.so" },
+                    { name: "Google Docs", url: "https://docs.google.com" }
+                ],
+                role: "정책 문제와 목표 집단 정의",
+                theoryUrl: "https://ko.wikipedia.org/wiki/공공정책",
+                searchQuery: "정책 문제 정의 목표 집단 공공정책"
+            },
+            {
+                tools: [
+                    { name: "공공데이터포털", url: "https://www.data.go.kr" },
+                    { name: "World Bank Open Data", url: "https://data.worldbank.org" }
+                ],
+                role: "근거 데이터와 현황 지표 수집",
+                theoryUrl: "https://ko.wikipedia.org/wiki/사회지표",
+                searchQuery: "정책 근거 데이터 사회지표 현황 분석"
+            },
+            {
+                tools: [
+                    { name: "국가법령정보센터", url: "https://www.law.go.kr" },
+                    { name: "자치법규정보시스템", url: "https://www.elis.go.kr" }
+                ],
+                role: "법적 근거와 담당 기관 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/행정법",
+                searchQuery: "정책 법적 근거 담당 기관 행정법"
+            },
+            {
+                tools: [
+                    { name: "Miro", url: "https://miro.com" },
+                    { name: "Kumu", url: "https://kumu.io" }
+                ],
+                role: "이해관계자와 영향 범위 정리",
+                theoryUrl: "https://en.wikipedia.org/wiki/Stakeholder_analysis",
+                searchQuery: "정책 이해관계자 영향 범위 분석"
+            },
+            {
+                tools: [
+                    { name: "OECD Better Regulation", url: "https://www.oecd.org/en/publications/better-regulation-practices-across-the-european-union-2022_6e4b095d-en.html" },
+                    { name: "OECD iLibrary", url: "https://www.oecd-ilibrary.org" }
+                ],
+                role: "국내외 유사 정책과 규제 사례 비교",
+                theoryUrl: "https://ko.wikipedia.org/wiki/비교정책학",
+                searchQuery: "유사 정책 규제 사례 비교 OECD"
+            },
+            {
+                tools: [
+                    { name: "Google Sheets", url: "https://sheets.google.com" },
+                    { name: "Datawrapper", url: "https://www.datawrapper.de" }
+                ],
+                role: "실행 비용·리스크와 검토 메모 작성",
+                theoryUrl: "https://ko.wikipedia.org/wiki/정책분석",
+                searchQuery: "정책 비용 리스크 분석 검토 메모"
+            }
+        ],
+    },
+    {
         id: "crop-cultivation-research",
         name: "작물 재배 정보 탐색 플로우",
         description: "작물 선택부터 토양·기후 조건, 병해충, 재배 지침, 유통 판단까지 농업 생산 정보를 연결하는 흐름",

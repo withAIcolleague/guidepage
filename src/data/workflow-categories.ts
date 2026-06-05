@@ -188,6 +188,12 @@ export const workflowCategories: WorkflowCategory[] = [
         description: "법, 정책, 공공 의사결정과 사회적 합의 구조",
         chainIds: ["terms-policy-review"],
       },
+      {
+        id: "public-policy",
+        name: "행정·공공정책",
+        description: "정책 문제 정의, 근거 수집, 제도 비교, 집행 리스크를 다루는 영역",
+        chainIds: ["policy-proposal-review"],
+      },
     ],
   },
   {
