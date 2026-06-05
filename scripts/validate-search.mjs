@@ -76,6 +76,7 @@ const { workflowChains } = loadTypeScriptModule("src/data/quick-links.ts");
 const checks = [
   { query: "의사결정", expectedChainId: "decision-analysis" },
   { query: "지역사회", expectedChainId: "community-issue-analysis" },
+  { query: "미디어 반응", expectedChainId: "public-opinion-media-analysis" },
   { query: "기후", expectedChainId: "climate-environment-data" },
   { query: "건강 정보", expectedChainId: "health-information-verification" },
   { query: "생활습관", expectedChainId: "lifestyle-health-planning" },

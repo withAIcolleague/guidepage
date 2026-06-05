@@ -46,6 +46,12 @@ export const workflowCategories: WorkflowCategory[] = [
         description: "사회 구조, 제도, 정책, 집단 행동을 다루는 분석 영역",
         chainIds: ["community-issue-analysis"],
       },
+      {
+        id: "communication-media",
+        name: "커뮤니케이션 연구",
+        description: "여론, 미디어 효과, 설득, 공론장과 정보 확산을 분석하는 영역",
+        chainIds: ["public-opinion-media-analysis"],
+      },
     ],
   },
   {

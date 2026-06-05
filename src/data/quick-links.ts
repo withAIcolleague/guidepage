@@ -1125,6 +1125,69 @@ export const workflowChains: WorkflowChain[] = [
         ],
     },
     {
+        id: "public-opinion-media-analysis",
+        name: "여론·미디어 반응 분석 플로우",
+        description: "이슈 키워드부터 뉴스 노출, 검색 관심도, 프레임, 여론 변화와 리스크 신호를 정리하는 흐름",
+        icon: "🗞️",
+        gradient: "from-cyan-500 to-blue-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "Google Trends", url: "https://trends.google.com" },
+                    { name: "Notion", url: "https://www.notion.so" }
+                ],
+                role: "이슈 키워드와 비교어 정의",
+                theoryUrl: "https://ko.wikipedia.org/wiki/여론",
+                searchQuery: "여론 분석 이슈 키워드 비교어 정의"
+            },
+            {
+                tools: [
+                    { name: "GDELT Project", url: "https://www.gdeltproject.org" },
+                    { name: "GDELT Summary", url: "https://summary.gdeltproject.org" }
+                ],
+                role: "뉴스 노출량과 보도 흐름 수집",
+                theoryUrl: "https://ko.wikipedia.org/wiki/뉴스",
+                searchQuery: "뉴스 보도량 미디어 모니터링 GDELT"
+            },
+            {
+                tools: [
+                    { name: "Pew Research Journalism", url: "https://www.pewresearch.org/journalism/" },
+                    { name: "Media Cloud", url: "https://www.media.mit.edu/projects/media-cloud/overview/" }
+                ],
+                role: "미디어 이용 맥락과 공론장 자료 확인",
+                theoryUrl: "https://ko.wikipedia.org/wiki/공론장",
+                searchQuery: "미디어 이용 뉴스 소비 공론장 연구"
+            },
+            {
+                tools: [
+                    { name: "Google Sheets", url: "https://sheets.google.com" },
+                    { name: "Datawrapper", url: "https://www.datawrapper.de" }
+                ],
+                role: "프레임과 논점 분류표 작성",
+                theoryUrl: "https://ko.wikipedia.org/wiki/프레이밍",
+                searchQuery: "미디어 프레임 논점 분류 내용 분석"
+            },
+            {
+                tools: [
+                    { name: "Google Trends", url: "https://trends.google.com" },
+                    { name: "Flourish", url: "https://flourish.studio" }
+                ],
+                role: "관심도 변화와 시간대별 반응 시각화",
+                theoryUrl: "https://ko.wikipedia.org/wiki/시계열",
+                searchQuery: "검색 관심도 시간대별 반응 시각화"
+            },
+            {
+                tools: [
+                    { name: "Miro", url: "https://miro.com" },
+                    { name: "Google Docs", url: "https://docs.google.com" }
+                ],
+                role: "위험 신호와 기회 메모 작성",
+                theoryUrl: "https://ko.wikipedia.org/wiki/위험_커뮤니케이션",
+                searchQuery: "미디어 반응 위험 신호 기회 메모 작성"
+            }
+        ],
+    },
+    {
         id: "climate-environment-data",
         name: "기후·환경 데이터 탐색 플로우",
         description: "관측 데이터 수집부터 지표 해석, 지도화, 환경 변화 판단까지 자연과학 탐구를 구조화하는 흐름",
