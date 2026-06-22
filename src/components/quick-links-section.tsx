@@ -68,22 +68,10 @@ function countTools(chains: WorkflowChain[]) {
   );
 }
 
-function landingCardClassName(index: number, hasChains: boolean) {
-  const shapeClasses = [
-    "lg:basis-[34rem] lg:min-h-[278px] lg:-rotate-[0.18deg]",
-    "lg:basis-[19rem] lg:mt-10 lg:min-h-[226px] lg:rotate-[0.16deg]",
-    "lg:basis-[22rem] lg:min-h-[236px]",
-    "lg:basis-[16rem] lg:mt-5 lg:min-h-[252px] lg:rotate-[0.12deg]",
-    "lg:basis-[30rem] lg:-mt-2 lg:min-h-[250px] lg:-rotate-[0.14deg]",
-    "lg:basis-[18rem] lg:mt-12 lg:min-h-[218px]",
-    "lg:basis-[25rem] lg:min-h-[240px]",
-    "lg:basis-[20rem] lg:mt-7 lg:min-h-[230px] lg:rotate-[0.16deg]",
-  ];
-  const shapeClass = shapeClasses[index % shapeClasses.length];
-
-  return `group min-h-[220px] rounded-lg border border-border p-5 text-left shadow-sm transition-[border-color,box-shadow,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-6 lg:grow ${shapeClass} ${
+function landingCardClassName(hasChains: boolean) {
+  return `group rounded border border-border p-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
     hasChains
-      ? "bg-card hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md"
+      ? "bg-card hover:border-foreground/30"
       : "cursor-not-allowed bg-muted/40 text-muted-foreground opacity-75"
   }`;
 }
@@ -304,42 +292,41 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     >
       <div className="absolute inset-0 bg-muted/30" />
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className={`relative mx-auto ${detailMode ? "max-w-7xl" : "max-w-[830px]"}`}>
         {!detailMode && (
           <>
-            <div className="mb-5 grid gap-5 py-3 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
-              <div className="max-w-3xl">
-                <div className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                  Knowledge Dashboard
-                </div>
-                <h1 className="max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
-                  NEXINOUS 워크플로우 맵
-                </h1>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
-                  대정의에서 시작해 중분류, 세부분류, 실행 도구까지 맥락을 천천히
-                  좁혀가는 탐색형 포털입니다.
-                </p>
+            <div className="rounded border border-border bg-card px-5 py-3">
+              <div className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                Knowledge Dashboard
               </div>
-
-              <div className="grid grid-cols-3 gap-3 text-left lg:grid-cols-1">
-                <div className="border-l border-border pl-3">
-                  <div className="text-lg font-semibold">{workflowCategories.length}</div>
-                  <div className="text-xs text-muted-foreground">대분류</div>
+              <h1 className="mt-2 text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl">
+                NEXINOUS 워크플로우 맵
+              </h1>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                대정의에서 시작해 중분류, 세부분류, 실행 도구까지 맥락을 천천히
+                좁혀가는 탐색형 포털입니다.
+              </p>
+              <div className="mt-3 flex items-center gap-6 border-t border-border pt-3">
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-base font-semibold">{workflowCategories.length}</span>
+                  <span className="text-xs text-muted-foreground">대분류</span>
                 </div>
-                <div className="border-l border-border pl-3">
-                  <div className="text-lg font-semibold">{totalNodes}</div>
-                  <div className="text-xs text-muted-foreground">단계</div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-base font-semibold">{totalNodes}</span>
+                  <span className="text-xs text-muted-foreground">단계</span>
                 </div>
-                <div className="border-l border-border pl-3">
-                  <div className="text-lg font-semibold">{totalTools}</div>
-                  <div className="text-xs text-muted-foreground">도구</div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-base font-semibold">{totalTools}</span>
+                  <span className="text-xs text-muted-foreground">도구</span>
                 </div>
               </div>
             </div>
 
-            <BannerGrid />
+            <div className="mt-4">
+              <BannerGrid />
+            </div>
 
-            <div className="mb-3">
+            <div className="mt-4">
               <WorkflowSearch
                 query={query}
                 results={searchResults}
@@ -352,8 +339,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
         )}
 
         {!activeCategory ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:flex lg:flex-wrap lg:items-start lg:gap-4">
-            {workflowCategories.map((category, index) => {
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            {workflowCategories.map((category) => {
               const chains = chainsForCategory(category);
               const readySections = sectionsWithChains(category);
               const hasChains = chains.length > 0;
@@ -365,26 +352,26 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                   type="button"
                   disabled={!hasChains}
                   onClick={() => openCategory(category)}
-                  className={landingCardClassName(index, hasChains)}
+                  className={landingCardClassName(hasChains)}
                 >
-                  <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
                     <span
-                      className="flex size-11 items-center justify-center rounded-lg border border-border bg-background text-2xl"
+                      className="flex size-9 shrink-0 items-center justify-center rounded border border-border bg-background text-xl"
                       aria-hidden="true"
                     >
                       <span>{category.icon}</span>
                     </span>
-                    <span className="rounded-md bg-muted px-2 py-1 text-[11px] text-muted-foreground">
+                    <h2 className="text-base font-semibold tracking-tight">
+                      {category.name}
+                    </h2>
+                    <span className="ml-auto shrink-0 rounded bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
                       {hasChains ? `${readySections.length}개 중분류` : "준비 중"}
                     </span>
                   </div>
-                  <h2 className="mt-7 text-2xl font-semibold tracking-tight">
-                    {category.name}
-                  </h2>
-                  <p className="mt-3 max-w-md text-sm leading-6 text-muted-foreground">
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground line-clamp-2">
                     {category.description}
                   </p>
-                  <div className="mt-6 flex items-center gap-2 border-t border-border pt-3 text-xs text-muted-foreground">
+                  <div className="mt-3 flex items-center gap-2 border-t border-border pt-2 text-xs text-muted-foreground">
                     <Layers className="size-3.5" />
                     <span>
                       {hasChains
