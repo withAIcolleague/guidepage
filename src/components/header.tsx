@@ -1,11 +1,18 @@
 "use client";
 
-import { Github } from "lucide-react";
+import { Boxes, Github, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-export function Header() {
+export type HomeView = "2d" | "3d";
+
+interface HeaderProps {
+  view?: HomeView;
+  onViewChange?: (view: HomeView) => void;
+}
+
+export function Header({ view, onViewChange }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -39,6 +46,36 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-4">
+          {view && onViewChange ? (
+            <div className="flex items-center rounded-full border border-border bg-background/60 p-0.5 backdrop-blur-sm">
+              <button
+                type="button"
+                onClick={() => onViewChange("2d")}
+                aria-pressed={view === "2d"}
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                  view === "2d"
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <LayoutGrid className="size-3.5" />
+                2D
+              </button>
+              <button
+                type="button"
+                onClick={() => onViewChange("3d")}
+                aria-pressed={view === "3d"}
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                  view === "3d"
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Boxes className="size-3.5" />
+                3D
+              </button>
+            </div>
+          ) : null}
           <nav className="hidden items-center gap-6 sm:flex">
             <a
               href="#workflow"
