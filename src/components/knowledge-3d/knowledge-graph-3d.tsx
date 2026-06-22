@@ -48,26 +48,44 @@ function CameraRig({
 }) {
   const { camera } = useThree();
   const offsetDir = useRef(new THREE.Vector3(0, 0.25, 1).normalize());
+  // 포커스 이동 중에만 카메라를 강제 이동한다. 이동이 끝나면 OrbitControls가
+  // 완전히 제어권을 가져 사용자가 자유롭게 회전할 수 있다.
+  const animating = useRef(false);
+  const desired = useRef(new THREE.Vector3());
 
   useFrame(() => {
     const controls = controlsRef.current;
     if (!controls) return;
 
     if (focus.current.dirty) {
+      // 현재 시점(사용자가 돌려둔 각도)을 유지한 채 목표 노드로 이동한다.
       const dir = camera.position.clone().sub(controls.target);
       if (dir.lengthSq() > 0.0001) {
         offsetDir.current.copy(dir.normalize());
       }
+      desired.current
+        .copy(focus.current.target)
+        .add(offsetDir.current.clone().multiplyScalar(focus.current.distance));
+      animating.current = true;
       focus.current.dirty = false;
     }
 
-    controls.target.lerp(focus.current.target, 0.08);
+    if (!animating.current) return;
 
-    const desired = focus.current.target
-      .clone()
-      .add(offsetDir.current.clone().multiplyScalar(focus.current.distance));
-    camera.position.lerp(desired, 0.08);
+    controls.target.lerp(focus.current.target, 0.1);
+    camera.position.lerp(desired.current, 0.1);
     controls.update();
+
+    // 목표에 충분히 가까워지면 애니메이션을 멈추고 제어권을 넘긴다.
+    if (
+      controls.target.distanceToSquared(focus.current.target) < 0.0004 &&
+      camera.position.distanceToSquared(desired.current) < 0.0004
+    ) {
+      controls.target.copy(focus.current.target);
+      camera.position.copy(desired.current);
+      controls.update();
+      animating.current = false;
+    }
   });
 
   return null;
