@@ -286,7 +286,7 @@ export function PreviewPanel({
 
       {resourceCard}
 
-      <div className="relative min-h-0 flex-1 basis-0 bg-background">
+      <div className="relative min-h-[480px] flex-1 basis-0 bg-background">
         {status === "loading" && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-background">
             <Loader2 className="size-6 animate-spin text-muted-foreground" />
@@ -339,7 +339,7 @@ export function PreviewPanel({
     return (
       <div
         data-preview-panel="embedded"
-        className="flex h-[88vh] min-h-[720px] max-h-[860px] flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm lg:h-[72vh] lg:min-h-[620px] lg:max-h-[820px]"
+        className="flex h-[92vh] min-h-[820px] max-h-none flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm lg:h-[88vh] lg:min-h-[860px] lg:max-h-[1100px]"
       >
         {frame}
       </div>
