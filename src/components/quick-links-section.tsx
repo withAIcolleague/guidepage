@@ -339,7 +339,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
         )}
 
         {!activeCategory ? (
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {workflowCategories.map((category) => {
               const chains = chainsForCategory(category);
               const readySections = sectionsWithChains(category);
