@@ -2,7 +2,7 @@
 
 import { Html, Line, OrbitControls, Stars } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { ExternalLink, RotateCcw, Search, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, RotateCcw, Search, Sparkles } from "lucide-react";
 import { useCallback, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { Button } from "@/components/ui/button";
@@ -10,10 +10,10 @@ import { googleSearchUrl, openExternalUrl } from "@/lib/external-links";
 import {
   buildKnowledgeGraph,
   collectDescendantIds,
-  type GraphNode,
   TYPE_LABEL,
 } from "@/lib/knowledge-graph";
 import { layoutGraph, type PositionedNode } from "@/lib/knowledge-layout";
+import { PreviewPanel } from "@/components/preview-panel";
 
 const SPHERE_SIZE: Record<string, number> = {
   root: 1.1,
@@ -37,6 +37,7 @@ interface FocusState {
   target: THREE.Vector3;
   distance: number;
   dirty: boolean;
+  animating: boolean;
 }
 
 function CameraRig({
@@ -44,47 +45,46 @@ function CameraRig({
   controlsRef,
 }: {
   focus: React.MutableRefObject<FocusState>;
-  controlsRef: React.MutableRefObject<any>;
+  controlsRef: React.MutableRefObject<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 }) {
   const { camera } = useThree();
   const offsetDir = useRef(new THREE.Vector3(0, 0.25, 1).normalize());
-  // 포커스 이동 중에만 카메라를 강제 이동한다. 이동이 끝나면 OrbitControls가
-  // 완전히 제어권을 가져 사용자가 자유롭게 회전할 수 있다.
-  const animating = useRef(false);
   const desired = useRef(new THREE.Vector3());
 
   useFrame(() => {
     const controls = controlsRef.current;
     if (!controls) return;
 
-    if (focus.current.dirty) {
+    const localFocus = focus;
+    if (localFocus.current.dirty) {
       // 현재 시점(사용자가 돌려둔 각도)을 유지한 채 목표 노드로 이동한다.
       const dir = camera.position.clone().sub(controls.target);
       if (dir.lengthSq() > 0.0001) {
         offsetDir.current.copy(dir.normalize());
       }
       desired.current
-        .copy(focus.current.target)
-        .add(offsetDir.current.clone().multiplyScalar(focus.current.distance));
-      animating.current = true;
-      focus.current.dirty = false;
+        .copy(localFocus.current.target)
+        .add(offsetDir.current.clone().multiplyScalar(localFocus.current.distance));
+      // eslint-disable-next-line react-hooks/immutability
+      localFocus.current.animating = true;
+      localFocus.current.dirty = false;
     }
 
-    if (!animating.current) return;
+    if (!localFocus.current.animating) return;
 
-    controls.target.lerp(focus.current.target, 0.1);
+    controls.target.lerp(localFocus.current.target, 0.1);
     camera.position.lerp(desired.current, 0.1);
     controls.update();
 
     // 목표에 충분히 가까워지면 애니메이션을 멈추고 제어권을 넘긴다.
     if (
-      controls.target.distanceToSquared(focus.current.target) < 0.0004 &&
+      controls.target.distanceToSquared(localFocus.current.target) < 0.0004 &&
       camera.position.distanceToSquared(desired.current) < 0.0004
     ) {
-      controls.target.copy(focus.current.target);
+      controls.target.copy(localFocus.current.target);
       camera.position.copy(desired.current);
       controls.update();
-      animating.current = false;
+      localFocus.current.animating = false;
     }
   });
 
@@ -97,12 +97,14 @@ function GraphNodeMesh({
   hovered,
   onSelect,
   onHover,
+  isActive,
 }: {
   item: PositionedNode;
   selected: boolean;
   hovered: boolean;
   onSelect: (item: PositionedNode) => void;
   onHover: (id: string | null) => void;
+  isActive: boolean;
 }) {
   const { node, position } = item;
   const baseSize = SPHERE_SIZE[node.type] ?? 0.3;
@@ -132,9 +134,11 @@ function GraphNodeMesh({
         <meshStandardMaterial
           color={node.color}
           emissive={node.color}
-          emissiveIntensity={active ? 1.1 : item.expanded ? 0.55 : 0.3}
+          emissiveIntensity={isActive ? (active ? 1.1 : item.expanded ? 0.55 : 0.3) : 0.08}
           roughness={0.35}
           metalness={0.1}
+          transparent
+          opacity={isActive ? 1.0 : 0.15}
         />
       </mesh>
 
@@ -142,7 +146,7 @@ function GraphNodeMesh({
       {item.hasChildren && !item.expanded && (
         <mesh rotation={[Math.PI / 2, 0, 0]}>
           <ringGeometry args={[baseSize * 1.6, baseSize * 1.9, 32]} />
-          <meshBasicMaterial color={node.color} transparent opacity={0.5} side={THREE.DoubleSide} />
+          <meshBasicMaterial color={node.color} transparent opacity={isActive ? 0.5 : 0.08} side={THREE.DoubleSide} />
         </mesh>
       )}
 
@@ -155,16 +159,17 @@ function GraphNodeMesh({
           zIndexRange={[20, 0]}
         >
           <div
-            className="flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-0.5 text-center font-medium backdrop-blur-sm"
+            className="flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-0.5 text-center font-medium backdrop-blur-sm transition-opacity duration-300"
             style={{
               background: active ? node.color : "rgba(10,14,22,0.72)",
               color: active ? "#0a0e16" : "#e5e7eb",
               border: `1px solid ${node.color}`,
               fontSize: node.type === "root" ? 15 : node.type === "category" ? 13 : 11,
+              opacity: isActive ? 1.0 : hovered ? 0.8 : 0.08,
             }}
           >
             {node.icon ? <span>{node.icon}</span> : null}
-            <span>{node.label}</span>
+            <span>{node.label.includes(":") ? node.label.split(":")[0].trim() : node.label}</span>
           </div>
         </Html>
       )}
@@ -180,6 +185,7 @@ function Scene({
   onHover,
   focus,
   controlsRef,
+  activeIds,
 }: {
   positioned: PositionedNode[];
   selectedId: string | null;
@@ -187,7 +193,8 @@ function Scene({
   onSelect: (item: PositionedNode) => void;
   onHover: (id: string | null) => void;
   focus: React.MutableRefObject<FocusState>;
-  controlsRef: React.MutableRefObject<any>;
+  controlsRef: React.MutableRefObject<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+  activeIds: Set<string> | null;
 }) {
   const edges = useMemo(
     () => positioned.filter((item) => item.parentPosition),
@@ -203,19 +210,32 @@ function Scene({
       <directionalLight position={[10, 12, 8]} intensity={0.6} />
       <Stars radius={120} depth={60} count={3500} factor={4} saturation={0} fade speed={0.6} />
 
-      {edges.map((item) => (
-        <Line
-          key={`edge-${item.node.id}`}
-          points={[
-            item.parentPosition as THREE.Vector3,
-            item.position,
-          ]}
-          color={item.node.color}
-          lineWidth={item.node.depth <= 2 ? 1.4 : 0.8}
-          transparent
-          opacity={hoveredId === item.node.id || selectedId === item.node.id ? 0.9 : 0.28}
-        />
-      ))}
+      {edges.map((item) => {
+        const isEdgeActive = activeIds
+          ? activeIds.has(item.node.id) && activeIds.has(item.parentId || "")
+          : true;
+        return (
+          <Line
+            key={`edge-${item.node.id}`}
+            points={[
+              item.parentPosition as THREE.Vector3,
+              item.position,
+            ]}
+            color={item.node.color}
+            lineWidth={item.node.depth <= 2 ? 1.4 : 0.8}
+            transparent
+            opacity={
+              activeIds
+                ? isEdgeActive
+                  ? 0.9
+                  : 0.05
+                : hoveredId === item.node.id || selectedId === item.node.id
+                ? 0.9
+                : 0.28
+            }
+          />
+        );
+      })}
 
       {positioned.map((item) => (
         <GraphNodeMesh
@@ -225,6 +245,7 @@ function Scene({
           hovered={hoveredId === item.node.id}
           onSelect={onSelect}
           onHover={onHover}
+          isActive={activeIds ? activeIds.has(item.node.id) : true}
         />
       ))}
 
@@ -237,6 +258,10 @@ function Scene({
         maxDistance={55}
         rotateSpeed={0.6}
         zoomSpeed={0.8}
+        onStart={() => {
+          // eslint-disable-next-line react-hooks/immutability
+          focus.current.animating = false;
+        }}
       />
     </>
   );
@@ -247,12 +272,18 @@ export function KnowledgeGraph3D() {
   const [expandedIds, setExpandedIds] = useState<string[]>(["root"]);
   const [selectedId, setSelectedId] = useState<string | null>("root");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [previewTitle, setPreviewTitle] = useState<string | null>(null);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const controlsRef = useRef<any>(null);
+  const cameraConfig = useMemo(() => ({ position: [0, 5, 26] as [number, number, number], fov: 50 }), []);
+
+  const controlsRef = useRef<any>(null); // eslint-disable-line @typescript-eslint/no-explicit-any
   const focus = useRef<FocusState>({
     target: new THREE.Vector3(0, 0, 0),
     distance: FOCUS_DISTANCE.root,
     dirty: true,
+    animating: true,
   });
 
   const expanded = useMemo(() => new Set(expandedIds), [expandedIds]);
@@ -262,6 +293,44 @@ export function KnowledgeGraph3D() {
     () => positioned.find((item) => item.node.id === selectedId)?.node ?? null,
     [positioned, selectedId],
   );
+
+  const activeIds = useMemo(() => {
+    if (!selectedId || selectedId === "root") return null;
+
+    const set = new Set<string>();
+    // 1. Build a map of node ID to parent ID
+    const parentMap = new Map<string, string>();
+    for (const p of positioned) {
+      if (p.parentId) {
+        parentMap.set(p.node.id, p.parentId);
+      }
+    }
+
+    // 2. Add selectedId itself
+    set.add(selectedId);
+
+    // 3. Add all ancestors (climb up)
+    let current = selectedId;
+    while (parentMap.has(current)) {
+      const parent = parentMap.get(current)!;
+      set.add(parent);
+      current = parent;
+    }
+
+    // 4. Add all descendants (climb down)
+    for (const p of positioned) {
+      let curr: string | undefined = p.node.id;
+      while (curr) {
+        if (curr === selectedId) {
+          set.add(p.node.id);
+          break;
+        }
+        curr = parentMap.get(curr);
+      }
+    }
+
+    return set;
+  }, [selectedId, positioned]);
 
   const flyTo = useCallback((position: THREE.Vector3, type: string) => {
     focus.current.target.copy(position);
@@ -274,7 +343,11 @@ export function KnowledgeGraph3D() {
       const { node, position } = item;
 
       if (node.type === "tool" && node.url) {
-        openExternalUrl(node.url);
+        setPreviewUrl(node.url);
+        setPreviewTitle(node.label);
+        setSelectedId(node.id);
+        setIsCollapsed(false);
+        flyTo(position, node.type);
         return;
       }
 
@@ -299,131 +372,209 @@ export function KnowledgeGraph3D() {
     [flyTo],
   );
 
+  const handleClosePreview = useCallback(() => {
+    setPreviewUrl(null);
+    setPreviewTitle(null);
+    setIsCollapsed(false);
+  }, []);
+
   const reset = useCallback(() => {
     setExpandedIds(["root"]);
     setSelectedId("root");
     setHoveredId(null);
+    setPreviewUrl(null);
+    setPreviewTitle(null);
+    setIsCollapsed(false);
     flyTo(new THREE.Vector3(0, 0, 0), "root");
   }, [flyTo]);
 
   return (
-    <div className="fixed inset-0 top-12 bg-[#070b14]">
-      <Canvas camera={{ position: [0, 5, 26], fov: 50 }} dpr={[1, 2]}>
-        <Scene
-          positioned={positioned}
-          selectedId={selectedId}
-          hoveredId={hoveredId}
-          onSelect={handleSelect}
-          onHover={setHoveredId}
-          focus={focus}
-          controlsRef={controlsRef}
-        />
-      </Canvas>
+    <div className="fixed inset-0 top-12 flex bg-[#070b14] overflow-hidden">
+      {/* Left side: 3D Canvas Area */}
+      <div className={`relative h-full w-full transition-all duration-300 ${previewUrl && !isCollapsed ? "lg:w-1/2 border-r border-white/10" : ""}`}>
+        <Canvas camera={cameraConfig} dpr={[1, 2]}>
+          <Scene
+            positioned={positioned}
+            selectedId={selectedId}
+            hoveredId={hoveredId}
+            onSelect={handleSelect}
+            onHover={setHoveredId}
+            focus={focus}
+            controlsRef={controlsRef}
+            activeIds={activeIds}
+          />
+        </Canvas>
 
-      {/* 상단 안내 */}
-      <div className="pointer-events-none absolute left-4 top-4 max-w-xs">
-        <div className="pointer-events-auto rounded-lg border border-white/10 bg-black/40 p-3 backdrop-blur-md">
-          <div className="flex items-center gap-2 text-sm font-semibold text-white">
-            <Sparkles className="size-4 text-cyan-300" />
-            3D 지식 탐색
+        {/* 상단 안내 */}
+        <div className="pointer-events-none absolute left-4 top-4 max-w-xs">
+          <div className="pointer-events-auto rounded-lg border border-white/10 bg-black/40 p-3 backdrop-blur-md">
+            <div className="flex items-center gap-2 text-sm font-semibold text-white">
+              <Sparkles className="size-4 text-cyan-300" />
+              3D 지식 탐색
+            </div>
+            <p className="mt-1 text-xs leading-relaxed text-white/60">
+              노드를 클릭하면 카메라가 이동하며 하위 지식이 펼쳐집니다. 드래그로 회전, 스크롤로
+              확대·축소하세요.
+            </p>
           </div>
-          <p className="mt-1 text-xs leading-relaxed text-white/60">
-            노드를 클릭하면 카메라가 이동하며 하위 지식이 펼쳐집니다. 드래그로 회전, 스크롤로
-            확대·축소하세요.
-          </p>
         </div>
-      </div>
 
-      {/* 리셋 버튼 */}
-      <div className="absolute right-4 top-4">
-        <Button
-          size="sm"
-          variant="secondary"
-          onClick={reset}
-          className="gap-1.5 bg-black/40 text-white backdrop-blur-md hover:bg-black/60"
-        >
-          <RotateCcw className="size-3.5" />
-          초기화
-        </Button>
-      </div>
+        {/* 리셋 버튼 */}
+        <div className="absolute right-4 top-4">
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={reset}
+            className="gap-1.5 bg-black/40 text-white backdrop-blur-md hover:bg-black/60"
+          >
+            <RotateCcw className="size-3.5" />
+            초기화
+          </Button>
+        </div>
 
-      {/* 상세 패널 */}
-      {selectedNode && selectedNode.type !== "root" && (
-        <div className="absolute bottom-4 left-4 right-4 mx-auto max-w-md sm:left-auto sm:right-4">
-          <div className="rounded-xl border border-white/10 bg-black/55 p-4 backdrop-blur-xl">
-            <div className="flex items-center gap-2">
-              <span
-                className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
-                style={{ background: selectedNode.color, color: "#0a0e16" }}
-              >
-                {TYPE_LABEL[selectedNode.type]}
-              </span>
-              {selectedNode.childCount > 0 && (
-                <span className="text-[11px] text-white/50">
-                  하위 {selectedNode.childCount}개
+        {/* 상세 패널 */}
+        {selectedNode && selectedNode.type !== "root" && (
+          <div className="absolute bottom-4 left-4 right-4 mx-auto max-w-md sm:left-auto sm:right-4">
+            <div className="rounded-xl border border-white/10 bg-black/55 p-4 backdrop-blur-xl">
+              <div className="flex items-center gap-2">
+                <span
+                  className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                  style={{ background: selectedNode.color, color: "#0a0e16" }}
+                >
+                  {TYPE_LABEL[selectedNode.type]}
                 </span>
+                {selectedNode.childCount > 0 && (
+                  <span className="text-[11px] text-white/50">
+                    하위 {selectedNode.childCount}개
+                  </span>
+                )}
+              </div>
+
+              {(() => {
+                const hasColon = selectedNode.label.includes(":");
+                const titleText = hasColon ? selectedNode.label.split(":")[0].trim() : selectedNode.label;
+                const descText = hasColon ? selectedNode.label.split(":").slice(1).join(":").trim() : null;
+
+                return (
+                  <>
+                    <h3 className="mt-2 flex items-center gap-1.5 text-base font-bold text-white">
+                      {selectedNode.icon ? <span>{selectedNode.icon}</span> : null}
+                      {titleText}
+                    </h3>
+                    {descText && (
+                      <p className="mt-1.5 text-xs font-normal leading-relaxed text-white/70 bg-white/5 border border-white/5 rounded-md px-2.5 py-1.5">
+                        {descText}
+                      </p>
+                    )}
+                  </>
+                );
+              })()}
+              {selectedNode.sublabel && (
+                <p className="mt-1 text-xs leading-relaxed text-white/60">{selectedNode.sublabel}</p>
+              )}
+
+              {/* step: 이론 / 검색 / 도구 */}
+              {selectedNode.type === "step" && (
+                <div className="mt-3 space-y-2">
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedNode.theoryUrl && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setPreviewUrl(selectedNode.theoryUrl as string);
+                          const shortTitle = selectedNode.label.includes(":") ? selectedNode.label.split(":")[0].trim() : selectedNode.label;
+                          setPreviewTitle(`${shortTitle} (이론)`);
+                          setIsCollapsed(false);
+                        }}
+                        className="inline-flex items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1 text-[11px] text-white/80 transition-colors hover:bg-white/10"
+                      >
+                        <ExternalLink className="size-3" />
+                        이론 보기
+                      </button>
+                    )}
+                    {selectedNode.searchQuery && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          openExternalUrl(googleSearchUrl(selectedNode.searchQuery as string))
+                        }
+                        className="inline-flex items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1 text-[11px] text-white/80 transition-colors hover:bg-white/10"
+                      >
+                        <Search className="size-3" />
+                        검색
+                      </button>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedNode.children.map((tool) => (
+                      <button
+                        key={tool.id}
+                        type="button"
+                        onClick={() => {
+                          if (tool.url) {
+                            setPreviewUrl(tool.url);
+                            setPreviewTitle(tool.label);
+                            setIsCollapsed(false);
+                          }
+                        }}
+                        className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-[11px] font-medium transition-opacity hover:opacity-80"
+                        style={{ background: `${selectedNode.color}22`, color: selectedNode.color }}
+                      >
+                        {tool.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {selectedNode.type !== "step" && selectedNode.childCount > 0 && (
+                <p className="mt-3 text-[11px] text-white/40">
+                  노드를 클릭하면 {expanded.has(selectedNode.id) ? "접을" : "펼칠"} 수 있습니다.
+                </p>
               )}
             </div>
+          </div>
+        )}
+      </div>
 
-            <h3 className="mt-2 flex items-center gap-1.5 text-base font-bold text-white">
-              {selectedNode.icon ? <span>{selectedNode.icon}</span> : null}
-              {selectedNode.label}
-            </h3>
-            {selectedNode.sublabel && (
-              <p className="mt-1 text-xs leading-relaxed text-white/60">{selectedNode.sublabel}</p>
+      {/* Right side: Mini Browser (Preview Panel) */}
+      {previewUrl && (
+        <div
+          className={`absolute inset-y-0 right-0 z-50 transition-all duration-300 flex flex-col bg-background ${
+            isCollapsed
+              ? "w-0 border-l-transparent pointer-events-none"
+              : "w-full lg:relative lg:w-1/2 border-l border-white/10 pointer-events-auto"
+          }`}
+        >
+          {/* Collapse/Expand toggle button */}
+          <button
+            type="button"
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className={`absolute top-1/2 left-0 -translate-y-1/2 z-[60] flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#070b14]/90 text-white/70 shadow-md hover:bg-black hover:text-white transition-all duration-200 cursor-pointer focus:outline-none pointer-events-auto backdrop-blur-md ${
+              isCollapsed ? "-translate-x-full" : "-translate-x-1/2"
+            }`}
+            title={isCollapsed ? "브라우저 열기" : "브라우저 접기"}
+          >
+            {isCollapsed ? (
+              <ChevronLeft className="size-4" />
+            ) : (
+              <ChevronRight className="size-4" />
             )}
+          </button>
 
-            {/* step: 이론 / 검색 / 도구 */}
-            {selectedNode.type === "step" && (
-              <div className="mt-3 space-y-2">
-                <div className="flex flex-wrap gap-1.5">
-                  {selectedNode.theoryUrl && (
-                    <button
-                      type="button"
-                      onClick={() => openExternalUrl(selectedNode.theoryUrl as string)}
-                      className="inline-flex items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1 text-[11px] text-white/80 transition-colors hover:bg-white/10"
-                    >
-                      <ExternalLink className="size-3" />
-                      이론 보기
-                    </button>
-                  )}
-                  {selectedNode.searchQuery && (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        openExternalUrl(googleSearchUrl(selectedNode.searchQuery as string))
-                      }
-                      className="inline-flex items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1 text-[11px] text-white/80 transition-colors hover:bg-white/10"
-                    >
-                      <Search className="size-3" />
-                      검색
-                    </button>
-                  )}
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {selectedNode.children.map((tool) => (
-                    <button
-                      key={tool.id}
-                      type="button"
-                      onClick={() => tool.url && openExternalUrl(tool.url)}
-                      className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-[11px] font-medium transition-opacity hover:opacity-80"
-                      style={{ background: `${selectedNode.color}22`, color: selectedNode.color }}
-                    >
-                      {tool.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {selectedNode.type !== "step" && selectedNode.childCount > 0 && (
-              <p className="mt-3 text-[11px] text-white/40">
-                노드를 클릭하면 {expanded.has(selectedNode.id) ? "접을" : "펼칠"} 수 있습니다.
-              </p>
-            )}
+          {/* Preview Panel content */}
+          <div className={`h-full w-full flex flex-col overflow-hidden transition-opacity duration-300 ${isCollapsed ? "opacity-0" : "opacity-100"}`}>
+            <PreviewPanel
+              url={previewUrl}
+              title={previewTitle || ""}
+              isOpen={!!previewUrl}
+              mode="sidebar"
+              onClose={handleClosePreview}
+            />
           </div>
         </div>
       )}
     </div>
   );
 }
+

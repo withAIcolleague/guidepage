@@ -37,6 +37,10 @@ export function WorkflowCanvas({
     const activeNode =
       selectedItem?.chainId === chain.id && selectedItem.nodeRole === node.role;
 
+    const hasColon = node.role.includes(":");
+    const titleText = hasColon ? node.role.split(":")[0].trim() : node.role;
+    const descText = hasColon ? node.role.split(":").slice(1).join(":").trim() : null;
+
     return (
       <div
         data-workflow-node-card="true"
@@ -51,12 +55,17 @@ export function WorkflowCanvas({
             type="button"
             data-workflow-node-select="true"
             onClick={() => onSelectNode(node)}
-            className="min-w-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="min-w-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring flex-1"
           >
-            <div className="line-clamp-2 text-xs font-semibold leading-5 text-foreground">
-              {node.role}
+            <div className="text-xs font-semibold leading-5 text-foreground truncate" title={titleText}>
+              {titleText}
             </div>
-            <div className="mt-1 text-[11px] text-muted-foreground">
+            {descText && (
+              <div className="mt-1 text-[11px] leading-4 text-muted-foreground line-clamp-2" title={descText}>
+                {descText}
+              </div>
+            )}
+            <div className="mt-1.5 text-[10px] text-muted-foreground">
               {node.tools.length}개 도구
             </div>
           </button>

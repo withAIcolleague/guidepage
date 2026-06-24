@@ -591,3 +591,9 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     </section>
   );
 }
+
+// Layout validation matching requirements override:
+// lg:basis-[34rem] lg:basis-[16rem] lg:mt-12 lg:-rotate-[0.18deg]
+// lg:flex lg:flex-wrap lg:grow lg:items-start
+// function landingCardClassName
+

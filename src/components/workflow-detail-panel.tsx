@@ -55,13 +55,17 @@ export function WorkflowDetailPanel({
     );
   }
 
+  const hasColon = selectedNode.role.includes(":");
+  const titleText = hasColon ? selectedNode.role.split(":")[0].trim() : selectedNode.role;
+  const descText = hasColon ? selectedNode.role.split(":").slice(1).join(":").trim() : null;
+
   const selectedUrl =
     selectedItem.mode === "theory"
       ? selectedNode.theoryUrl
       : selectedNode.tools[selectedItem.toolIndex ?? 0]?.url;
   const selectedTitle =
     selectedItem.mode === "theory"
-      ? `${selectedNode.role} - 이론`
+      ? `${titleText} - 이론`
       : selectedNode.tools[selectedItem.toolIndex ?? 0]?.name;
 
   return (
@@ -71,7 +75,7 @@ export function WorkflowDetailPanel({
       }`}
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <div className="text-xs font-medium uppercase text-muted-foreground">
             {chain.name}
           </div>
@@ -80,8 +84,13 @@ export function WorkflowDetailPanel({
               compact ? "mt-1 text-base leading-6" : "mt-2 text-xl leading-7"
             }`}
           >
-            {selectedNode.role}
+            {titleText}
           </h2>
+          {descText && (
+            <p className="mt-2 text-xs font-normal leading-relaxed text-muted-foreground bg-muted/40 border border-border/40 rounded-md px-2.5 py-1.5">
+              {descText}
+            </p>
+          )}
         </div>
         <div
           className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-gradient-to-r ${chain.gradient}`}
