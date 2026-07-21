@@ -30,10 +30,20 @@ const checks = [
       /lg:items-start/.test(quickLinksSource),
   },
   {
-    name: "detail workflow split keeps readable classification width",
-    pass: /xl:grid-cols-\[minmax\(420px,0\.95fr\)_minmax\(460px,1\.05fr\)\]/.test(
+    name: "detail workflow split keeps left 3 / right 7 ratio",
+    pass: /xl:grid-cols-\[minmax\(0,3fr\)_minmax\(0,7fr\)\]/.test(
       quickLinksSource,
     ),
+  },
+  {
+    name: "detail panel keeps directory window for active middle category",
+    pass:
+      /activeSection && \(/.test(quickLinksSource) &&
+      /<DirectoryPanel/.test(quickLinksSource) &&
+      /entries=\{activeDirEntries\}/.test(quickLinksSource) &&
+      /getDirectoryEntries\(activeCategoryId, activeSectionName\)/.test(
+        quickLinksSource,
+      ),
   },
   {
     name: "detail panel has viewport height cap and internal scroll",

@@ -449,7 +449,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
             })}
           </div>
         ) : (
-          <div className="grid gap-4 xl:grid-cols-[minmax(420px,0.95fr)_minmax(460px,1.05fr)] xl:items-start">
+          <div className="grid gap-4 xl:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] xl:items-start">
             <div className="min-w-0">
             <div className="mb-4 rounded-lg border border-border bg-card p-3 shadow-sm">
               <div className="mb-3">
@@ -631,6 +631,13 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                       isOpen={previewOpen}
                       mode="embedded"
                       onClose={() => setSelectedItem(null)}
+                    />
+                  )}
+
+                  {activeSection && (
+                    <DirectoryPanel
+                      entries={activeDirEntries}
+                      categoryName={activeSectionName ?? activeSection.name}
                     />
                   )}
                 </>
