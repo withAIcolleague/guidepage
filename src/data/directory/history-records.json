@@ -1,0 +1,13 @@
+{
+  "categoryId": "history-records",
+  "categoryName": "역사와 기록",
+  "lastUpdated": "2026-07-21",
+  "entries": [
+    { "siteName": "Internet Archive", "url": "https://archive.org", "organizationType": "Public", "categoryPath": ["역사와 기록", "기억과 기록", "디지털 아카이브"], "tags": ["아카이브", "디지털보존", "자료", "기억"], "description": "웹, 도서, 영상, 음성 자료를 장기 보존하고 검색할 수 있는 대형 디지털 아카이브" },
+    { "siteName": "National Archives", "url": "https://www.archives.gov", "organizationType": "Government", "categoryPath": ["역사와 기록", "기억과 기록", "국가 기록"], "tags": ["국가기록", "문서", "사료", "보존"], "description": "국가 기록과 사료 보존 체계를 확인할 수 있는 미국 국립문서기록관리청" },
+    { "siteName": "World History Encyclopedia", "url": "https://www.worldhistory.org", "organizationType": "Public", "categoryPath": ["역사와 기록", "문명과 교류", "세계사 백과"], "tags": ["세계사", "문명", "제국", "교류"], "description": "고대부터 현대까지 문명과 사건을 백과 형식으로 탐색할 수 있는 세계사 자료" },
+    { "siteName": "UNESCO Silk Roads", "url": "https://en.unesco.org/silkroad", "organizationType": "Public", "categoryPath": ["역사와 기록", "문명과 교류", "교역로"], "tags": ["실크로드", "교역", "문화교류", "문명"], "description": "실크로드를 통한 문화, 기술, 종교, 지식 교류를 주제별로 제공하는 UNESCO 자료" },
+    { "siteName": "JSTOR", "url": "https://www.jstor.org", "organizationType": "Public", "categoryPath": ["역사와 기록", "사상과 해석", "학술 논문"], "tags": ["역사학", "사상", "논문", "해석"], "description": "역사학과 인문사회 분야의 논문과 학술 자료를 검색할 수 있는 데이터베이스" },
+    { "siteName": "Stanford Encyclopedia of Philosophy", "url": "https://plato.stanford.edu", "organizationType": "Public", "categoryPath": ["역사와 기록", "사상과 해석", "철학 백과"], "tags": ["철학", "사상사", "해석", "개념"], "description": "철학과 사상사의 핵심 개념을 깊게 탐색할 수 있는 전문 백과" }
+  ]
+}

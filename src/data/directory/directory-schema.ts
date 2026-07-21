@@ -57,16 +57,17 @@ export interface DirectoryIndex {
 
 /**
  * 대분류 ID ↔ 대분류 한글명 매핑 테이블
- * workflow-categories.ts 의 7개 대분류와 동기화
+ * workflow-categories.ts 의 8개 대분류와 동기화
  */
 export const CATEGORY_ID_MAP: Record<string, string> = {
-  "존재와 이성": "being-reason",
-  "가치와 신용": "value-exchange",
-  "규범과 질서": "norms-governance",
-  "표현과 감성": "expression-sensation",
-  "물질과 우주": "matter-cosmos",
-  "생명과 건강": "life-health",
-  "도구와 지능": "tools-intelligence",
+  "근원과 질서": "being-reason",
+  "사회와 시스템": "value-exchange",
+  "마음과 안식": "norms-governance",
+  "표현과 소통": "expression-sensation",
+  "역사와 기록": "history-records",
+  "생명과 환경": "life-health",
+  "인공물과 기술": "tools-intelligence",
+  "신념과 종교": "belief-religion",
 };
 
 /** 대분류 ID → 한글명 역방향 매핑 */

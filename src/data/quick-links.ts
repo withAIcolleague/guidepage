@@ -1816,4 +1816,255 @@ export const workflowChains: WorkflowChain[] = [
             }
         ],
     },
-];
+    {
+        id: "exchange-market-history",
+        name: "교환과 시장의 역사",
+        description: "호혜적 교환에서 화폐, 시장, 금융, 플랫폼 경제로 이어진 가치 교환 구조의 발전 흐름",
+        icon: "💱",
+        gradient: "from-emerald-500 to-lime-500",
+        nodes: [
+            { tools: [{ name: "World History Encyclopedia", url: "https://www.worldhistory.org" }], role: "호혜와 물물교환: 공동체 안에서 물건과 의무가 순환", theoryUrl: "https://en.wikipedia.org/wiki/Barter", searchQuery: "물물교환 호혜 경제 인류학 역사" },
+            { tools: [{ name: "Federal Reserve History", url: "https://www.federalreservehistory.org" }, { name: "Bank of England Museum", url: "https://www.bankofengland.co.uk/museum" }], role: "화폐와 신용: 금속화폐, 은행, 중앙은행이 교환을 추상화", theoryUrl: "https://en.wikipedia.org/wiki/Money", searchQuery: "화폐 신용 은행 중앙은행 역사" },
+            { tools: [{ name: "OECD", url: "https://www.oecd.org" }, { name: "World Bank Data", url: "https://data.worldbank.org" }], role: "세계시장과 플랫폼: 자본주의, 세계무역, 디지털 플랫폼으로 확장", theoryUrl: "https://en.wikipedia.org/wiki/Market_economy", searchQuery: "시장경제 자본주의 플랫폼 경제 역사" }
+        ],
+    },
+    {
+        id: "state-law-history",
+        name: "제도와 국가의 역사",
+        description: "관습과 성문법에서 관료제, 국민국가, 국제 거버넌스로 이어진 제도화의 흐름",
+        icon: "⚖️",
+        gradient: "from-stone-500 to-zinc-500",
+        nodes: [
+            { tools: [{ name: "Legal Information Institute", url: "https://www.law.cornell.edu" }], role: "관습과 성문법: 공동체 규범을 기록된 법으로 고정", theoryUrl: "https://en.wikipedia.org/wiki/Code_of_Hammurabi", searchQuery: "성문법 함무라비 법전 로마법 역사" },
+            { tools: [{ name: "National Archives", url: "https://www.archives.gov" }], role: "근대국가와 헌정: 주권, 시민권, 헌법이 국가 질서를 구성", theoryUrl: "https://en.wikipedia.org/wiki/Constitution", searchQuery: "근대국가 헌법 시민권 주권 역사" },
+            { tools: [{ name: "United Nations", url: "https://www.un.org" }, { name: "OECD", url: "https://www.oecd.org" }], role: "국제 거버넌스: 국가 간 규칙과 협약으로 문제를 조정", theoryUrl: "https://en.wikipedia.org/wiki/Global_governance", searchQuery: "국제기구 거버넌스 유엔 국제법 역사" }
+        ],
+    },
+    {
+        id: "city-community-history",
+        name: "도시와 공동체의 역사",
+        description: "부족과 촌락에서 도시, 시민사회, 공공정책으로 확장된 공동생활의 발전 흐름",
+        icon: "🏙️",
+        gradient: "from-blue-500 to-cyan-500",
+        nodes: [
+            { tools: [{ name: "Khan Academy World History", url: "https://www.khanacademy.org/humanities/world-history" }], role: "정착과 촌락: 농경과 정주가 공동체의 규모를 키움", theoryUrl: "https://en.wikipedia.org/wiki/Neolithic_Revolution", searchQuery: "농경혁명 정착 촌락 공동체 역사" },
+            { tools: [{ name: "UN-Habitat", url: "https://unhabitat.org" }], role: "도시와 시민: 도시 공간이 분업, 행정, 시민권을 형성", theoryUrl: "https://en.wikipedia.org/wiki/Urbanization", searchQuery: "도시화 시민사회 공공공간 역사" },
+            { tools: [{ name: "Our World in Data Urbanization", url: "https://ourworldindata.org/urbanization" }], role: "현대 공공정책: 도시 문제를 데이터와 제도로 해결", theoryUrl: "https://en.wikipedia.org/wiki/Public_policy", searchQuery: "도시정책 공공정책 지역사회 문제 해결" }
+        ],
+    },
+    {
+        id: "consciousness-mind-history",
+        name: "의식과 마음의 역사",
+        description: "영혼과 이성의 논의에서 심리학, 인지과학, 뇌과학으로 이어진 마음 이해의 발전 흐름",
+        icon: "🧩",
+        gradient: "from-purple-500 to-violet-500",
+        nodes: [
+            { tools: [{ name: "Stanford Encyclopedia of Philosophy", url: "https://plato.stanford.edu" }], role: "영혼과 이성: 마음을 생명 원리와 사유 능력으로 이해", theoryUrl: "https://en.wikipedia.org/wiki/Philosophy_of_mind", searchQuery: "영혼 이성 마음 철학 역사" },
+            { tools: [{ name: "American Psychological Association", url: "https://www.apa.org" }], role: "근대 심리학: 행동, 감각, 무의식을 실험과 이론으로 분석", theoryUrl: "https://en.wikipedia.org/wiki/History_of_psychology", searchQuery: "심리학 역사 행동주의 정신분석 인지혁명" },
+            { tools: [{ name: "Cognitive Science Society", url: "https://cognitivesciencesociety.org" }, { name: "Allen Brain Atlas", url: "https://portal.brain-map.org" }], role: "인지과학과 뇌과학: 정보 처리와 신경망으로 마음을 모델링", theoryUrl: "https://en.wikipedia.org/wiki/Cognitive_science", searchQuery: "인지과학 뇌과학 의식 연구 역사" }
+        ],
+    },
+    {
+        id: "learning-education-history",
+        name: "학습과 교육의 역사",
+        description: "도제식 전승에서 학교, 대중교육, 온라인 학습으로 이어진 지식 전달 체계의 발전 흐름",
+        icon: "🎓",
+        gradient: "from-indigo-500 to-sky-500",
+        nodes: [
+            { tools: [{ name: "UNESCO Education", url: "https://www.unesco.org/en/education" }], role: "도제와 서원: 지식을 몸과 공동체 안에서 전승", theoryUrl: "https://en.wikipedia.org/wiki/Apprenticeship", searchQuery: "도제 교육 서원 아카데미 교육 역사" },
+            { tools: [{ name: "OECD Education", url: "https://www.oecd.org/education/" }], role: "근대 학교: 국민교육과 공교육이 학습을 제도화", theoryUrl: "https://en.wikipedia.org/wiki/History_of_education", searchQuery: "공교육 국민교육 근대 학교 역사" },
+            { tools: [{ name: "K-MOOC", url: "http://www.kmooc.kr" }, { name: "Coursera", url: "https://www.coursera.org" }], role: "온라인 학습: 강좌, 플랫폼, AI 튜터가 지식 접근을 재편", theoryUrl: "https://en.wikipedia.org/wiki/Online_learning", searchQuery: "온라인 학습 MOOC AI 튜터 교육 변화" }
+        ],
+    },
+    {
+        id: "care-rest-history",
+        name: "치유와 안식의 역사",
+        description: "종교적 수행, 상담, 정신의학, 웰빙 문화로 이어진 마음 돌봄의 발전 흐름",
+        icon: "🕯️",
+        gradient: "from-rose-500 to-pink-500",
+        nodes: [
+            { tools: [{ name: "Internet Sacred Text Archive", url: "https://sacred-texts.com" }], role: "수행과 명상: 의례와 수련으로 마음의 평형을 추구", theoryUrl: "https://en.wikipedia.org/wiki/Meditation", searchQuery: "명상 수행 치유 종교 전통 역사" },
+            { tools: [{ name: "American Psychological Association", url: "https://www.apa.org" }], role: "상담과 정신의학: 고통을 진단, 대화, 치료의 대상으로 이해", theoryUrl: "https://en.wikipedia.org/wiki/Psychotherapy", searchQuery: "정신의학 상담치료 심리치료 역사" },
+            { tools: [{ name: "WHO Mental Health", url: "https://www.who.int/health-topics/mental-health" }], role: "현대 웰빙: 정신건강, 회복탄력성, 삶의 질을 공중보건으로 다룸", theoryUrl: "https://en.wikipedia.org/wiki/Mental_health", searchQuery: "정신건강 웰빙 회복탄력성 공중보건" }
+        ],
+    },
+    {
+        id: "language-writing-history",
+        name: "언어와 문자의 역사",
+        description: "구술, 문자, 인쇄, 디지털 텍스트로 이어진 표현과 기록 기술의 발전 흐름",
+        icon: "✍️",
+        gradient: "from-yellow-500 to-amber-500",
+        nodes: [
+            { tools: [{ name: "Omniglot", url: "https://www.omniglot.com" }], role: "구술과 문자: 말의 기억을 기호와 문자로 고정", theoryUrl: "https://en.wikipedia.org/wiki/Writing_system", searchQuery: "문자 발명 쐐기문자 상형문자 역사" },
+            { tools: [{ name: "Project Gutenberg", url: "https://www.gutenberg.org" }], role: "인쇄와 출판: 복제 기술이 지식 확산의 속도를 바꿈", theoryUrl: "https://en.wikipedia.org/wiki/Printing_press", searchQuery: "인쇄술 구텐베르크 출판 혁명 역사" },
+            { tools: [{ name: "Unicode", url: "https://home.unicode.org" }, { name: "Internet Archive", url: "https://archive.org" }], role: "디지털 텍스트: 문자와 문서가 코드, 검색, 아카이브로 전환", theoryUrl: "https://en.wikipedia.org/wiki/Digital_text", searchQuery: "디지털 텍스트 유니코드 전자책 아카이브" }
+        ],
+    },
+    {
+        id: "art-aesthetics-history",
+        name: "예술과 미학의 역사",
+        description: "의례적 이미지에서 고전 예술, 근대 미학, 현대 예술로 이어진 감각 표현의 발전 흐름",
+        icon: "🖼️",
+        gradient: "from-pink-500 to-rose-500",
+        nodes: [
+            { tools: [{ name: "The Met Heilbrunn Timeline", url: "https://www.metmuseum.org/toah/" }], role: "의례와 이미지: 그림과 조형이 신화, 권력, 의례를 표현", theoryUrl: "https://en.wikipedia.org/wiki/History_of_art", searchQuery: "미술사 의례 이미지 고대 예술" },
+            { tools: [{ name: "Google Arts & Culture", url: "https://artsandculture.google.com" }], role: "고전과 미학: 아름다움과 형식에 대한 규범을 세움", theoryUrl: "https://en.wikipedia.org/wiki/Aesthetics", searchQuery: "미학 고전 예술 르네상스 아름다움 역사" },
+            { tools: [{ name: "MoMA", url: "https://www.moma.org" }, { name: "Tate", url: "https://www.tate.org.uk" }], role: "현대 예술: 재현을 넘어 개념, 매체, 제도 자체를 탐구", theoryUrl: "https://en.wikipedia.org/wiki/Modern_art", searchQuery: "현대미술 개념미술 매체 예술사" }
+        ],
+    },
+    {
+        id: "media-communication-history",
+        name: "매체와 소통의 역사",
+        description: "신문, 방송, 인터넷, 플랫폼으로 이어진 대중 소통 구조의 발전 흐름",
+        icon: "📡",
+        gradient: "from-cyan-500 to-blue-500",
+        nodes: [
+            { tools: [{ name: "Library of Congress Newspapers", url: "https://www.loc.gov/newspapers/" }], role: "신문과 공론장: 인쇄 매체가 여론과 시민 담론을 형성", theoryUrl: "https://en.wikipedia.org/wiki/Public_sphere", searchQuery: "신문 공론장 여론 역사" },
+            { tools: [{ name: "BBC History", url: "https://www.bbc.com/history" }], role: "방송과 대중문화: 라디오와 텔레비전이 동시적 경험을 확산", theoryUrl: "https://en.wikipedia.org/wiki/Broadcasting", searchQuery: "방송 역사 라디오 텔레비전 대중문화" },
+            { tools: [{ name: "Internet Society", url: "https://www.internetsociety.org" }], role: "인터넷과 플랫폼: 네트워크와 알고리즘이 소통 방식을 재구성", theoryUrl: "https://en.wikipedia.org/wiki/Social_media", searchQuery: "인터넷 플랫폼 소셜미디어 알고리즘 소통" }
+        ],
+    },
+    {
+        id: "memory-archives-history",
+        name: "기억과 기록의 역사",
+        description: "구전, 문서, 박물관, 디지털 아카이브로 이어진 기억 보존 방식의 발전 흐름",
+        icon: "🗂️",
+        gradient: "from-lime-500 to-emerald-500",
+        nodes: [
+            { tools: [{ name: "World Digital Library", url: "https://www.wdl.org" }], role: "구전과 문서: 사건과 지식을 이야기와 문서로 보존", theoryUrl: "https://en.wikipedia.org/wiki/Oral_tradition", searchQuery: "구전 전통 문서 기록 역사" },
+            { tools: [{ name: "National Archives", url: "https://www.archives.gov" }], role: "국가 기록과 박물관: 공적 기억을 수집, 분류, 보존", theoryUrl: "https://en.wikipedia.org/wiki/Archive", searchQuery: "아카이브 박물관 국가기록원 역사" },
+            { tools: [{ name: "Europeana", url: "https://www.europeana.eu" }, { name: "Internet Archive", url: "https://archive.org" }], role: "디지털 아카이브: 자료가 검색 가능한 데이터와 네트워크로 전환", theoryUrl: "https://en.wikipedia.org/wiki/Digital_preservation", searchQuery: "디지털 아카이브 디지털 보존 메타데이터" }
+        ],
+    },
+    {
+        id: "civilization-exchange-history",
+        name: "문명과 교류의 역사",
+        description: "농경, 도시, 제국, 교역로, 세계화로 이어진 문명 상호작용의 발전 흐름",
+        icon: "🧭",
+        gradient: "from-orange-500 to-red-500",
+        nodes: [
+            { tools: [{ name: "World History Encyclopedia", url: "https://www.worldhistory.org" }], role: "농경과 도시: 생산 잉여가 계층, 행정, 문명을 형성", theoryUrl: "https://en.wikipedia.org/wiki/Cradle_of_civilization", searchQuery: "농경 도시 문명 발생 메소포타미아 이집트" },
+            { tools: [{ name: "Silk Roads Programme", url: "https://en.unesco.org/silkroad" }], role: "교역로와 제국: 물자, 종교, 기술이 넓은 권역을 이동", theoryUrl: "https://en.wikipedia.org/wiki/Silk_Road", searchQuery: "실크로드 제국 교역 문명 교류 역사" },
+            { tools: [{ name: "Our World in Data", url: "https://ourworldindata.org" }], role: "세계화와 연결망: 항해, 산업, 정보망이 세계를 하나의 체계로 연결", theoryUrl: "https://en.wikipedia.org/wiki/Globalization", searchQuery: "세계화 산업혁명 해양교역 정보 네트워크 역사" }
+        ],
+    },
+    {
+        id: "historical-interpretation-history",
+        name: "사상과 해석의 역사",
+        description: "신화, 철학, 역사학, 사회이론으로 이어진 세계 해석 방식의 발전 흐름",
+        icon: "📜",
+        gradient: "from-violet-500 to-indigo-500",
+        nodes: [
+            { tools: [{ name: "Stanford Encyclopedia of Philosophy", url: "https://plato.stanford.edu" }], role: "신화와 철학: 세계의 의미를 이야기와 개념으로 해석", theoryUrl: "https://en.wikipedia.org/wiki/Philosophy", searchQuery: "신화 철학 세계 해석 사상사" },
+            { tools: [{ name: "JSTOR", url: "https://www.jstor.org" }], role: "역사학의 성립: 사료 비판과 서술 방식으로 과거를 재구성", theoryUrl: "https://en.wikipedia.org/wiki/Historiography", searchQuery: "역사학 사료비판 역사서술 방법론" },
+            { tools: [{ name: "Open Knowledge Repository", url: "https://openknowledge.worldbank.org" }], role: "사회이론과 구조 분석: 근대 사회를 계급, 제도, 권력의 문제로 설명", theoryUrl: "https://en.wikipedia.org/wiki/Social_theory", searchQuery: "사회이론 역사 근대성 권력 계급 제도" }
+        ],
+    },
+    {
+        id: "origin-evolution-history",
+        name: "생명의 기원과 진화",
+        description: "자연발생설, 세포설, 진화론, 유전학으로 이어진 생명 이해의 발전 흐름",
+        icon: "🧬",
+        gradient: "from-green-500 to-emerald-500",
+        nodes: [
+            { tools: [{ name: "Understanding Evolution", url: "https://evolution.berkeley.edu" }], role: "생명 기원 논의: 생명이 어디서 오는지 자연철학과 실험으로 탐구", theoryUrl: "https://en.wikipedia.org/wiki/Abiogenesis", searchQuery: "생명 기원 자연발생설 파스퇴르 역사" },
+            { tools: [{ name: "Nature Education", url: "https://www.nature.com/scitable" }], role: "세포와 진화: 세포설과 자연선택이 생명 변화를 설명", theoryUrl: "https://en.wikipedia.org/wiki/Evolution", searchQuery: "세포설 진화론 다윈 자연선택 역사" },
+            { tools: [{ name: "NCBI", url: "https://www.ncbi.nlm.nih.gov" }, { name: "Ensembl", url: "https://www.ensembl.org" }], role: "유전학과 생물정보학: DNA와 데이터로 생명의 계보를 추적", theoryUrl: "https://en.wikipedia.org/wiki/Genetics", searchQuery: "유전학 DNA 생물정보학 진화 연구" }
+        ],
+    },
+    {
+        id: "body-medicine-history",
+        name: "몸과 의학의 역사",
+        description: "고대 의학, 해부학, 병원, 공중보건, 근거중심의학으로 이어진 몸 돌봄의 발전 흐름",
+        icon: "🩺",
+        gradient: "from-red-500 to-rose-500",
+        nodes: [
+            { tools: [{ name: "History of Medicine Division", url: "https://www.nlm.nih.gov/hmd/" }], role: "고대 의학과 해부: 몸을 체액, 장기, 구조의 질서로 이해", theoryUrl: "https://en.wikipedia.org/wiki/History_of_medicine", searchQuery: "의학사 히포크라테스 해부학 갈레노스" },
+            { tools: [{ name: "WHO", url: "https://www.who.int" }], role: "병원과 공중보건: 감염병과 위생을 사회적 관리 대상으로 전환", theoryUrl: "https://en.wikipedia.org/wiki/Public_health", searchQuery: "공중보건 병원 위생 감염병 역사" },
+            { tools: [{ name: "Cochrane", url: "https://www.cochrane.org" }, { name: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov" }], role: "근거중심의학: 임상 연구와 통계로 치료 판단을 검증", theoryUrl: "https://en.wikipedia.org/wiki/Evidence-based_medicine", searchQuery: "근거중심의학 임상시험 메타분석 역사" }
+        ],
+    },
+    {
+        id: "ecology-environment-history",
+        name: "생태와 환경의 역사",
+        description: "자연사, 생태학, 보전, 기후위기 대응으로 이어진 환경 이해의 발전 흐름",
+        icon: "🌍",
+        gradient: "from-teal-500 to-green-500",
+        nodes: [
+            { tools: [{ name: "Biodiversity Heritage Library", url: "https://www.biodiversitylibrary.org" }], role: "자연사와 분류: 생물을 관찰, 명명, 분류하며 자연의 다양성을 기록", theoryUrl: "https://en.wikipedia.org/wiki/Natural_history", searchQuery: "자연사 생물 분류 린네 생물다양성 역사" },
+            { tools: [{ name: "Encyclopedia of Life", url: "https://eol.org" }], role: "생태학과 보전: 종과 서식지의 관계를 시스템으로 이해", theoryUrl: "https://en.wikipedia.org/wiki/Ecology", searchQuery: "생태학 보전생물학 생태계 역사" },
+            { tools: [{ name: "IPCC", url: "https://www.ipcc.ch" }, { name: "Our World in Data Climate", url: "https://ourworldindata.org/climate-change" }], role: "기후위기 대응: 지구 시스템 데이터를 정책과 행동으로 연결", theoryUrl: "https://en.wikipedia.org/wiki/Climate_change", searchQuery: "기후변화 IPCC 환경정책 탄소중립" }
+        ],
+    },
+    {
+        id: "tool-making-history",
+        name: "도구 제작의 역사",
+        description: "석기, 금속, 기계, 산업기술로 이어진 인간 제작 능력의 발전 흐름",
+        icon: "🛠️",
+        gradient: "from-neutral-500 to-stone-500",
+        nodes: [
+            { tools: [{ name: "Smithsonian Human Origins", url: "https://humanorigins.si.edu" }], role: "석기와 손기술: 도구 사용이 인간의 생존 전략을 바꿈", theoryUrl: "https://en.wikipedia.org/wiki/Stone_tool", searchQuery: "석기 도구 제작 인류 진화 역사" },
+            { tools: [{ name: "Science Museum", url: "https://www.sciencemuseum.org.uk" }], role: "금속과 기계: 재료와 동력 장치가 생산력을 확장", theoryUrl: "https://en.wikipedia.org/wiki/History_of_technology", searchQuery: "금속기술 기계 기술사 산업혁명" },
+            { tools: [{ name: "Engineering and Technology History Wiki", url: "https://ethw.org" }], role: "산업 시스템: 표준화, 공장, 전력망이 기술을 사회 인프라로 만듦", theoryUrl: "https://en.wikipedia.org/wiki/Industrial_Revolution", searchQuery: "산업혁명 공장 전력망 표준화 기술사" }
+        ],
+    },
+    {
+        id: "computation-information-history",
+        name: "계산과 정보의 역사",
+        description: "계산 도구, 컴퓨터, 네트워크, 웹으로 이어진 정보 처리의 발전 흐름",
+        icon: "💾",
+        gradient: "from-blue-500 to-indigo-500",
+        nodes: [
+            { tools: [{ name: "Computer History Museum", url: "https://computerhistory.org" }], role: "계산 도구: 주판, 기계식 계산기, 해석기관이 계산을 외부화", theoryUrl: "https://en.wikipedia.org/wiki/History_of_computing", searchQuery: "계산기 역사 주판 배비지 해석기관" },
+            { tools: [{ name: "ACM", url: "https://www.acm.org" }, { name: "IEEE Computer Society", url: "https://www.computer.org" }], role: "전자 컴퓨터와 소프트웨어: 프로그램이 범용 기계를 작동시킴", theoryUrl: "https://en.wikipedia.org/wiki/Computer", searchQuery: "전자컴퓨터 소프트웨어 프로그래밍 언어 역사" },
+            { tools: [{ name: "W3C", url: "https://www.w3.org" }, { name: "Internet Society", url: "https://www.internetsociety.org" }], role: "인터넷과 웹: 정보가 네트워크와 하이퍼텍스트로 연결", theoryUrl: "https://en.wikipedia.org/wiki/World_Wide_Web", searchQuery: "인터넷 웹 하이퍼텍스트 월드와이드웹 역사" }
+        ],
+    },
+    {
+        id: "automation-intelligence-history",
+        name: "자동화와 지능의 역사",
+        description: "자동기계, 사이버네틱스, 인공지능, 에이전트로 확장된 기계 지능의 발전 흐름",
+        icon: "🤖",
+        gradient: "from-fuchsia-500 to-purple-500",
+        nodes: [
+            { tools: [{ name: "MIT Museum", url: "https://mitmuseum.mit.edu" }], role: "자동기계와 제어: 반복 동작과 피드백을 기계에 맡김", theoryUrl: "https://en.wikipedia.org/wiki/Automaton", searchQuery: "자동기계 오토마타 제어 이론 역사" },
+            { tools: [{ name: "AAAI", url: "https://aaai.org" }], role: "인공지능의 성립: 추론, 탐색, 학습을 계산 문제로 모델링", theoryUrl: "https://en.wikipedia.org/wiki/History_of_artificial_intelligence", searchQuery: "인공지능 역사 다트머스 회의 기계학습" },
+            { tools: [{ name: "OpenAI", url: "https://openai.com" }, { name: "Hugging Face", url: "https://huggingface.co" }], role: "생성형 AI와 에이전트: 언어, 도구 사용, 자동 실행이 결합", theoryUrl: "https://en.wikipedia.org/wiki/Generative_artificial_intelligence", searchQuery: "생성형 AI 에이전트 LLM 도구 사용 역사" }
+        ],
+    },
+    {
+        id: "myth-ritual-history",
+        name: "신화와 제의의 역사",
+        description: "자연 숭배, 신화, 제사, 의례로 세계 질서를 상징화한 믿음의 발전 흐름",
+        icon: "🔥",
+        gradient: "from-amber-500 to-red-500",
+        nodes: [
+            { tools: [{ name: "Internet Sacred Text Archive", url: "https://sacred-texts.com" }], role: "자연 숭배와 신화: 자연 현상을 이야기와 상징으로 설명", theoryUrl: "https://en.wikipedia.org/wiki/Mythology", searchQuery: "신화 자연숭배 제의 종교 기원" },
+            { tools: [{ name: "World History Encyclopedia Religion", url: "https://www.worldhistory.org/religion/" }], role: "제사와 의례: 공동체 질서와 초월 세계를 반복 행위로 연결", theoryUrl: "https://en.wikipedia.org/wiki/Ritual", searchQuery: "제의 의례 종교 공동체 역사" },
+            { tools: [{ name: "British Museum", url: "https://www.britishmuseum.org" }], role: "상징과 성소: 신성한 장소와 물건이 기억과 권위를 보존", theoryUrl: "https://en.wikipedia.org/wiki/Sacred_space", searchQuery: "성소 신전 상징 종교 유물 역사" }
+        ],
+    },
+    {
+        id: "world-religions-history",
+        name: "세계 종교의 역사",
+        description: "고대 종교, 축의 시대, 보편 종교, 경전 전통으로 이어진 믿음 체계의 발전 흐름",
+        icon: "☸️",
+        gradient: "from-violet-500 to-slate-500",
+        nodes: [
+            { tools: [{ name: "World Religions and Spirituality Project", url: "https://wrldrels.org" }], role: "축의 시대: 윤리, 구원, 해탈의 보편적 질문이 출현", theoryUrl: "https://en.wikipedia.org/wiki/Axial_Age", searchQuery: "축의 시대 세계 종교 철학 역사" },
+            { tools: [{ name: "Bible Gateway", url: "https://www.biblegateway.com" }, { name: "SuttaCentral", url: "https://suttacentral.net" }], role: "경전과 교단: 가르침이 문헌과 제도 안에서 전승", theoryUrl: "https://en.wikipedia.org/wiki/Religious_text", searchQuery: "경전 교단 종교 전통 전승 역사" },
+            { tools: [{ name: "Pew Research Religion", url: "https://www.pewresearch.org/religion/" }], role: "세계 종교와 현대 사회: 종교가 인구, 정치, 문화 속에서 재배치", theoryUrl: "https://en.wikipedia.org/wiki/Major_religious_groups", searchQuery: "세계 종교 현대 사회 종교 인구 문화" }
+        ],
+    },
+    {
+        id: "modern-belief-history",
+        name: "근대 이후 신념의 역사",
+        description: "세속화, 이념, 과학주의, 뉴에이지와 현대 영성으로 분화한 의미 체계의 발전 흐름",
+        icon: "🧭",
+        gradient: "from-slate-500 to-zinc-500",
+        nodes: [
+            { tools: [{ name: "Stanford Encyclopedia Secularization", url: "https://plato.stanford.edu" }], role: "세속화와 근대성: 종교 권위와 정치, 과학, 개인성이 분리", theoryUrl: "https://en.wikipedia.org/wiki/Secularization", searchQuery: "세속화 근대성 종교 권위 사회 변화" },
+            { tools: [{ name: "Internet Encyclopedia of Philosophy", url: "https://iep.utm.edu" }], role: "이념과 세계관: 민족주의, 자유주의, 사회주의가 의미 체계로 작동", theoryUrl: "https://en.wikipedia.org/wiki/Ideology", searchQuery: "이념 세계관 근대 정치사상 역사" },
+            { tools: [{ name: "Pew Research Religion", url: "https://www.pewresearch.org/religion/" }], role: "현대 영성과 정체성: 뉴에이지, 자기계발, 온라인 공동체로 신념이 분화", theoryUrl: "https://en.wikipedia.org/wiki/Spirituality", searchQuery: "현대 영성 뉴에이지 자기계발 신념 공동체" }
+        ],
+    },];

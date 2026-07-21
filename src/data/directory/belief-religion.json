@@ -1,0 +1,13 @@
+{
+  "categoryId": "belief-religion",
+  "categoryName": "신념과 종교",
+  "lastUpdated": "2026-07-21",
+  "entries": [
+    { "siteName": "Internet Sacred Text Archive", "url": "https://sacred-texts.com", "organizationType": "Public", "categoryPath": ["신념과 종교", "신화와 제의", "종교 원전"], "tags": ["신화", "제의", "원전", "상징"], "description": "세계의 신화, 종교, 의례 전통과 관련된 원전 자료를 제공하는 공개 아카이브" },
+    { "siteName": "World History Encyclopedia Religion", "url": "https://www.worldhistory.org/religion/", "organizationType": "Public", "categoryPath": ["신념과 종교", "신화와 제의", "종교사 백과"], "tags": ["종교사", "신화", "의례", "고대"], "description": "고대 종교와 신화, 의례를 세계사 맥락에서 설명하는 백과 자료" },
+    { "siteName": "World Religions and Spirituality Project", "url": "https://wrldrels.org", "organizationType": "Public", "categoryPath": ["신념과 종교", "세계 종교", "세계 종교 백과"], "tags": ["세계종교", "종파", "영성", "전통"], "description": "세계 종교와 영성 운동을 주제별로 정리한 학술 지향 백과" },
+    { "siteName": "SuttaCentral", "url": "https://suttacentral.net", "organizationType": "Public", "categoryPath": ["신념과 종교", "세계 종교", "불교 경전"], "tags": ["불교", "경전", "원전", "종교"], "description": "초기 불교 경전을 여러 언어로 검색하고 대조할 수 있는 경전 자료 사이트" },
+    { "siteName": "Pew Research Religion", "url": "https://www.pewresearch.org/religion/", "organizationType": "Public", "categoryPath": ["신념과 종교", "근대 이후의 신념", "종교와 사회 조사"], "tags": ["종교", "사회", "통계", "세속화"], "description": "종교 인구, 신념 변화, 세속화와 현대 사회의 관계를 조사 자료로 제공" },
+    { "siteName": "Internet Encyclopedia of Philosophy", "url": "https://iep.utm.edu", "organizationType": "Public", "categoryPath": ["신념과 종교", "근대 이후의 신념", "이념과 철학"], "tags": ["이념", "철학", "세계관", "근대"], "description": "철학적 개념과 현대 세계관을 이해하는 데 필요한 입문형 백과 자료" }
+  ]
+}

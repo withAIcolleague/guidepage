@@ -11,9 +11,10 @@ import beingReasonData from "@/data/directory/being-reason.json";
 import valueExchangeData from "@/data/directory/value-exchange.json";
 import normsGovernanceData from "@/data/directory/norms-governance.json";
 import expressionSensationData from "@/data/directory/expression-sensation.json";
-import matterCosmosData from "@/data/directory/matter-cosmos.json";
+import historyRecordsData from "@/data/directory/history-records.json";
 import lifeHealthData from "@/data/directory/life-health.json";
 import toolsIntelligenceData from "@/data/directory/tools-intelligence.json";
+import beliefReligionData from "@/data/directory/belief-religion.json";
 import uncategorizedData from "@/data/directory/uncategorized.json";
 
 interface DirectoryCategoryData {
@@ -29,9 +30,10 @@ const ALL_CATEGORY_DATA: DirectoryCategoryData[] = [
   valueExchangeData as DirectoryCategoryData,
   normsGovernanceData as DirectoryCategoryData,
   expressionSensationData as DirectoryCategoryData,
-  matterCosmosData as DirectoryCategoryData,
+  historyRecordsData as DirectoryCategoryData,
   lifeHealthData as DirectoryCategoryData,
   toolsIntelligenceData as DirectoryCategoryData,
+  beliefReligionData as DirectoryCategoryData,
   uncategorizedData as DirectoryCategoryData,
 ];
 

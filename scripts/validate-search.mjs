@@ -74,21 +74,21 @@ const { workflowCategories } = loadTypeScriptModule("src/data/workflow-categorie
 const { workflowChains } = loadTypeScriptModule("src/data/quick-links.ts");
 
 const checks = [
-  { query: "의사결정", expectedChainId: "decision-analysis" },
-  { query: "지역사회", expectedChainId: "community-issue-analysis" },
-  { query: "미디어 반응", expectedChainId: "public-opinion-media-analysis" },
+  { query: "기하학", expectedChainId: "pure-forms-history" },
   { query: "양자", expectedChainId: "micro-world-history" },
-  { query: "건강 정보", expectedChainId: "health-information-verification" },
-  { query: "생활습관", expectedChainId: "lifestyle-health-planning" },
-  { query: "서비스 약관", expectedChainId: "terms-policy-review" },
-  { query: "정책 제안", expectedChainId: "policy-proposal-review" },
-  { query: "식품 안전", expectedChainId: "food-safety-verification" },
-  { query: "작물 재배", expectedChainId: "crop-cultivation-research" },
-  { query: "생명과학 논문", expectedChainId: "life-science-literature-review" },
-  { query: "AI 서비스", expectedChainId: "ai-service-build" },
-  { query: "프론트엔드", expectedChainId: "frontend-stack" },
-  { query: "투자", expectedChainId: "investment-analysis" },
-  { query: "음악", expectedChainId: "music-history-chain" },
+  { query: "상대성", expectedChainId: "macro-world-history" },
+  { query: "빅뱅", expectedChainId: "cosmic-structure-history" },
+  { query: "시장", expectedChainId: "exchange-market-history" },
+  { query: "헌법", expectedChainId: "state-law-history" },
+  { query: "도시", expectedChainId: "city-community-history" },
+  { query: "의식", expectedChainId: "consciousness-mind-history" },
+  { query: "교육", expectedChainId: "learning-education-history" },
+  { query: "정신건강", expectedChainId: "care-rest-history" },
+  { query: "문자", expectedChainId: "language-writing-history" },
+  { query: "예술", expectedChainId: "art-aesthetics-history" },
+  { query: "아카이브", expectedChainId: "memory-archives-history" },
+  { query: "진화", expectedChainId: "origin-evolution-history" },
+  { query: "인공지능", expectedChainId: "automation-intelligence-history" },
 ];
 
 const errors = [];
