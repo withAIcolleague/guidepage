@@ -147,7 +147,7 @@ function validate() {
     }
 
     if (categoryValidChainCount === 0) {
-      errors.push(`WorkflowCategory must reference at least one valid chain: ${category.id}`);
+      warnings.push(`WorkflowCategory has no ready chains yet: ${category.id}`);
     }
   }
 

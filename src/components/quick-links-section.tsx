@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, Layers } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { BannerGrid } from "@/components/banner-grid";
 import { DirectoryPanel } from "@/components/directory-panel";
 import { Button } from "@/components/ui/button";
@@ -97,6 +97,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
   const sectionChains = chainsForSection(activeSection);
   const activeChain =
     sectionChains.find((chain) => chain.id === activeChainId) ?? null;
+  const activeSectionName = activeSection?.name ?? null;
   const detailMode = Boolean(activeCategory);
   const selectedNode = selectedItem
     ? (findNode(selectedItem.chainId, selectedItem.nodeRole) ?? null)
@@ -130,10 +131,10 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
   const totalTools = countTools(workflowChains);
   const totalDirSites = getTotalDirectoryCount();
 
-  const activeDirEntries = useMemo(
-    () => (activeCategoryId ? getDirectoryEntries(activeCategoryId) : []),
-    [activeCategoryId],
-  );
+  const activeDirEntries =
+    activeCategoryId && activeSectionName
+      ? getDirectoryEntries(activeCategoryId, activeSectionName)
+      : [];
 
   const searchResults: WorkflowSearchResult[] = (() => {
     const normalizedQuery = normalize(query);
@@ -624,10 +625,10 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                       이론, 도구, 미리보기 패널로 전환됩니다.
                     </p>
                   </div>
-                  {activeDirEntries.length > 0 && (
+                  {activeSection && (
                     <DirectoryPanel
                       entries={activeDirEntries}
-                      categoryName={activeCategory.name}
+                      categoryName={activeSectionName ?? activeSection.name}
                     />
                   )}
                 </>

@@ -35,31 +35,55 @@ const ALL_CATEGORY_DATA: DirectoryCategoryData[] = [
   uncategorizedData as DirectoryCategoryData,
 ];
 
-/** 대분류 ID별 엔트리 목록 반환 */
-export function getDirectoryEntries(categoryId: string): ClassifiedSite[] {
-  const data = ALL_CATEGORY_DATA.find((d) => d.categoryId === categoryId);
-  return data?.entries ?? [];
+const normalize = (value: string) => value.trim().toLowerCase();
+
+function getCategoryData(categoryId: string): DirectoryCategoryData | undefined {
+  return ALL_CATEGORY_DATA.find((data) => data.categoryId === categoryId);
 }
 
-/** 대분류 ID별 엔트리 수 반환 */
+function belongsToSection(entry: ClassifiedSite, sectionName: string): boolean {
+  return normalize(entry.categoryPath[1] ?? "") === normalize(sectionName);
+}
+
+/** 대분류 또는 중분류 ID별 엔트리 목록 반환 */
+export function getDirectoryEntries(
+  categoryId: string,
+  sectionName?: string,
+): ClassifiedSite[] {
+  const data = getCategoryData(categoryId);
+  if (!data) return [];
+  if (!sectionName) return data.entries;
+  return data.entries.filter((entry) => belongsToSection(entry, sectionName));
+}
+
+/** 대분류 전체 엔트리 수 반환 */
 export function getDirectoryCount(categoryId: string): number {
   return getDirectoryEntries(categoryId).length;
 }
 
-/** 전체 디렉토리 엔트리 수 반환 */
-export function getTotalDirectoryCount(): number {
-  return ALL_CATEGORY_DATA.reduce((sum, d) => sum + d.entries.length, 0);
+/** 중분류별 엔트리 수 반환 */
+export function getSectionDirectoryCount(
+  categoryId: string,
+  sectionName: string,
+): number {
+  return getDirectoryEntries(categoryId, sectionName).length;
 }
 
-/** 대분류 ID별 조직 유형 분포 */
+/** 전체 디렉토리 엔트리 수 반환 */
+export function getTotalDirectoryCount(): number {
+  return ALL_CATEGORY_DATA.reduce((sum, data) => sum + data.entries.length, 0);
+}
+
+/** 대분류/중분류별 조직 유형 분포 */
 export function getOrgTypeDistribution(
-  categoryId: string
+  categoryId: string,
+  sectionName?: string,
 ): Record<string, number> {
-  const entries = getDirectoryEntries(categoryId);
+  const entries = getDirectoryEntries(categoryId, sectionName);
   const dist: Record<string, number> = {};
   for (const entry of entries) {
-    const t = entry.organizationType ?? "Unknown";
-    dist[t] = (dist[t] || 0) + 1;
+    const type = entry.organizationType ?? "Unknown";
+    dist[type] = (dist[type] || 0) + 1;
   }
   return dist;
 }
@@ -67,10 +91,10 @@ export function getOrgTypeDistribution(
 /** 전체 디렉토리에서 키워드 검색 */
 export function searchDirectory(query: string): ClassifiedSite[] {
   if (!query.trim()) return [];
-  const normalizedQuery = query.trim().toLowerCase();
+  const normalizedQuery = normalize(query);
 
-  return ALL_CATEGORY_DATA.flatMap((d) =>
-    d.entries.filter((entry) => {
+  return ALL_CATEGORY_DATA.flatMap((data) =>
+    data.entries.filter((entry) => {
       const haystack = [
         entry.siteName,
         entry.description,
@@ -85,12 +109,13 @@ export function searchDirectory(query: string): ClassifiedSite[] {
   );
 }
 
-/** 대분류 ID별 태그 목록 (빈도순) */
+/** 대분류/중분류별 태그 목록 (빈도순) */
 export function getTopTags(
   categoryId: string,
-  limit = 10
+  sectionName?: string,
+  limit = 10,
 ): { tag: string; count: number }[] {
-  const entries = getDirectoryEntries(categoryId);
+  const entries = getDirectoryEntries(categoryId, sectionName);
   const freq: Record<string, number> = {};
   for (const entry of entries) {
     for (const tag of entry.tags) {
