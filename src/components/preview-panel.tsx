@@ -255,7 +255,7 @@ export function PreviewPanel({
         </div>
       </div>
 
-      <div className="relative min-h-[480px] flex-1 basis-0 bg-background">
+      <div className="relative min-h-[520px] flex-1 basis-0 bg-background">
         {status === "loading" && !blocked && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-background">
             <Loader2 className="size-6 animate-spin text-muted-foreground" />
@@ -308,7 +308,7 @@ export function PreviewPanel({
     return (
       <div
         data-preview-panel="embedded"
-        className="flex h-[88vh] min-h-[720px] basis-0 flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm lg:h-[72vh] lg:min-h-[620px] lg:max-h-[820px]"
+        className="flex h-[88vh] min-h-[680px] basis-0 flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm xl:h-[calc(100vh-1.5rem)] xl:min-h-[720px] xl:max-h-none"
       >
         {frame}
       </div>

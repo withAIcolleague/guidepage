@@ -1,0 +1,211 @@
+{
+  "categoryId": "life-health",
+  "categoryName": "?앸챸怨?嫄닿컯",
+  "lastUpdated": "2026-06-25",
+  "entries": [
+    {
+      "siteName": "기상청 날씨누리",
+      "url": "https://www.weather.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "기상 관측"
+      ],
+      "tags": [
+        "기상",
+        "기후",
+        "날씨",
+        "관측데이터"
+      ],
+      "description": "기상 관측, 기후 데이터, 날씨 예보를 제공하는 대한민국 기상청 공식 포털"
+    },
+    {
+      "siteName": "NASA",
+      "url": "https://www.nasa.gov",
+      "organizationType": "Government",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "우주 탐사"
+      ],
+      "tags": [
+        "우주",
+        "NASA",
+        "천문",
+        "항공우주"
+      ],
+      "description": "미국 항공우주국으로 우주 탐사, 천문 관측, 지구 과학 연구 데이터를 공개 제공"
+    },
+    {
+      "siteName": "NASA Earth Observatory",
+      "url": "https://earthobservatory.nasa.gov",
+      "organizationType": "Government",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "지구 관측"
+      ],
+      "tags": [
+        "위성",
+        "지구관측",
+        "기후변화",
+        "환경"
+      ],
+      "description": "NASA의 지구 관측 위성 데이터, 기후 변화 시각화, 환경 과학 이미지 아카이브"
+    },
+    {
+      "siteName": "환경부",
+      "url": "https://www.me.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "환경 정책"
+      ],
+      "tags": [
+        "환경",
+        "대기",
+        "수질",
+        "폐기물"
+      ],
+      "description": "대기, 수질, 폐기물 등 환경 정책과 환경 데이터를 총괄하는 중앙행정기관"
+    },
+    {
+      "siteName": "한국과학기술정보연구원 KISTI",
+      "url": "https://www.kisti.re.kr",
+      "organizationType": "Public",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "과학기술 정보"
+      ],
+      "tags": [
+        "과학기술",
+        "슈퍼컴퓨팅",
+        "연구데이터",
+        "KISTI"
+      ],
+      "description": "과학기술 정보 수집·분석, 슈퍼컴퓨팅 인프라, 연구 데이터 서비스를 제공하는 연구기관"
+    },
+    {
+      "siteName": "CERN",
+      "url": "https://home.cern",
+      "organizationType": "Public",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "입자물리 연구"
+      ],
+      "tags": [
+        "물리",
+        "입자가속기",
+        "CERN",
+        "실험"
+      ],
+      "description": "유럽 입자물리연구소로 고에너지 물리학 실험과 기초 과학 연구를 수행하는 국제기구"
+    },
+    {
+      "siteName": "한국천문연구원",
+      "url": "https://www.kasi.re.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "천문 관측"
+      ],
+      "tags": [
+        "천문",
+        "우주",
+        "관측",
+        "천문연구원"
+      ],
+      "description": "천문 관측, 우주 탐사 기술, 천체 데이터를 연구하는 국립 천문학 연구기관"
+    },
+    {
+      "siteName": "한국표준과학연구원 KRISS",
+      "url": "https://www.kriss.re.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "표준 과학 연구"
+      ],
+      "tags": [
+        "표준",
+        "측정",
+        "물성",
+        "과학"
+      ],
+      "description": "도량형 표준, 정밀 측정, 물성 데이터 연구를 수행하는 국립 과학 연구기관"
+    },
+    {
+      "siteName": "한국기초과학연구원 IBS",
+      "url": "https://www.ibs.re.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "기초과학 연구"
+      ],
+      "tags": [
+        "기초과학",
+        "수학",
+        "물리",
+        "연구"
+      ],
+      "description": "수학, 물리, 화학, 생명과학 등 기초과학 분야의 세계 수준 연구를 수행하는 연구기관"
+    },
+    {
+      "siteName": "한국원자력연구원",
+      "url": "https://www.kaeri.re.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "원자력 연구"
+      ],
+      "tags": [
+        "원자력",
+        "방사선",
+        "핵에너지",
+        "안전"
+      ],
+      "description": "원자력 기술 연구, 방사선 응용, 핵에너지 안전 연구를 수행하는 국립 연구기관"
+    },
+    {
+      "siteName": "한국화학연구원",
+      "url": "https://www.krict.re.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "화학 연구"
+      ],
+      "tags": [
+        "화학",
+        "소재",
+        "그린화학",
+        "의약화학"
+      ],
+      "description": "화학 소재, 그린 화학, 의약 화학 분야의 응용 연구를 수행하는 국립 연구기관"
+    },
+    {
+      "siteName": "에어코리아",
+      "url": "https://www.airkorea.or.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "물질과 우주",
+        "기초 자연과학",
+        "대기질 측정"
+      ],
+      "tags": [
+        "대기오염",
+        "미세먼지",
+        "환경",
+        "실시간"
+      ],
+      "description": "전국 대기오염 실시간 측정 데이터와 미세먼지 예보를 제공하는 환경부 포털"
+    }
+  ]
+}

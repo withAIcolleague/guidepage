@@ -1,0 +1,245 @@
+{
+  "categoryId": "being-reason",
+  "categoryName": "議댁옱? ?댁꽦",
+  "lastUpdated": "2026-06-25",
+  "entries": [
+    {
+      "siteName": "Behance",
+      "url": "https://www.behance.net",
+      "organizationType": "Enterprise",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "포트폴리오 플랫폼"
+      ],
+      "tags": [
+        "디자인",
+        "포트폴리오",
+        "크리에이티브",
+        "Adobe"
+      ],
+      "description": "Adobe가 운영하는 크리에이티브 작품 포트폴리오 공유 및 디자인 영감 발견 플랫폼"
+    },
+    {
+      "siteName": "Dribbble",
+      "url": "https://dribbble.com",
+      "organizationType": "Enterprise",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "디자인 커뮤니티"
+      ],
+      "tags": [
+        "UI",
+        "UX",
+        "디자인",
+        "커뮤니티"
+      ],
+      "description": "UI/UX 디자이너와 그래픽 아티스트의 작업을 공유하는 디자인 커뮤니티 플랫폼"
+    },
+    {
+      "siteName": "Canva",
+      "url": "https://www.canva.com",
+      "organizationType": "Enterprise",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "그래픽 디자인 도구"
+      ],
+      "tags": [
+        "디자인",
+        "템플릿",
+        "그래픽",
+        "콘텐츠제작"
+      ],
+      "description": "템플릿 기반으로 그래픽 디자인, 프레젠테이션, 소셜미디어 콘텐츠를 제작하는 온라인 도구"
+    },
+    {
+      "siteName": "Google Fonts",
+      "url": "https://fonts.google.com",
+      "organizationType": "Enterprise",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "타이포그래피"
+      ],
+      "tags": [
+        "폰트",
+        "타이포그래피",
+        "웹폰트",
+        "오픈소스"
+      ],
+      "description": "무료 오픈소스 웹 폰트를 제공하는 구글의 타이포그래피 라이브러리"
+    },
+    {
+      "siteName": "Unsplash",
+      "url": "https://unsplash.com",
+      "organizationType": "Enterprise",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "이미지 에셋"
+      ],
+      "tags": [
+        "사진",
+        "이미지",
+        "에셋",
+        "무료"
+      ],
+      "description": "고해상도 사진을 무료로 제공하는 크리에이티브 이미지 에셋 공유 플랫폼"
+    },
+    {
+      "siteName": "국립현대미술관",
+      "url": "https://www.mmca.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "표현과 감성",
+        "콘텐츠와 미디어",
+        "현대미술 전시"
+      ],
+      "tags": [
+        "미술관",
+        "현대미술",
+        "전시",
+        "예술"
+      ],
+      "description": "한국 현대미술 및 동시대 미술의 전시, 교육, 연구를 수행하는 국립 미술관"
+    },
+    {
+      "siteName": "영화관입장권 통합전산망 KOBIS",
+      "url": "https://www.kobis.or.kr",
+      "organizationType": "Public",
+      "categoryPath": [
+        "표현과 감성",
+        "콘텐츠와 미디어",
+        "영화 통계"
+      ],
+      "tags": [
+        "영화",
+        "박스오피스",
+        "콘텐츠",
+        "영상"
+      ],
+      "description": "영화진흥위원회가 운영하는 한국 영화 박스오피스, 영상 콘텐츠 통계 데이터 시스템"
+    },
+    {
+      "siteName": "Coolors",
+      "url": "https://coolors.co",
+      "organizationType": "Enterprise",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "컬러 팔레트 도구"
+      ],
+      "tags": [
+        "컬러",
+        "팔레트",
+        "디자인",
+        "색상"
+      ],
+      "description": "컬러 팔레트를 자동 생성하고 디자인 색상 조합을 탐색하는 온라인 도구"
+    },
+    {
+      "siteName": "LottieFiles",
+      "url": "https://lottiefiles.com",
+      "organizationType": "Enterprise",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "모션 애니메이션"
+      ],
+      "tags": [
+        "애니메이션",
+        "모션",
+        "JSON",
+        "UI"
+      ],
+      "description": "가벼운 JSON 애니메이션을 제작·공유하는 모션 디자인 에셋 플랫폼"
+    },
+    {
+      "siteName": "한국콘텐츠진흥원",
+      "url": "https://www.kocca.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "표현과 감성",
+        "콘텐츠와 미디어",
+        "문화콘텐츠 진흥"
+      ],
+      "tags": [
+        "콘텐츠",
+        "게임",
+        "방송",
+        "애니메이션"
+      ],
+      "description": "게임, 애니메이션, 방송, 음악 등 문화콘텐츠 산업 진흥과 지원 사업을 수행하는 기관"
+    },
+    {
+      "siteName": "한국디자인진흥원 KIDP",
+      "url": "https://www.kidp.or.kr",
+      "organizationType": "Public",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "산업 디자인 진흥"
+      ],
+      "tags": [
+        "디자인",
+        "트렌드",
+        "인력양성",
+        "산업디자인"
+      ],
+      "description": "산업 디자인 진흥, 디자인 트렌드 리서치, 디자인 인력 양성을 지원하는 공공기관"
+    },
+    {
+      "siteName": "Pexels",
+      "url": "https://www.pexels.com",
+      "organizationType": "Enterprise",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "이미지·영상 에셋"
+      ],
+      "tags": [
+        "사진",
+        "영상",
+        "에셋",
+        "무료"
+      ],
+      "description": "무료 고품질 사진과 동영상을 제공하는 크리에이티브 에셋 공유 플랫폼"
+    },
+    {
+      "siteName": "Adobe Color",
+      "url": "https://color.adobe.com",
+      "organizationType": "Enterprise",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "컬러 디자인 도구"
+      ],
+      "tags": [
+        "Adobe",
+        "컬러",
+        "접근성",
+        "디자인"
+      ],
+      "description": "색상 휠, 조화 규칙, 접근성 검사를 제공하는 Adobe의 컬러 디자인 도구"
+    },
+    {
+      "siteName": "Awwwards",
+      "url": "https://www.awwwards.com",
+      "organizationType": "Enterprise",
+      "categoryPath": [
+        "표현과 감성",
+        "창작과 디자인",
+        "웹 디자인 어워드"
+      ],
+      "tags": [
+        "웹디자인",
+        "UI",
+        "UX",
+        "트렌드"
+      ],
+      "description": "웹 디자인 어워드와 최신 UI/UX 트렌드를 소개하는 디자인 커뮤니티"
+    }
+  ]
+}

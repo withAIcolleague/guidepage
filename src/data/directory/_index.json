@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-06-25",
+  "categoryMapping": {
+    "존재와 이성": "being-reason.json",
+    "가치와 신용": "value-exchange.json",
+    "규범과 질서": "norms-governance.json",
+    "표현과 감성": "expression-sensation.json",
+    "물질과 우주": "matter-cosmos.json",
+    "생명과 건강": "life-health.json",
+    "도구와 지능": "tools-intelligence.json"
+  },
+  "organizationTypes": [
+    "Government",
+    "Public",
+    "Enterprise",
+    "Individual"
+  ],
+  "stats": {
+    "totalEntries": 107,
+    "byCategory": {
+      "being-reason": 17,
+      "value-exchange": 13,
+      "norms-governance": 13,
+      "expression-sensation": 14,
+      "matter-cosmos": 12,
+      "life-health": 14,
+      "tools-intelligence": 24,
+      "uncategorized": 0
+    },
+    "byOrganizationType": {
+      "Government": 50,
+      "Public": 22,
+      "Enterprise": 35
+    },
+    "lastUpdated": "2026-06-25"
+  }
+}

@@ -1,8 +1,9 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, Layers } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BannerGrid } from "@/components/banner-grid";
+import { DirectoryPanel } from "@/components/directory-panel";
 import { Button } from "@/components/ui/button";
 import { PreviewPanel } from "@/components/preview-panel";
 import { WorkflowCanvas } from "@/components/workflow-canvas";
@@ -17,6 +18,7 @@ import {
   type WorkflowCategorySection,
 } from "@/data/workflow-categories";
 import { workflowChains, type FlowNode, type WorkflowChain } from "@/data/quick-links";
+import { getDirectoryEntries, getDirectoryCount, getTotalDirectoryCount } from "@/lib/directory-loader";
 
 const normalize = (value: string) => value.trim().toLowerCase();
 
@@ -126,6 +128,12 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
 
   const totalNodes = countNodes(workflowChains);
   const totalTools = countTools(workflowChains);
+  const totalDirSites = getTotalDirectoryCount();
+
+  const activeDirEntries = useMemo(
+    () => (activeCategoryId ? getDirectoryEntries(activeCategoryId) : []),
+    [activeCategoryId],
+  );
 
   const searchResults: WorkflowSearchResult[] = (() => {
     const normalizedQuery = normalize(query);
@@ -244,6 +252,21 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     setQuery("");
   };
 
+  const navigateToChainId = (chainId: string) => {
+    const taxonomy = findTaxonomyByChain(chainId);
+    if (!taxonomy) return;
+
+    const { category, section } = taxonomy;
+    const sectionIndex = category.sections.findIndex((s) => s.id === section.id);
+
+    setActiveCategoryId(category.id);
+    setActiveSectionId(section.id);
+    setActiveChainId(chainId);
+    setSelectedItem(null);
+    setSectionPage(sectionIndex >= 0 ? sectionIndex : 0);
+    setQuery("");
+  };
+
   const renderSectionButton = (section: WorkflowCategorySection) => {
     const chains = chainsForSection(section);
     const hasChains = chains.length > 0;
@@ -256,7 +279,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
         data-workflow-section-button="true"
         disabled={!hasChains}
         onClick={() => selectSection(section)}
-        className={`min-h-28 rounded-lg border p-3 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+        className={`block min-h-28 w-full min-w-0 rounded-lg border p-3 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
           active
             ? "border-foreground/30 bg-foreground text-background"
             : hasChains
@@ -264,10 +287,12 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
               : "cursor-not-allowed border-border bg-muted/40 text-muted-foreground opacity-75"
         }`}
       >
-        <div className="flex items-center justify-between gap-3">
-          <h3 className="text-sm font-semibold">{section.name}</h3>
+        <div className="flex min-w-0 items-start justify-between gap-3">
+          <h3 className="min-w-0 text-sm font-semibold leading-5 break-keep">
+            {section.name}
+          </h3>
           <span
-            className={`rounded-md px-2 py-0.5 text-[11px] ${
+            className={`shrink-0 rounded-md px-2 py-0.5 text-[11px] ${
               active
                 ? "bg-background/15 text-background/80"
                 : "bg-muted text-muted-foreground"
@@ -276,7 +301,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
             {active ? "선택됨" : hasChains ? `${chains.length}개 세부분류` : "준비 중"}
           </span>
         </div>
-        <p className={`mt-2 text-xs leading-5 ${active ? "text-background/75" : "text-muted-foreground"}`}>
+        <p className={`mt-2 text-xs leading-5 break-keep ${active ? "text-background/75" : "text-muted-foreground"}`}>
           {section.description}
         </p>
       </button>
@@ -319,6 +344,12 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                   <span className="text-base font-semibold">{totalTools}</span>
                   <span className="text-xs text-muted-foreground">도구</span>
                 </div>
+                {totalDirSites > 0 && (
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-base font-semibold">{totalDirSites}</span>
+                    <span className="text-xs text-muted-foreground">디렉토리</span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -378,13 +409,21 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                         ? `${chains.length}개 세부분류 / ${nodeCount}개 단계`
                         : "분류 기준 먼저 확보"}
                     </span>
+                    {(() => {
+                      const dirCount = getDirectoryCount(category.id);
+                      return dirCount > 0 ? (
+                        <span className="ml-auto rounded-full bg-violet-500/10 px-2 py-0.5 text-[10px] font-medium text-violet-400">
+                          📂 {dirCount}
+                        </span>
+                      ) : null;
+                    })()}
                   </div>
                 </button>
               );
             })}
           </div>
         ) : (
-          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(420px,50vw)] lg:items-start">
+          <div className="grid gap-4 xl:grid-cols-[minmax(420px,0.95fr)_minmax(460px,1.05fr)] xl:items-start">
             <div className="min-w-0">
             <div className="mb-4 rounded-lg border border-border bg-card p-3 shadow-sm">
               <div className="mb-3">
@@ -481,7 +520,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                 )}
               </div>
               {visibleSection && (
-                <div>{renderSectionButton(visibleSection)}</div>
+                <div className="w-full min-w-0">{renderSectionButton(visibleSection)}</div>
               )}
             </div>
 
@@ -527,7 +566,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
             )}
             </div>
 
-            <aside className="space-y-3 lg:sticky lg:top-3 lg:max-h-[calc(100vh-1.5rem)] lg:overflow-y-auto">
+            <aside className="min-w-0 space-y-3 xl:sticky xl:top-3 xl:max-h-[calc(100vh-1.5rem)] xl:overflow-y-auto">
               {hasSearchQuery ? (
                 <div className="rounded-lg border border-border bg-card p-4 shadow-sm">
                   <div className="mb-3">
@@ -559,6 +598,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                     onSelectTool={(node, toolIndex) =>
                       selectTool(activeChain.id, node, toolIndex)
                     }
+                    onNavigateToChain={navigateToChainId}
                     sticky={false}
                   />
 
@@ -573,16 +613,24 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                   )}
                 </>
               ) : (
-                <div className="rounded-lg border border-dashed border-border bg-card p-5 text-sm text-muted-foreground shadow-sm">
-                  <div className="text-xs font-medium uppercase">분류 기준</div>
-                  <h2 className="mt-2 text-lg font-semibold tracking-tight text-foreground">
-                    {activeSection?.name ?? activeCategory.name}
-                  </h2>
-                  <p className="mt-2 leading-6">
-                    중분류와 세부분류를 선택하면 이 영역이 해당 맥락의 검색,
-                    이론, 도구, 미리보기 패널로 전환됩니다.
-                  </p>
-                </div>
+                <>
+                  <div className="rounded-lg border border-dashed border-border bg-card p-5 text-sm text-muted-foreground shadow-sm">
+                    <div className="text-xs font-medium uppercase">분류 기준</div>
+                    <h2 className="mt-2 text-lg font-semibold tracking-tight text-foreground">
+                      {activeSection?.name ?? activeCategory.name}
+                    </h2>
+                    <p className="mt-2 leading-6">
+                      중분류와 세부분류를 선택하면 이 영역이 해당 맥락의 검색,
+                      이론, 도구, 미리보기 패널로 전환됩니다.
+                    </p>
+                  </div>
+                  {activeDirEntries.length > 0 && (
+                    <DirectoryPanel
+                      entries={activeDirEntries}
+                      categoryName={activeCategory.name}
+                    />
+                  )}
+                </>
               )}
             </aside>
           </div>

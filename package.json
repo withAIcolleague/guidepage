@@ -13,7 +13,12 @@
     "validate:layout": "node scripts/validate-layout.mjs",
     "qa:mobile": "node scripts/mobile-qa.mjs",
     "qa:desktop": "node scripts/mobile-qa.mjs --desktop",
-    "qa:workflow-smoke": "node scripts/workflow-smoke-qa.mjs"
+    "qa:workflow-smoke": "node scripts/workflow-smoke-qa.mjs",
+    "directory:validate": "node scripts/agent1-validate.mjs",
+    "directory:classify": "node scripts/agent2-classify.mjs",
+    "directory:route": "node scripts/agent3-route.mjs",
+    "directory:pipeline": "node scripts/run-directory-pipeline.mjs",
+    "directory:stats": "node scripts/directory-stats.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

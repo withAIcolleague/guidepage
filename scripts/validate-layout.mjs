@@ -30,16 +30,16 @@ const checks = [
       /lg:items-start/.test(quickLinksSource),
   },
   {
-    name: "detail workflow split remains structured",
-    pass: /lg:grid-cols-\[minmax\(0,1fr\)_minmax\(420px,50vw\)\]/.test(
+    name: "detail workflow split keeps readable classification width",
+    pass: /xl:grid-cols-\[minmax\(420px,0\.95fr\)_minmax\(460px,1\.05fr\)\]/.test(
       quickLinksSource,
     ),
   },
   {
     name: "detail panel has viewport height cap and internal scroll",
     pass:
-      /lg:max-h-\[calc\(100vh-1\.5rem\)\]/.test(quickLinksSource) &&
-      /lg:overflow-y-auto/.test(quickLinksSource),
+      /xl:max-h-\[calc\(100vh-1\.5rem\)\]/.test(quickLinksSource) &&
+      /xl:overflow-y-auto/.test(quickLinksSource),
   },
   {
     name: "search result selection moves category section chain and node",
@@ -74,17 +74,17 @@ const checks = [
     name: "embedded resource preview has explicit mobile height",
     pass:
       /h-\[88vh\]/.test(previewPanelSource) &&
-      /min-h-\[720px\]/.test(previewPanelSource) &&
+      /min-h-\[680px\]/.test(previewPanelSource) &&
       /basis-0/.test(previewPanelSource),
   },
   {
-    name: "embedded resource preview has bounded desktop height",
+    name: "embedded resource preview uses full desktop viewport height",
     pass:
       /data-preview-panel="embedded"/.test(previewPanelSource) &&
       /data-preview-frame="true"/.test(previewPanelSource) &&
-      /lg:h-\[72vh\]/.test(previewPanelSource) &&
-      /lg:min-h-\[620px\]/.test(previewPanelSource) &&
-      /lg:max-h-\[820px\]/.test(previewPanelSource),
+      /xl:h-\[calc\(100vh-1\.5rem\)\]/.test(previewPanelSource) &&
+      /xl:min-h-\[720px\]/.test(previewPanelSource) &&
+      /xl:max-h-none/.test(previewPanelSource),
   },
   {
     name: "workflow nodes page one card with arrow controls",

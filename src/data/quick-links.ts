@@ -97,18 +97,18 @@ export const workflowChains: WorkflowChain[] = [
     },
     {
         id: "learning-growth",
-        name: "학습 & 성장 사이클",
-        description: "기초 학습에서 커뮤니티 기여까지, 개발자 성장의 순환 구조",
+        name: "지식 학습 & 성장 사이클",
+        description: "기초 평생 교육부터 전문 학술 논문 탐구와 지식 집필까지 이어지는 인지 성장 흐름",
         icon: "📈",
         gradient: "from-purple-500 to-violet-500",
         nodes: [
-            { tools: [{ name: "W3Schools", url: "https://www.w3schools.com" }, { name: "MDN", url: "https://developer.mozilla.org" }], role: "기초 학습", theoryUrl: "https://ko.wikipedia.org/wiki/평생_교육", searchQuery: "독학 개발자 커리큘럼" },
-            { tools: [{ name: "freeCodeCamp", url: "https://www.freecodecamp.org" }, { name: "LeetCode", url: "https://leetcode.com" }], role: "실습 코딩", theoryUrl: "https://ko.wikipedia.org/wiki/컴퓨터_프로그래밍", searchQuery: "코딩 테스트 알고리즘 기초" },
-            { tools: [{ name: "Stack Overflow", url: "https://stackoverflow.com" }, { name: "Reddit", url: "https://www.reddit.com/r/programming" }], role: "문제 해결", theoryUrl: "https://ko.wikipedia.org/wiki/지식_공유", searchQuery: "효율적인 구글링 검색 팁" },
-            { tools: [{ name: "VS Code Docs", url: "https://code.visualstudio.com/docs" }], role: "도구 숙련", theoryUrl: "https://ko.wikipedia.org/wiki/통합_개발_환경", searchQuery: "생산성 높여주는 VS Code 익스텐션" },
-            { tools: [{ name: "Dev.to", url: "https://dev.to" }, { name: "Medium", url: "https://medium.com" }], role: "지식 공유", theoryUrl: "https://ko.wikipedia.org/wiki/블로그", searchQuery: "기술 블로그 시작하기" },
-            { tools: [{ name: "Hacker News", url: "https://news.ycombinator.com" }], role: "트렌드 파악", theoryUrl: "https://ko.wikipedia.org/wiki/정보기술", searchQuery: "해커뉴스 실시간 인기 키워드" },
-            { tools: [{ name: "Product Hunt", url: "https://www.producthunt.com" }], role: "프로덕트 발굴", theoryUrl: "https://ko.wikipedia.org/wiki/혁신", searchQuery: "글로벌 신규 프로덕트 런칭" },
+            { tools: [{ name: "늘배움 평생학습포털", url: "https://www.lifelongedu.go.kr" }, { name: "K-MOOC", url: "http://www.kmooc.kr" }], role: "기초 평생교육 강좌 수강", theoryUrl: "https://ko.wikipedia.org/wiki/평생_교육", searchQuery: "평생 교육 국가 지원 프로그램 수강 방법" },
+            { tools: [{ name: "에듀넷 티-클리어", url: "https://www.edunet.net" }, { name: "방송통신대학교", url: "https://www.knou.ac.kr" }], role: "교과 지식 실습 및 전공 강의", theoryUrl: "https://ko.wikipedia.org/wiki/교과목", searchQuery: "초중고 교육과정 지도안 자료실" },
+            { tools: [{ name: "DBpia", url: "https://www.dbpia.co.kr" }, { name: "KISS 학술데이터베이스", url: "http://kiss.kstudy.com" }], role: "전문 자료 및 학술지 탐구", theoryUrl: "https://ko.wikipedia.org/wiki/학술지", searchQuery: "국내 학술지 연구 논문 검색" },
+            { tools: [{ name: "국립중앙도서관", url: "https://www.nl.go.kr" }], role: "학술 아카이브 및 원문 열람", theoryUrl: "https://ko.wikipedia.org/wiki/도서관", searchQuery: "국립중앙도서관 학위논문 대출 신청" },
+            { tools: [{ name: "브런치스토리", url: "https://brunch.co.kr" }, { name: "티스토리", url: "https://www.tistory.com" }], role: "자체 지식 집필 및 블로깅", theoryUrl: "https://ko.wikipedia.org/wiki/블로그", searchQuery: "브런치스토리 작가 신청 합격 팁" },
+            { tools: [{ name: "네이버 뉴스", url: "https://news.naver.com" }, { name: "트렌드코리아", url: "https://www.trendkorea.com" }], role: "대중 지식 트렌드 분석", theoryUrl: "https://ko.wikipedia.org/wiki/정보기술", searchQuery: "소비 트렌드 분석 기법" },
+            { tools: [{ name: "온-나라 정책연구 PRISM", url: "https://www.prism.go.kr" }], role: "공공 연구 데이터 분석 기여", theoryUrl: "https://ko.wikipedia.org/wiki/혁신", searchQuery: "공공 정책 과제 보고서 검색" },
         ],
     },
     {
@@ -284,104 +284,99 @@ export const workflowChains: WorkflowChain[] = [
     },
     {
         id: "startup-build",
-        name: "스타트업 구축 플로우",
-        description: "아이디어 발굴에서 MVP, 배포, 고객 확보까지 이어지는 스타트업 실행 흐름",
+        name: "스타트업 창업 & 실행 흐름",
+        description: "비즈니스 아이디어 정의부터 정부 지원사업 신청, 제품 출시, 크라우드 펀딩 및 결제 연동까지의 흐름",
         icon: "🏁",
         gradient: "from-sky-500 to-blue-600",
         nodes: [
             {
                 tools: [
-                    { name: "YC Library", url: "https://www.ycombinator.com/library" },
-                    { name: "Paul Graham Essays", url: "https://paulgraham.com/articles.html" }
+                    { name: "K-Startup 창업지원포털", url: "https://www.k-startup.go.kr" },
+                    { name: "기업마당", url: "https://www.bizinfo.go.kr" }
                 ],
-                role: "문제 발견 / 아이디어 정의",
+                role: "창업 아이디어 기획 및 정책자금 검토",
                 theoryUrl: "https://ko.wikipedia.org/wiki/문제_해결",
-                searchQuery: "스타트업 문제 발견 방법 고객의 불편 찾기"
+                searchQuery: "정부 지원 스타트업 예비창업패키지 지원 자격"
             },
             {
                 tools: [
-                    { name: "Google Trends", url: "https://trends.google.com" },
-                    { name: "Reddit", url: "https://www.reddit.com" },
-                    { name: "Product Hunt", url: "https://www.producthunt.com" }
+                    { name: "네이버 데이터랩", url: "https://datalab.naver.com" },
+                    { name: "Google Trends", url: "https://trends.google.com" }
                 ],
-                role: "시장 탐색 / 수요 검증",
+                role: "시장 수요 조사 및 검색 트렌드 검증",
                 theoryUrl: "https://ko.wikipedia.org/wiki/시장_조사",
-                searchQuery: "스타트업 시장 검증 MVP 전 고객 인터뷰"
+                searchQuery: "네이버 데이터랩 검색어 트렌드 분석"
             },
             {
                 tools: [
-                    { name: "Typeform", url: "https://www.typeform.com" },
-                    { name: "Google Forms", url: "https://forms.google.com" }
+                    { name: "네이버 오피스 폼", url: "https://office.naver.com" },
+                    { name: "구글 설문지", url: "https://forms.google.com" }
                 ],
-                role: "고객 인터뷰 / 문제 검증",
+                role: "고객 인터뷰 및 니즈 수집",
                 theoryUrl: "https://ko.wikipedia.org/wiki/사용자_조사",
-                searchQuery: "고객 인터뷰 질문지 스타트업 problem interview"
+                searchQuery: "고객 설문조사 문항 설계 기법"
             },
             {
                 tools: [
-                    { name: "Notion", url: "https://www.notion.so" },
-                    { name: "Whimsical", url: "https://whimsical.com" },
-                    { name: "Miro", url: "https://miro.com" }
+                    { name: "네이버 스마트스토어", url: "https://sell.smartstore.naver.com" },
+                    { name: "아임웹", url: "https://imweb.me" }
                 ],
-                role: "서비스 구조 설계 / 가설 정리",
+                role: "초기 비즈니스 캔버스 정리 및 랜딩 페이지 설계",
                 theoryUrl: "https://ko.wikipedia.org/wiki/사업_모형",
-                searchQuery: "린 캔버스 작성법 서비스 기획 구조도"
+                searchQuery: "노코드 쇼핑몰 아임웹 활용 구축"
             },
             {
                 tools: [
-                    { name: "Figma", url: "https://www.figma.com" },
-                    { name: "Framer", url: "https://www.framer.com" }
+                    { name: "와디즈 크라우드펀딩", url: "https://www.wadiz.kr" },
+                    { name: "텀블벅", url: "https://tumblbug.com" }
                 ],
-                role: "와이어프레임 / UX 설계",
+                role: "크라우드 펀딩을 통한 초기 투자/수요 확보",
                 theoryUrl: "https://ko.wikipedia.org/wiki/사용자_경험_디자인",
-                searchQuery: "MVP 와이어프레임 UX 설계 방법"
+                searchQuery: "크라우드 펀딩 성공 상세페이지 디자인 가이드"
             },
             {
                 tools: [
-                    { name: "Next.js", url: "https://nextjs.org" },
-                    { name: "Supabase", url: "https://supabase.com" },
-                    { name: "Firebase", url: "https://firebase.google.com" }
+                    { name: "카페24 빌더", url: "https://www.cafe24.com" },
+                    { name: "식스샵", url: "https://www.sixshop.com" }
                 ],
-                role: "MVP 개발",
+                role: "비즈니스 MVP(최소 기능 판매처) 구축",
                 theoryUrl: "https://ko.wikipedia.org/wiki/최소_기능_제품",
-                searchQuery: "MVP 빠르게 만들기 nextjs supabase"
+                searchQuery: "쇼핑몰 빌더를 통한 무코드 MVP 구현"
             },
             {
                 tools: [
-                    { name: "GitHub", url: "https://github.com" },
-                    { name: "Vercel", url: "https://vercel.com" }
+                    { name: "네이버 비즈니스스쿨", url: "https://bizschool.naver.com" }
                 ],
-                role: "배포 / 초기 운영",
+                role: "초기 운영 및 스토어 개설 완료",
                 theoryUrl: "https://ko.wikipedia.org/wiki/소프트웨어_배포",
-                searchQuery: "웹 서비스 배포 운영 체크리스트"
+                searchQuery: "스마트스토어 개설 행정절차 통신판매업"
             },
             {
                 tools: [
-                    { name: "Google Analytics", url: "https://analytics.google.com" },
-                    { name: "PostHog", url: "https://posthog.com" }
+                    { name: "에이스카운터", url: "https://www.acecounter.com" },
+                    { name: "구글 애널리틱스", url: "https://analytics.google.com" }
                 ],
-                role: "사용자 행동 분석",
+                role: "국내 유입 채널 및 고객 행동 데이터 수집",
                 theoryUrl: "https://ko.wikipedia.org/wiki/웹_분석",
-                searchQuery: "스타트업 사용자 행동 분석 핵심 지표"
+                searchQuery: "에이스카운터 전환 스크립트 설치"
             },
             {
                 tools: [
-                    { name: "Mailchimp", url: "https://mailchimp.com" },
-                    { name: "Beehiiv", url: "https://www.beehiiv.com" },
-                    { name: "Buffer", url: "https://buffer.com" }
+                    { name: "카카오 비즈니스", url: "https://business.kakao.com" },
+                    { name: "네이버 광고", url: "https://searchad.naver.com" }
                 ],
-                role: "초기 마케팅 / 고객 확보",
+                role: "마케팅 메시지 유포 및 홍보 채널 활성화",
                 theoryUrl: "https://ko.wikipedia.org/wiki/디지털_마케팅",
-                searchQuery: "초기 스타트업 고객 확보 방법"
+                searchQuery: "카카오 채널 광고 집행 마케팅 가이드"
             },
             {
                 tools: [
-                    { name: "Stripe", url: "https://stripe.com" },
-                    { name: "Toss Payments", url: "https://www.tosspayments.com" }
+                    { name: "토스페이먼츠", url: "https://www.tosspayments.com" },
+                    { name: "나이스페이", url: "https://www.nicepay.co.kr" }
                 ],
-                role: "수익화 / 결제",
+                role: "결제 게이트웨이(PG) 연동 및 정산 프로세스 수립",
                 theoryUrl: "https://ko.wikipedia.org/wiki/수익_모델",
-                searchQuery: "SaaS 수익화 결제 모델 설계"
+                searchQuery: "온라인 쇼핑몰 PG사 가입 정산 심사"
             }
         ]
     },
@@ -587,104 +582,97 @@ export const workflowChains: WorkflowChain[] = [
     },
     {
         id: "investment-analysis",
-        name: "투자 분석 플로우",
-        description: "거시 환경 점검부터 산업, 기업, 차트, 리스크 관리까지 이어지는 투자 판단 흐름",
+        name: "가치 투자 & 경제 분석 플로우",
+        description: "거시 환경 점검부터 기업 가치 공시, 국내외 자산 차트 및 포트폴리오 자산 배분까지의 흐름",
         icon: "📊",
         gradient: "from-amber-500 to-yellow-600",
         nodes: [
             {
                 tools: [
-                    { name: "Trading Economics", url: "https://tradingeconomics.com" },
-                    { name: "FRED", url: "https://fred.stlouisfed.org" },
-                    { name: "Investing.com", url: "https://www.investing.com" }
+                    { name: "한국은행 경제통계시스템 ECOS", url: "https://ecos.bok.or.kr" },
+                    { name: "FRED 미국 연준 통계", url: "https://fred.stlouisfed.org" }
                 ],
-                role: "거시경제 환경 점검",
+                role: "거시경제 환경 점검 및 지표 수집",
                 theoryUrl: "https://ko.wikipedia.org/wiki/거시경제학",
-                searchQuery: "금리 물가 고용 경기침체 투자 판단 방법"
+                searchQuery: "한국은행 통화량 금리 추이 ECOS 검색 방법"
             },
             {
                 tools: [
-                    { name: "Finviz", url: "https://finviz.com" },
-                    { name: "MarketWatch", url: "https://www.marketwatch.com" },
-                    { name: "Seeking Alpha", url: "https://seekingalpha.com" }
+                    { name: "한경컨센서스", url: "http://consensus.hankyung.com" },
+                    { name: "에프앤가이드", url: "https://www.fnguide.com" }
                 ],
-                role: "산업 / 섹터 흐름 분석",
+                role: "산업 리서치 보고서 및 증권사 전망 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/산업_분석",
-                searchQuery: "섹터 로테이션 산업 사이클 투자 분석"
+                searchQuery: "증권사 산업 리포트 무료 열람 방법 한경컨센서스"
             },
             {
                 tools: [
-                    { name: "Yahoo Finance", url: "https://finance.yahoo.com" },
-                    { name: "Macrotrends", url: "https://www.macrotrends.net" },
-                    { name: "CompaniesMarketCap", url: "https://companiesmarketcap.com" }
+                    { name: "네이버 증권", url: "https://finance.naver.com" },
+                    { name: "컴퍼니가이드 FnGuide", url: "http://comp.fnguide.com" }
                 ],
-                role: "기업 개요 / 실적 / 밸류에이션 확인",
+                role: "기업 개요 및 재무 비율 분석",
                 theoryUrl: "https://ko.wikipedia.org/wiki/기본적_분석",
-                searchQuery: "PER PSR PEG ROE 매출성장률 기업 분석 방법"
+                searchQuery: "기업 PER PBR 배당수익률 분석 방법 네이버금융"
             },
             {
                 tools: [
-                    { name: "SEC EDGAR", url: "https://www.sec.gov/edgar/searchedgar/companysearch" },
-                    { name: "DART", url: "https://dart.fss.or.kr" }
+                    { name: "금융감독원 전자공시시스템 DART", url: "https://dart.fss.or.kr" },
+                    { name: "SEC EDGAR", url: "https://www.sec.gov/edgar/searchedgar/companysearch" }
                 ],
-                role: "공시 / 원문 자료 확인",
+                role: "분기·사업보고서 공시 원문 정독",
                 theoryUrl: "https://ko.wikipedia.org/wiki/기업공시",
-                searchQuery: "10-K 10-Q 사업보고서 읽는 법"
+                searchQuery: "DART 분기보고서 주석 재무제표 읽는 법"
             },
             {
                 tools: [
-                    { name: "TradingView", url: "https://www.tradingview.com" },
-                    { name: "Investing.com Charts", url: "https://www.investing.com/charts/" }
+                    { name: "인베스팅닷컴 코리아", url: "https://kr.investing.com" },
+                    { name: "트레이딩뷰", url: "https://kr.tradingview.com" }
                 ],
-                role: "차트 / 추세 / 거래량 분석",
+                role: "주가 및 원자재 차트 추세 검정",
                 theoryUrl: "https://ko.wikipedia.org/wiki/기술적_분석",
-                searchQuery: "이동평균선 거래량 RSI 추세 분석 방법"
+                searchQuery: "이동평균선 지지선 저항선 그리는 법 트레이딩뷰"
             },
             {
                 tools: [
-                    { name: "OptionStrat", url: "https://optionstrat.com" },
-                    { name: "CBOE", url: "https://www.cboe.com" }
+                    { name: "팍스넷", url: "http://www.paxnet.co.kr" },
+                    { name: "두나무 증권플러스", url: "https://stockplus.com" }
                 ],
-                role: "옵션 / 변동성 / 시장 심리 확인",
+                role: "시장 심리 및 실시간 종목 뉴스 추적",
                 theoryUrl: "https://ko.wikipedia.org/wiki/옵션_(금융)",
-                searchQuery: "VIX 옵션 시장 심리 변동성 해석"
+                searchQuery: "실시간 테마주 검색 주식 찌라시 공포 탐욕 지수"
             },
             {
                 tools: [
-                    { name: "Portfolio Visualizer", url: "https://www.portfoliovisualizer.com" },
-                    { name: "Koyfin", url: "https://www.koyfin.com" }
+                    { name: "포트폴리오 비주얼라이저", url: "https://www.portfoliovisualizer.com" }
                 ],
-                role: "포트폴리오 구성 / 시나리오 점검",
+                role: "정밀 백테스팅 및 자산배분 상관성 평가",
                 theoryUrl: "https://ko.wikipedia.org/wiki/포트폴리오_이론",
-                searchQuery: "포트폴리오 분산투자 리스크 관리 방법"
+                searchQuery: "정적 자산배분 상관계수 올웨더 포트폴리오 백테스팅"
             },
             {
                 tools: [
-                    { name: "Google Sheets", url: "https://sheets.google.com" },
-                    { name: "Microsoft Excel", url: "https://www.microsoft.com/microsoft-365/excel" }
+                    { name: "구글 스프레드시트", url: "https://sheets.google.com" }
                 ],
-                role: "투자 기록 / 매매 복기 / 데이터 정리",
+                role: "본인 매매 기록 및 가계부 작성",
                 theoryUrl: "https://ko.wikipedia.org/wiki/의사결정",
-                searchQuery: "투자일지 매매복기 엑셀 템플릿"
+                searchQuery: "구글 시트 GOOGLEFINANCE 함수 활용 주식 관리"
             },
             {
                 tools: [
-                    { name: "Benzinga", url: "https://www.benzinga.com" },
-                    { name: "Reuters", url: "https://www.reuters.com" },
-                    { name: "Bloomberg", url: "https://www.bloomberg.com" }
+                    { name: "연합인포맥스", url: "https://news.einfomax.co.kr" },
+                    { name: "블룸버그 코리아", url: "https://www.bloomberg.co.kr" }
                 ],
-                role: "뉴스 / 이벤트 / 실시간 변수 점검",
+                role: "실시간 거시경제 이벤트 속보 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/정보",
-                searchQuery: "실적발표 FOMC CPI 뉴스가 주가에 미치는 영향"
+                searchQuery: "연합인포맥스 경제지표 실시간 캘린더 활용"
             },
             {
                 tools: [
-                    { name: "TradingView Watchlist", url: "https://www.tradingview.com" },
-                    { name: "Finviz Screener", url: "https://finviz.com/screener.ashx" }
+                    { name: "종목 스크리너 (네이버)", url: "https://finance.naver.com/sise/sise_market_sum.naver" }
                 ],
-                role: "후보 종목 선별 / 모니터링",
+                role: "스크리닝 기준을 만족하는 종목 선별",
                 theoryUrl: "https://ko.wikipedia.org/wiki/스크리닝",
-                searchQuery: "주식 스크리너 조건 설정 성장주 추세주 찾기"
+                searchQuery: "네이버증권 조건검색식 설정 가치주 발굴"
             }
         ]
     },
@@ -1126,568 +1114,524 @@ export const workflowChains: WorkflowChain[] = [
     },
     {
         id: "public-opinion-media-analysis",
-        name: "여론·미디어 반응 분석 플로우",
-        description: "이슈 키워드부터 뉴스 노출, 검색 관심도, 프레임, 여론 변화와 리스크 신호를 정리하는 흐름",
+        name: "여론 & 언론 보도 분석 플로우",
+        description: "국내 언론 기사 수집부터 검색 관심도 추이, 뉴스 빅데이터 프레임, 위험 요인 리포트까지의 미디어 반응 및 여론 분석 흐름",
         icon: "🗞️",
         gradient: "from-cyan-500 to-blue-500",
         nodes: [
             {
                 tools: [
-                    { name: "Google Trends", url: "https://trends.google.com" },
-                    { name: "Notion", url: "https://www.notion.so" }
+                    { name: "네이버 트렌드", url: "https://datalab.naver.com" },
+                    { name: "Google Trends", url: "https://trends.google.com" }
                 ],
-                role: "이슈 키워드와 비교어 정의",
+                role: "이슈 키워드의 실시간 여론 검색 관심도 파악",
                 theoryUrl: "https://ko.wikipedia.org/wiki/여론",
-                searchQuery: "여론 분석 이슈 키워드 비교어 정의"
+                searchQuery: "네이버 데이터랩 통합검색어 관심도 추이 비교"
             },
             {
                 tools: [
-                    { name: "GDELT Project", url: "https://www.gdeltproject.org" },
-                    { name: "GDELT Summary", url: "https://summary.gdeltproject.org" }
+                    { name: "빅카인즈 Big Kinds (한국언론진흥재단)", url: "https://www.bigkinds.or.kr" }
                 ],
-                role: "뉴스 노출량과 보도 흐름 수집",
+                role: "주요 일간지 뉴스 보도량 추이 및 보도 흐름 수집",
                 theoryUrl: "https://ko.wikipedia.org/wiki/뉴스",
-                searchQuery: "뉴스 보도량 미디어 모니터링 GDELT"
+                searchQuery: "빅카인즈 뉴스 검색어 관계도 시각화 방법"
             },
             {
                 tools: [
-                    { name: "Pew Research Journalism", url: "https://www.pewresearch.org/journalism/" },
-                    { name: "Media Cloud", url: "https://www.media.mit.edu/projects/media-cloud/overview/" }
+                    { name: "언론진흥재단 미디어연구", url: "https://www.kpf.or.kr" }
                 ],
-                role: "미디어 이용 맥락과 공론장 자료 확인",
+                role: "한국인의 미디어 수용자 행태 조사 보고서 탐색",
                 theoryUrl: "https://ko.wikipedia.org/wiki/공론장",
-                searchQuery: "미디어 이용 뉴스 소비 공론장 연구"
+                searchQuery: "언론수용자 조사 통계 미디어 이용률 KPF"
             },
             {
                 tools: [
-                    { name: "Google Sheets", url: "https://sheets.google.com" },
-                    { name: "Datawrapper", url: "https://www.datawrapper.de" }
+                    { name: "한국갤럽 여론조사", url: "https://www.gallup.co.kr" },
+                    { name: "리얼미터", url: "https://www.realmeter.net" }
                 ],
-                role: "프레임과 논점 분류표 작성",
+                role: "국민 여론조사 정기 지표 분석",
                 theoryUrl: "https://ko.wikipedia.org/wiki/프레이밍",
-                searchQuery: "미디어 프레임 논점 분류 내용 분석"
+                searchQuery: "한국갤럽 정기 주간 여론조사 결과 확인"
             },
             {
                 tools: [
-                    { name: "Google Trends", url: "https://trends.google.com" },
-                    { name: "Flourish", url: "https://flourish.studio" }
+                    { name: "네이버 데이터랩 쇼핑 인사이트", url: "https://datalab.naver.com/shoppingInsight/skeyword.naver" }
                 ],
-                role: "관심도 변화와 시간대별 반응 시각화",
+                role: "소비자 선호 카테고리별 실시간 관심도 시각화",
                 theoryUrl: "https://ko.wikipedia.org/wiki/시계열",
-                searchQuery: "검색 관심도 시간대별 반응 시각화"
+                searchQuery: "쇼핑인사이트 기기별 성별 선호 키워드 분석"
             },
             {
                 tools: [
-                    { name: "Miro", url: "https://miro.com" },
-                    { name: "Google Docs", url: "https://docs.google.com" }
+                    { name: "문화체육관광부 보도자료", url: "https://www.mcst.go.kr" }
                 ],
-                role: "위험 신호와 기회 메모 작성",
+                role: "정부 공식 언론 해명 보도자료 분석",
                 theoryUrl: "https://ko.wikipedia.org/wiki/위험_커뮤니케이션",
-                searchQuery: "미디어 반응 위험 신호 기회 메모 작성"
+                searchQuery: "문체부 보도자료 미디어 프레임 팩트체크"
             }
         ],
     },
     {
         id: "climate-environment-data",
-        name: "기후·환경 데이터 탐색 플로우",
-        description: "관측 데이터 수집부터 지표 해석, 지도화, 환경 변화 판단까지 자연과학 탐구를 구조화하는 흐름",
+        name: "기후·환경 데이터 분석 플로우",
+        description: "기상청 관측 원시 자료 수집부터 국가 과학 기술 통합망 검색, 기후 변화 모델 시각화까지의 자연과학 데이터 탐구 흐름",
         icon: "🌦️",
         gradient: "from-emerald-500 to-cyan-500",
         nodes: [
             {
                 tools: [
-                    { name: "NASA Earthdata", url: "https://www.earthdata.nasa.gov" },
-                    { name: "NOAA Climate Data", url: "https://www.ncei.noaa.gov" }
+                    { name: "기상자료개방포털 (기상청)", url: "https://data.kma.go.kr" },
+                    { name: "국가기후데이터센터", url: "https://sts.kma.go.kr" }
                 ],
-                role: "지구 관측 데이터 수집",
+                role: "기상청 기온, 강수량 등 과거 시계열 데이터 수집",
                 theoryUrl: "https://ko.wikipedia.org/wiki/원격탐사",
-                searchQuery: "지구 관측 데이터 원격탐사 기후 환경"
+                searchQuery: "기상자료개방포털 기온 관측 데이터 csv 다운로드"
             },
             {
                 tools: [
-                    { name: "Copernicus Climate Data Store", url: "https://cds.climate.copernicus.eu" },
-                    { name: "Climate Reanalyzer", url: "https://climatereanalyzer.org" }
+                    { name: "국가과학기술지식정보서비스 NTIS", url: "https://www.ntis.go.kr" },
+                    { name: "ScienceON", url: "https://scienceon.kisti.re.kr" }
                 ],
-                role: "기후 지표와 장기 변화 확인",
+                role: "기후 변화 대응 및 탄소 중립 관련 국가 과제물 검색",
                 theoryUrl: "https://ko.wikipedia.org/wiki/기후변화",
-                searchQuery: "기후 지표 장기 변화 분석 방법"
+                searchQuery: "NTIS 기후변화 연구 보고서 과제 정보"
             },
             {
                 tools: [
-                    { name: "GBIF", url: "https://www.gbif.org" },
-                    { name: "iNaturalist", url: "https://www.inaturalist.org" }
+                    { name: "국립생물자원관 한반도의 생물다양성", url: "https://species.nibr.go.kr" }
                 ],
-                role: "생물다양성과 생태 관찰 데이터 탐색",
+                role: "기후 변화에 따른 국내 자생종 서식 생태계 데이터 탐색",
                 theoryUrl: "https://ko.wikipedia.org/wiki/생물_다양성",
-                searchQuery: "생물다양성 관찰 데이터 생태 변화 분석"
+                searchQuery: "생물다양성 아카이브 멸종위기 야생생물 도감"
             },
             {
                 tools: [
-                    { name: "World Air Quality Index", url: "https://waqi.info" },
-                    { name: "OpenAQ", url: "https://openaq.org" }
+                    { name: "에어코리아 Air Korea (한국환경공단)", url: "https://www.airkorea.or.kr" }
                 ],
-                role: "대기질과 오염 지표 비교",
+                role: "전국 실시간 대기 오염 및 초미세먼지 농도 지표 수집",
                 theoryUrl: "https://ko.wikipedia.org/wiki/대기_오염",
-                searchQuery: "대기질 오염 지표 PM2.5 데이터 비교"
+                searchQuery: "에어코리아 실시간 미세먼지 수치 조회 방법"
             },
             {
                 tools: [
-                    { name: "Google Earth", url: "https://earth.google.com" },
-                    { name: "ArcGIS Living Atlas", url: "https://livingatlas.arcgis.com" }
+                    { name: "국토정보플랫폼 공간정보", url: "http://map.ngii.go.kr" }
                 ],
-                role: "공간 데이터 지도화와 지역 비교",
+                role: "GIS 공간 정보 지도 데이터 연동",
                 theoryUrl: "https://ko.wikipedia.org/wiki/지리정보시스템",
-                searchQuery: "GIS 환경 데이터 지도화 지역 비교"
+                searchQuery: "국토정보플랫폼 국토통계지도 공간 시각화"
             },
             {
                 tools: [
-                    { name: "Our World in Data", url: "https://ourworldindata.org/environment" },
-                    { name: "UNEP Data", url: "https://wesr.unep.org" }
+                    { name: "환경통계포털", url: "http://stat.me.go.kr" },
+                    { name: "UNEP 데이터포털", url: "https://wesr.unep.org" }
                 ],
-                role: "환경 변화 해석과 근거 정리",
+                role: "국가 온실가스 배출량 및 환경 지표 원 데이터 분석",
                 theoryUrl: "https://ko.wikipedia.org/wiki/환경과학",
-                searchQuery: "환경과학 데이터 해석 기후 생태 오염"
+                searchQuery: "환경통계포털 온실가스 배출량 통계표 검색"
             }
         ],
     },
     {
         id: "life-science-literature-review",
-        name: "생명과학 논문 탐색 플로우",
-        description: "생명 현상 키워드 정의부터 문헌, 실험 방법, 데이터베이스, 연구 공백 정리까지 연결하는 흐름",
+        name: "생명과학 학술 연구 탐색 플로우",
+        description: "생명과학 논문 및 학술 문헌 탐구를 위해 생명 현상 키워드 정의부터 국가 R&D 자료, 생물정보학 데이터베이스, 유전자 분석 도구까지 아우르는 흐름",
         icon: "🧬",
         gradient: "from-emerald-500 to-teal-500",
         nodes: [
             {
                 tools: [
-                    { name: "NCBI", url: "https://www.ncbi.nlm.nih.gov" },
-                    { name: "UniProt", url: "https://www.uniprot.org" }
+                    { name: "한국생명공학연구원 KRIBB", url: "https://www.kribb.re.kr" }
                 ],
-                role: "생명 현상과 핵심 키워드 정의",
+                role: "국내 바이오 생명공학 주요 의제 및 가이드라인 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/생명과학",
-                searchQuery: "생명과학 연구 키워드 생명 현상 정의"
+                searchQuery: "생명공학연구원 바이오 트렌드 분석 보고서"
             },
             {
                 tools: [
-                    { name: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov" },
-                    { name: "Europe PMC", url: "https://europepmc.org" }
+                    { name: "ScienceON", url: "https://scienceon.kisti.re.kr" },
+                    { name: "PubMed 글로벌 의학도서관", url: "https://pubmed.ncbi.nlm.nih.gov" }
                 ],
-                role: "리뷰 논문과 핵심 문헌 탐색",
+                role: "생명과학 분야 주요 논문 및 리뷰 학술지 수집",
                 theoryUrl: "https://ko.wikipedia.org/wiki/문헌고찰",
-                searchQuery: "생명과학 리뷰 논문 핵심 문헌 탐색 PubMed"
+                searchQuery: "ScienceON 생명과학 유전공학 논문 원문 읽기"
             },
             {
                 tools: [
-                    { name: "bioRxiv", url: "https://www.biorxiv.org" },
-                    { name: "Google Scholar", url: "https://scholar.google.com" }
+                    { name: "bioRxiv 생명과학 프리프린트", url: "https://www.biorxiv.org" }
                 ],
-                role: "최신 preprint와 연구 동향 확인",
+                role: "동료 평가(peer-review) 전 단계 최신 논문 서치",
                 theoryUrl: "https://en.wikipedia.org/wiki/Preprint",
-                searchQuery: "생명과학 preprint 최신 연구 동향 bioRxiv"
+                searchQuery: "biorxiv molecular biology preprint search"
             },
             {
                 tools: [
-                    { name: "protocols.io", url: "https://www.protocols.io" },
-                    { name: "Addgene Protocols", url: "https://www.addgene.org/protocols/" }
+                    { name: "한국생물정보학회", url: "http://www.ksbi.or.kr" }
                 ],
-                role: "주요 실험 방법과 프로토콜 확인",
+                role: "유전자 염기서열 분석 및 프로토콜 레퍼런스 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/실험",
-                searchQuery: "생명과학 실험 방법 프로토콜 재현성"
+                searchQuery: "유전자 발현 데이터 생물정보학 분석 기법"
             },
             {
                 tools: [
-                    { name: "NCBI Gene", url: "https://www.ncbi.nlm.nih.gov/gene" },
-                    { name: "EMBL-EBI", url: "https://www.ebi.ac.uk" }
+                    { name: "NCBI GenBank 글로벌 유전자은행", url: "https://www.ncbi.nlm.nih.gov/genbank/" }
                 ],
-                role: "유전자·단백질·데이터베이스 교차 확인",
+                role: "염기서열, 아미노산 서열 데이터베이스 교차 대조",
                 theoryUrl: "https://ko.wikipedia.org/wiki/생물정보학",
-                searchQuery: "유전자 단백질 생물정보학 데이터베이스 교차 확인"
+                searchQuery: "NCBI Blast 유전자 서열 정렬 비교 방법"
             },
             {
                 tools: [
-                    { name: "Zotero", url: "https://www.zotero.org" },
-                    { name: "Notion", url: "https://www.notion.so" }
+                    { name: "Zotero 논문 관리 프로그램", url: "https://www.zotero.org" }
                 ],
-                role: "연구 공백과 후속 질문 정리",
+                role: "인용 서지 정보 및 연구 노트 작성",
                 theoryUrl: "https://ko.wikipedia.org/wiki/연구",
-                searchQuery: "연구 공백 후속 질문 문헌 정리"
+                searchQuery: "Zotero 한글 논문 인용 스타일 설정 가이드"
             }
         ],
     },
     {
         id: "health-information-verification",
-        name: "건강 정보 검증 플로우",
-        description: "건강 문제를 정의하고 신뢰 가능한 출처, 연구 근거, 의료 상담 준비까지 연결하는 흐름",
+        name: "보건의료 정보 및 증상 검증 플로우",
+        description: "건강 정보와 증상 고민 정의부터 질병청 감염병 포털, 건강보험 심평원 평가 정보, 임상 진료 지침 검증까지의 의학 판단 흐름",
         icon: "⚕️",
         gradient: "from-rose-500 to-red-500",
         nodes: [
             {
                 tools: [
-                    { name: "MedlinePlus", url: "https://medlineplus.gov" },
-                    { name: "Mayo Clinic", url: "https://www.mayoclinic.org" }
+                    { name: "국가건강정보포털 (질병관리청)", url: "https://health.kdca.go.kr" }
                 ],
-                role: "증상과 건강 문제의 기본 정보 확인",
+                role: "보건의료 증상 및 의학적 원인 기본 자료 수집",
                 theoryUrl: "https://ko.wikipedia.org/wiki/증상",
-                searchQuery: "증상 건강 문제 기본 정보 신뢰할 수 있는 출처"
+                searchQuery: "질병관리청 국가건강정보포털 당뇨병 기본 정보"
             },
             {
                 tools: [
-                    { name: "WHO", url: "https://www.who.int" },
-                    { name: "CDC", url: "https://www.cdc.gov" }
+                    { name: "질병관리청 감염병포털", url: "https://npt.kdca.go.kr" }
                 ],
-                role: "공중보건 기관의 권고와 위험 요인 확인",
+                role: "법정 감염병 발생 건수 및 격리 기준 지침 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/공중보건",
-                searchQuery: "공중보건 권고 위험 요인 WHO CDC"
+                searchQuery: "질병관리청 감염병포털 실시간 확진자 통계"
             },
             {
                 tools: [
-                    { name: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov" },
-                    { name: "Cochrane Library", url: "https://www.cochranelibrary.com" }
+                    { name: "건강보험심사평가원 HIRA 비급여진료비", url: "https://www.hira.or.kr" }
                 ],
-                role: "의학 연구 근거와 체계적 문헌 확인",
+                role: "전국 의원급/병원급 진료 적정성 및 가격 데이터 비교",
                 theoryUrl: "https://ko.wikipedia.org/wiki/근거중심의학",
-                searchQuery: "근거중심의학 체계적 문헌고찰 의학 연구 확인"
+                searchQuery: "심평원 병원 평가 정보 도수치료 비급여 비용 비교"
             },
             {
                 tools: [
-                    { name: "NICE Guidance", url: "https://www.nice.org.uk/guidance" },
-                    { name: "USPSTF", url: "https://www.uspreventiveservicestaskforce.org" }
+                    { name: "임상진료지침 정보센터", url: "https://www.guideline.or.kr" }
                 ],
-                role: "진료 지침과 예방 권고 비교",
+                role: "의학 학회별 표준 임상진료 가이드라인 비교",
                 theoryUrl: "https://ko.wikipedia.org/wiki/임상진료지침",
-                searchQuery: "진료 지침 예방 권고 비교 건강 정보"
+                searchQuery: "대한의학회 임상진료지침 고혈압 관리 기준"
             },
             {
                 tools: [
-                    { name: "ClinicalTrials.gov", url: "https://clinicaltrials.gov" },
-                    { name: "ISRCTN Registry", url: "https://www.isrctn.com" }
+                    { name: "식품의약품안전처 의약품안전나라", url: "https://nedrug.mfds.go.kr" }
                 ],
-                role: "임상시험과 치료 근거의 현재 단계 확인",
+                role: "전문의약품 효능, 부작용 및 복약 정보 공식 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/임상시험",
-                searchQuery: "임상시험 치료 근거 단계 ClinicalTrials"
+                searchQuery: "의약품안전나라 약물 성분 부작용 병용금기 검색"
             },
             {
                 tools: [
-                    { name: "Google Docs", url: "https://docs.google.com" },
-                    { name: "Notion", url: "https://www.notion.so" }
+                    { name: "종합병원 건강검진 포털 (개별 검진 센터)", url: "https://health.kdca.go.kr" }
                 ],
-                role: "의료 상담 질문과 개인 기록 정리",
+                role: "개인 검진 수치 및 결과 기록지 보관",
                 theoryUrl: "https://ko.wikipedia.org/wiki/의무기록",
-                searchQuery: "진료 상담 질문 준비 건강 기록 정리"
+                searchQuery: "건강검진 혈액검사 간수치 요단백 판독 가이드"
             }
         ],
     },
     {
         id: "lifestyle-health-planning",
-        name: "생활습관 건강 계획 플로우",
-        description: "공식 건강 권고를 확인하고 식이, 운동, 수면, 기록, 상담 질문을 안전하게 정리하는 흐름",
+        name: "생활습관 & 건강관리 플로우",
+        description: "국가 운동/식단 권고 기준을 토대로 자가 추적 앱, 영양 안전 기준, 검진 상담까지 개인 건강을 보살피는 흐름",
         icon: "🥗",
         gradient: "from-lime-500 to-emerald-500",
         nodes: [
             {
                 tools: [
-                    { name: "MedlinePlus Healthy Living", url: "https://medlineplus.gov/preventingdiseaseandstayinghealthy.html" },
-                    { name: "WHO Health Topics", url: "https://www.who.int/health-topics" }
+                    { name: "보건복지부 건강증진포털", url: "https://www.khealth.or.kr" }
                 ],
-                role: "건강 목표와 제한 조건 기록",
+                role: "개인 신체 스펙 및 맞춤 건강 목표 설정",
                 theoryUrl: "https://ko.wikipedia.org/wiki/건강증진",
-                searchQuery: "생활습관 건강 목표 제한 조건 기록"
+                searchQuery: "보건복지부 비만 예방 식단 운동 가이드라인"
             },
             {
                 tools: [
-                    { name: "WHO Physical Activity", url: "https://www.who.int/news-room/fact-sheets/detail/physical-activity" },
-                    { name: "CDC Physical Activity", url: "https://www.cdc.gov/healthy-weight-growth/physical-activity/" }
+                    { name: "국가기초체력인증 (국민체력100)", url: "https://nfa.kspo.or.kr" }
                 ],
-                role: "신체활동 권고와 위험 요인 확인",
+                role: "체력 수준 인증 및 맞춤 운동 프로그램 추천",
                 theoryUrl: "https://ko.wikipedia.org/wiki/신체활동",
-                searchQuery: "WHO CDC 신체활동 권고 생활습관 건강"
+                searchQuery: "국민체력100 체력 측정 무료 예약 신청 방법"
             },
             {
                 tools: [
-                    { name: "MedlinePlus Nutrition", url: "https://medlineplus.gov/nutrition.html" },
-                    { name: "MyPlate", url: "https://www.myplate.gov" }
+                    { name: "식품안전나라 칼로리 사전", url: "https://www.foodsafetykorea.go.kr/portal/healthyfoodlife/calorieDic.do" }
                 ],
-                role: "식이 패턴과 영양 정보 정리",
+                role: "주요 한식 및 가공식품 영양 성분/칼로리 정밀 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/영양",
-                searchQuery: "건강한 식이 패턴 영양 정보 정리"
+                searchQuery: "식품안전나라 음식 칼로리 영양소 데이터 검색"
             },
             {
                 tools: [
-                    { name: "NHLBI Sleep", url: "https://www.nhlbi.nih.gov/health/sleep/why-sleep-important" },
-                    { name: "NIH Health Information", url: "https://www.nih.gov/health-information" }
+                    { name: "대한수면의학회", url: "https://www.kosleep.org" }
                 ],
-                role: "수면과 회복 지표 확인",
+                role: "수면 무호흡, 불면증 극복 수면위생 수칙 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/수면",
-                searchQuery: "수면 건강 회복 지표 생활습관"
+                searchQuery: "수면 위생 십계명 불면증 치료 가이드라인"
             },
             {
                 tools: [
-                    { name: "Cronometer", url: "https://cronometer.com" },
-                    { name: "Google Fit", url: "https://www.google.com/fit/" }
+                    { name: "다이어트신 (Dietshin)", url: "http://www.dietshin.com" },
+                    { name: "크로노미터 영양 분석", url: "https://cronometer.com" }
                 ],
-                role: "식이·활동 기록 도구 선택",
+                role: "식단 및 일일 칼로리 자가 추적 모니터링",
                 theoryUrl: "https://ko.wikipedia.org/wiki/자기추적",
-                searchQuery: "식이 운동 수면 기록 앱 건강 추적"
+                searchQuery: "다이어트신 식단 칼로리 몸무게 기록 어플"
             },
             {
                 tools: [
-                    { name: "AHRQ Question Builder", url: "https://www.ahrq.gov/es/questions/question-builder/online.html" },
-                    { name: "Google Docs", url: "https://docs.google.com" }
+                    { name: "정부24 나의 건강기록 앱", url: "https://www.gov.kr/portal/rcvamtZone/myHealth" }
                 ],
-                role: "의료 상담 질문과 관찰 메모 준비",
+                role: "국민건강보험 공단 검진 결과 데이터 자동 연동",
                 theoryUrl: "https://ko.wikipedia.org/wiki/건강정보이해능력",
-                searchQuery: "의료 상담 질문 준비 건강 기록 메모"
+                searchQuery: "나의 건강기록 앱 보건의료 데이터 가져오기"
             }
         ],
     },
     {
         id: "terms-policy-review",
-        name: "서비스 약관·정책 검토 플로우",
-        description: "서비스 약관, 개인정보 처리, 규제 기준, 변경 기록을 함께 확인하는 법·정책 검토 흐름",
+        name: "서비스 약관 & 준법 검토 플로우",
+        description: "이용약관 구조 파악부터 개인정보보호 위원회 고시, GDPR 정보 주체 권리, 플랫폼 법률 규제 준수까지의 법무 검토 흐름",
         icon: "⚖️",
         gradient: "from-amber-500 to-orange-500",
         nodes: [
             {
                 tools: [
-                    { name: "TermsFeed", url: "https://www.termsfeed.com" },
-                    { name: "Iubenda", url: "https://www.iubenda.com" }
+                    { name: "공정거래위원회 표준약관", url: "https://www.ftc.go.kr" }
                 ],
-                role: "서비스 약관과 정책 문서 구조 파악",
+                role: "국내 서비스 업종별 공정위 표준약관 비교 검증",
                 theoryUrl: "https://ko.wikipedia.org/wiki/이용약관",
-                searchQuery: "서비스 이용약관 개인정보 처리방침 구조"
+                searchQuery: "공정거래위원회 이용약관 표준 약관 모델 검색"
             },
             {
                 tools: [
-                    { name: "GDPR.eu", url: "https://gdpr.eu" },
-                    { name: "ICO Guide to GDPR", url: "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources" }
+                    { name: "개인정보보호 포털 (KISA)", url: "https://www.privacy.go.kr" },
+                    { name: "개인정보보호위원회 고시", url: "https://www.pipc.go.kr" }
                 ],
-                role: "개인정보 보호 원칙과 처리 근거 확인",
-                theoryUrl: "https://ko.wikipedia.org/wiki/일반_개인정보_보호법",
-                searchQuery: "개인정보 보호 원칙 처리 근거 GDPR"
-            },
-            {
-                tools: [
-                    { name: "KISA 개인정보보호 포털", url: "https://www.privacy.go.kr" },
-                    { name: "개인정보보호위원회", url: "https://www.pipc.go.kr" }
-                ],
-                role: "국내 개인정보 정책과 신고 기준 확인",
+                role: "국내 개인정보 처리방침 법적 고시 의무 사항 점검",
                 theoryUrl: "https://ko.wikipedia.org/wiki/개인정보_보호법",
-                searchQuery: "개인정보보호법 처리방침 신고 기준"
+                searchQuery: "개인정보보호법 개인정보 처리방침 필수 기재 항목"
             },
             {
                 tools: [
-                    { name: "FTC", url: "https://www.ftc.gov" },
-                    { name: "OECD AI Policy Observatory", url: "https://oecd.ai" }
+                    { name: "GDPR.eu 유럽 개인정보 규제 가이드", url: "https://gdpr.eu" }
                 ],
-                role: "플랫폼 규제와 소비자 보호 쟁점 탐색",
+                role: "글로벌 해외 수출을 위한 유럽 GDPR 8대 정보 주체 권리 점검",
+                theoryUrl: "https://ko.wikipedia.org/wiki/일반_개인정보_보호법",
+                searchQuery: "GDPR 정보주체 권리 동의 철회 동의권 가이드"
+            },
+            {
+                tools: [
+                    { name: "국가법령정보센터 정보통신망법", url: "https://www.law.go.kr" }
+                ],
+                role: "전자상거래법 및 정보통신망법 광고성 정보 전송 동의 기준 분석",
                 theoryUrl: "https://ko.wikipedia.org/wiki/소비자_보호",
-                searchQuery: "플랫폼 규제 소비자 보호 서비스 정책"
+                searchQuery: "정보통신망법 영리 목적 광고 전송 사전 수신 동의"
             },
             {
                 tools: [
-                    { name: "Google Transparency Report", url: "https://transparencyreport.google.com" },
-                    { name: "Meta Transparency Center", url: "https://transparency.meta.com" }
+                    { name: "구글 투명성 보고서", url: "https://transparencyreport.google.com" }
                 ],
-                role: "정책 집행과 투명성 보고 비교",
+                role: "플랫폼 서비스 콘텐츠 삭제 및 규제 투명성 레퍼런스 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/투명성",
-                searchQuery: "플랫폼 투명성 보고 정책 집행 비교"
+                searchQuery: "구글 투명성보고서 정부의 콘텐츠 삭제 요청 건수"
             },
             {
                 tools: [
-                    { name: "GitBook", url: "https://www.gitbook.com" },
-                    { name: "Notion", url: "https://www.notion.so" }
+                    { name: "종합법률정보 판례 검색", url: "https://glaw.scourt.go.kr" }
                 ],
-                role: "정책 변경 기록과 검토 메모 정리",
+                role: "약관 설명 의무 위반 관련 대법원 판례 검색",
                 theoryUrl: "https://ko.wikipedia.org/wiki/규정준수",
-                searchQuery: "정책 변경 기록 컴플라이언스 검토 메모"
+                searchQuery: "약관 설명의무 위반 효력 부인 판례 검색"
             }
         ],
     },
     {
         id: "policy-proposal-review",
-        name: "정책 제안 검토 플로우",
-        description: "정책 문제 정의부터 법적 근거, 이해관계자, 유사 정책, 비용과 리스크를 점검하는 흐름",
+        name: "정책 제안 & 입법 입안 검토 플로우",
+        description: "공공 정책 문제 식별부터 PRISM 국가 연구 보고서, 법제처 상위법 저촉 검토, 비용 편익 분석까지의 행정 입안 흐름",
         icon: "📜",
         gradient: "from-indigo-500 to-violet-500",
         nodes: [
             {
                 tools: [
-                    { name: "Notion", url: "https://www.notion.so" },
-                    { name: "Google Docs", url: "https://docs.google.com" }
+                    { name: "대한민국 국회입법예고", url: "https://pal.assembly.go.kr" }
                 ],
-                role: "정책 문제와 목표 집단 정의",
+                role: "신규 발의 법안의 입법 추진 목적 및 타당성 분석",
                 theoryUrl: "https://ko.wikipedia.org/wiki/공공정책",
-                searchQuery: "정책 문제 정의 목표 집단 공공정책"
+                searchQuery: "국회입법예고 진행 법안 제안 이유 읽기"
             },
             {
                 tools: [
-                    { name: "공공데이터포털", url: "https://www.data.go.kr" },
-                    { name: "World Bank Open Data", url: "https://data.worldbank.org" }
+                    { name: "온-나라 정책연구 PRISM", url: "https://www.prism.go.kr" },
+                    { name: "KOSIS 국가통계포털", url: "https://kosis.kr" }
                 ],
-                role: "근거 데이터와 현황 지표 수집",
+                role: "기존 중앙부처의 정책 연구 용역 결과 데이터 수집",
                 theoryUrl: "https://ko.wikipedia.org/wiki/사회지표",
-                searchQuery: "정책 근거 데이터 사회지표 현황 분석"
+                searchQuery: "온나라 정책연구 prism 국책 과제 보고서 다운로드"
             },
             {
                 tools: [
-                    { name: "국가법령정보센터", url: "https://www.law.go.kr" },
-                    { name: "자치법규정보시스템", url: "https://www.elis.go.kr" }
+                    { name: "국가법령정보센터 상위법 검색", url: "https://www.law.go.kr" },
+                    { name: "법제처 행정입법 검토 가이드", url: "https://www.moleg.go.kr" }
                 ],
-                role: "법적 근거와 담당 기관 확인",
+                role: "신규 행정 규칙 및 조례의 상위 법령 저촉 여부 검증",
                 theoryUrl: "https://ko.wikipedia.org/wiki/행정법",
-                searchQuery: "정책 법적 근거 담당 기관 행정법"
+                searchQuery: "지자체 조례 상위법 위임 한계 저촉 판례"
             },
             {
                 tools: [
-                    { name: "Miro", url: "https://miro.com" },
-                    { name: "Kumu", url: "https://kumu.io" }
+                    { name: "국회예산정책처 NABO 보고서", url: "https://www.nabo.go.kr" }
                 ],
-                role: "이해관계자와 영향 범위 정리",
+                role: "예산안 분석 및 비용 추계 모델 비교 평가",
                 theoryUrl: "https://en.wikipedia.org/wiki/Stakeholder_analysis",
-                searchQuery: "정책 이해관계자 영향 범위 분석"
+                searchQuery: "국회예산정책처 법안 비용추계서 보고서"
             },
             {
                 tools: [
-                    { name: "OECD Better Regulation", url: "https://www.oecd.org/en/publications/better-regulation-practices-across-the-european-union-2022_6e4b095d-en.html" },
-                    { name: "OECD iLibrary", url: "https://www.oecd-ilibrary.org" }
+                    { name: "KDI 한국개발연구원 정책 리포트", url: "https://www.kdi.re.kr" }
                 ],
-                role: "국내외 유사 정책과 규제 사례 비교",
+                role: "거시 경제적 영향 및 비용-편익(B/C) 타당성 비교",
                 theoryUrl: "https://ko.wikipedia.org/wiki/비교정책학",
-                searchQuery: "유사 정책 규제 사례 비교 OECD"
+                searchQuery: "KDI 경제동향 정책 보고서 다운로드"
             },
             {
                 tools: [
-                    { name: "Google Sheets", url: "https://sheets.google.com" },
-                    { name: "Datawrapper", url: "https://www.datawrapper.de" }
+                    { name: "지방재정 365", url: "https://lofin.mois.go.kr" }
                 ],
-                role: "실행 비용·리스크와 검토 메모 작성",
+                role: "지자체 재정 자립도 및 공공 투자 타당성 검토 메모 정리",
                 theoryUrl: "https://ko.wikipedia.org/wiki/정책분석",
-                searchQuery: "정책 비용 리스크 분석 검토 메모"
+                searchQuery: "지방재정365 지자체 세입 세출 분석 결과 조회"
             }
         ],
     },
     {
         id: "food-safety-verification",
-        name: "식품 안전 정보 검증 플로우",
-        description: "식품 또는 원료를 정의하고 위해 요인, 기준, 표시, 보관, 회수 정보를 공식 출처로 확인하는 흐름",
+        name: "식품 안전 & 위생 검증 플로우",
+        description: "식품 위해 물질 정의부터 식약처 유해 식품 회수 공보, HACCP 안전 기준 대조, 위반 행정처분 기업 확인 흐름",
         icon: "🧪",
         gradient: "from-green-500 to-lime-500",
         nodes: [
             {
                 tools: [
-                    { name: "FoodSafety.gov", url: "https://www.foodsafety.gov" },
-                    { name: "식품안전나라", url: "https://www.foodsafetykorea.go.kr" }
+                    { name: "식품안전나라 (식약처)", url: "https://www.foodsafetykorea.go.kr" }
                 ],
-                role: "식품·원료와 사용 상황 정의",
+                role: "가공식품 원재료 및 국내 허가 번호 조회",
                 theoryUrl: "https://ko.wikipedia.org/wiki/식품안전",
-                searchQuery: "식품 안전 원료 사용 상황 정의"
+                searchQuery: "식품안전나라 품목제조보고번호 식품 검색"
             },
             {
                 tools: [
-                    { name: "FDA Foodborne Pathogens", url: "https://www.fda.gov/food/outbreaks-foodborne-illness/foodborne-pathogens" },
-                    { name: "FoodSafety.gov Bacteria and Viruses", url: "https://www.foodsafety.gov/food-poisoning/bacteria-and-viruses" }
+                    { name: "식품의약품안전처 위해 정보", url: "https://www.mfds.go.kr" }
                 ],
-                role: "위해 요인과 식중독 원인 확인",
+                role: "중금속, 잔류농약 등 식품 원료 유해 요인 공지 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/식중독",
-                searchQuery: "식품 위해 요인 식중독 원인 병원체"
+                searchQuery: "식약처 식품 위해 성분 기준 규격 고시"
             },
             {
                 tools: [
-                    { name: "FDA Safe Food Handling", url: "https://www.fda.gov/food/buy-store-serve-safe-food/safe-food-handling" },
-                    { name: "USDA Food Safety Basics", url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics" }
+                    { name: "식품안전정보원", url: "https://www.foodinfo.or.kr" }
                 ],
-                role: "취급·조리·보관 기준 확인",
+                role: "국내외 수입 식품 위험 동향 및 경보 모니터링",
                 theoryUrl: "https://ko.wikipedia.org/wiki/식품위생",
-                searchQuery: "식품 취급 조리 보관 기준 안전"
+                searchQuery: "식품안전정보원 수입 식품 유해 물질 모니터링"
             },
             {
                 tools: [
-                    { name: "Codex Alimentarius", url: "https://www.fao.org/fao-who-codexalimentarius" },
-                    { name: "MFDS", url: "https://www.mfds.go.kr/english/index.do" }
+                    { name: "한국식품안전관리인증원 (HACCP)", url: "https://www.haccp.or.kr" }
                 ],
-                role: "표시·인증·국제 기준 비교",
+                role: "제조 시설의 식품 안전 관리 HACCP 기준 대조",
                 theoryUrl: "https://ko.wikipedia.org/wiki/국제식품규격위원회",
-                searchQuery: "식품 표시 인증 Codex 국제 기준"
+                searchQuery: "HACCP 의무 적용 대상 품목 지정 기준"
             },
             {
                 tools: [
-                    { name: "FDA Recalls", url: "https://www.fda.gov/food/recalls-outbreaks-emergencies" },
-                    { name: "USDA Recalls", url: "https://www.fsis.usda.gov/recalls" }
+                    { name: "식품안전나라 회수/판매중지 정보", url: "https://www.foodsafetykorea.go.kr/portal/board/board.do?menu_grp=MENU_GRP31&menu_no=463" }
                 ],
-                role: "회수·경보와 유통 이슈 점검",
+                role: "유통기한 위반 및 위해 식품 긴급 회수 현황 점검",
                 theoryUrl: "https://ko.wikipedia.org/wiki/제품_리콜",
-                searchQuery: "식품 회수 경보 리콜 유통 이슈"
+                searchQuery: "식품안전나라 위해식품 회수 등급 판매중지 목록"
             },
             {
                 tools: [
-                    { name: "Google Docs", url: "https://docs.google.com" },
-                    { name: "Notion", url: "https://www.notion.so" }
+                    { name: "소비자24 행정처분 공보", url: "https://www.consumer.go.kr" }
                 ],
-                role: "소비자 안내 문구와 확인 메모 작성",
+                role: "식품위생법 위반에 따른 행정처분 이력 최종 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/위험_커뮤니케이션",
-                searchQuery: "식품 안전 소비자 안내 문구 위험 커뮤니케이션"
+                searchQuery: "식품 제조업체 식위법 위반 영업정지 행정처분 조회"
             }
         ],
     },
     {
         id: "crop-cultivation-research",
-        name: "작물 재배 정보 탐색 플로우",
-        description: "작물 선택부터 토양·기후 조건, 병해충, 재배 지침, 유통 판단까지 농업 생산 정보를 연결하는 흐름",
+        name: "농업 생산 & 작물 재배 플로우",
+        description: "작물 재배 적합지 탐색부터 토양 환경, 기상 생육 지침, 병해충 방제 정보, 도소매 가격 시세 분석까지의 흐름",
         icon: "🌾",
         gradient: "from-lime-500 to-emerald-500",
         nodes: [
             {
                 tools: [
-                    { name: "FAOSTAT", url: "https://www.fao.org/faostat" },
-                    { name: "USDA NASS", url: "https://www.nass.usda.gov" }
+                    { name: "KAMIS 농수산물유통정보", url: "https://www.kamis.or.kr" }
                 ],
-                role: "작물 생산량과 재배 지역 현황 파악",
+                role: "전국 도소매 농산물 품목별 가격 동향 및 거래량 파악",
                 theoryUrl: "https://ko.wikipedia.org/wiki/농업",
-                searchQuery: "작물 생산량 재배 지역 통계 FAOSTAT USDA"
+                searchQuery: "KAMIS 농수산물 일별 도매 가격 시세 조회"
             },
             {
                 tools: [
-                    { name: "ISRIC SoilGrids", url: "https://soilgrids.org" },
-                    { name: "USDA Web Soil Survey", url: "https://websoilsurvey.nrcs.usda.gov" }
+                    { name: "흙토람 토양환경정보시스템", url: "http://soil.rda.go.kr" }
                 ],
-                role: "토양 특성과 재배 적합성 확인",
+                role: "지번별 토양 검정 및 비료 처방, 재배 적지 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/토양학",
-                searchQuery: "토양 특성 작물 재배 적합성 토양지도"
+                searchQuery: "흙토람 필지별 토양 특성 적지 조건 확인 방법"
             },
             {
                 tools: [
-                    { name: "WorldClim", url: "https://www.worldclim.org" },
-                    { name: "NASA POWER", url: "https://power.larc.nasa.gov" }
+                    { name: "농업기상정보서비스 (기상청)", url: "https://weather.rda.go.kr" }
                 ],
-                role: "기후 조건과 생육 환경 비교",
+                role: "농업 기상 관측 데이터 및 한해/동해 생육 재해 정보 비교",
                 theoryUrl: "https://ko.wikipedia.org/wiki/농업기상학",
-                searchQuery: "농업 기상 작물 생육 온도 강수 일사량"
+                searchQuery: "농업기상서비스 기온 토양 수분 센서 모니터링"
             },
             {
                 tools: [
-                    { name: "CABI Invasive Species Compendium", url: "https://www.cabidigitallibrary.org/product/qi" },
-                    { name: "PlantwisePlus", url: "https://www.plantwise.org" }
+                    { name: "국가농작물병해충관리시스템 NCPMS", url: "https://ncpms.rda.go.kr" }
                 ],
-                role: "병해충 위험과 관리 방법 탐색",
+                role: "병해충 도감 검색 및 주간 병해충 예보/방제 지침 탐색",
                 theoryUrl: "https://ko.wikipedia.org/wiki/식물병리학",
-                searchQuery: "작물 병해충 관리 식물병리학 방제 방법"
+                searchQuery: "NCPMS 탄저병 도감 주간 병해충 발생 예보"
             },
             {
                 tools: [
-                    { name: "RDA 농사로", url: "https://www.nongsaro.go.kr" },
-                    { name: "eXtension", url: "https://extension.org" }
+                    { name: "농촌진흥청 농사로", url: "https://www.nongsaro.go.kr" }
                 ],
-                role: "재배 지침과 현장 기술 자료 확인",
+                role: "품목별 국가 정밀 재배 기술 지침 및 매뉴얼 확인",
                 theoryUrl: "https://ko.wikipedia.org/wiki/재배",
-                searchQuery: "작물 재배 지침 파종 수확 농업 기술"
+                searchQuery: "농사로 고추 재배 매뉴얼 하우스 파종 방법"
             },
             {
                 tools: [
-                    { name: "Tridge", url: "https://www.tridge.com" },
-                    { name: "AgFunderNews", url: "https://agfundernews.com" }
+                    { name: "농산물도매시장 정보시스템 (아포넷)", url: "https://www.agroinfo.or.kr" }
                 ],
-                role: "시장·유통 정보와 생산 계획 정리",
+                role: "전국 도매시장 경매 낙찰 가격 동향 수집 및 유통 전략 수립",
                 theoryUrl: "https://ko.wikipedia.org/wiki/농산물_유통",
-                searchQuery: "농산물 유통 시장 가격 생산 계획"
+                searchQuery: "도매시장 경매 결과 실시간 낙찰 낙찰단가 조회"
             }
         ],
     }

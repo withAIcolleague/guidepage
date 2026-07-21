@@ -1,10 +1,11 @@
 "use client";
 
-import { BookOpen, ExternalLink, Search } from "lucide-react";
+import { BookOpen, ChevronRight, ExternalLink, Search, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { SelectedWorkflowItem } from "@/components/workflow-types";
 import type { FlowNode, WorkflowChain } from "@/data/quick-links";
 import { googleSearchUrl, openExternalUrl } from "@/lib/external-links";
+import { convergenceLinks } from "@/data/workflow-categories";
 
 interface WorkflowDetailPanelProps {
   chain: WorkflowChain;
@@ -12,6 +13,7 @@ interface WorkflowDetailPanelProps {
   selectedNode: FlowNode | null;
   onSelectTheory: (node: FlowNode) => void;
   onSelectTool: (node: FlowNode, toolIndex: number) => void;
+  onNavigateToChain?: (chainId: string) => void;
   compact?: boolean;
   sticky?: boolean;
 }
@@ -22,6 +24,7 @@ export function WorkflowDetailPanel({
   selectedNode,
   onSelectTheory,
   onSelectTool,
+  onNavigateToChain,
   compact = false,
   sticky = true,
 }: WorkflowDetailPanelProps) {
@@ -41,6 +44,46 @@ export function WorkflowDetailPanel({
         <p className={`${compact ? "mt-1 leading-5" : "mt-2 leading-6"} text-sm text-muted-foreground`}>
           {chain.description}
         </p>
+        {/* 융합 지식 생태계 연관 분야 */}
+        {(() => {
+          const selectedConvergenceLink = convergenceLinks.find(
+            (link) => link.sourceId === `chain:${chain.id}` || link.targetId === `chain:${chain.id}`
+          );
+          if (!selectedConvergenceLink) return null;
+          return (
+            <div className="mt-4 rounded-lg border border-pink-500/20 bg-pink-500/5 p-3.5 text-xs text-pink-300">
+              <div className="flex items-center gap-1.5 font-semibold text-pink-400">
+                <Sparkles className="size-4 shrink-0" />
+                <span className="font-semibold text-sm">융합 지식 생태계 연관 분야</span>
+              </div>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                {selectedConvergenceLink.description}
+              </p>
+              <div className="mt-3 flex items-center justify-between">
+                <span className="font-medium text-[10px] text-pink-300/80 max-w-[65%] truncate">
+                  {selectedConvergenceLink.label}
+                </span>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="h-7 border-pink-500/30 bg-pink-500/10 px-2 text-[10px] font-semibold text-pink-200 hover:bg-pink-500/20 hover:text-white"
+                  onClick={() => {
+                    const targetChainId =
+                      selectedConvergenceLink.sourceId === `chain:${chain.id}`
+                        ? selectedConvergenceLink.targetId.replace("chain:", "")
+                        : selectedConvergenceLink.sourceId.replace("chain:", "");
+                    onNavigateToChain?.(targetChainId);
+                  }}
+                >
+                  바로가기
+                  <ChevronRight className="ml-1 size-3" />
+                </Button>
+              </div>
+            </div>
+          );
+        })()}
+
         <div
           className={`rounded-md border border-dashed border-border bg-muted/20 text-sm text-muted-foreground ${
             compact ? "mt-3 p-3" : "mt-5 p-4"
@@ -156,6 +199,46 @@ export function WorkflowDetailPanel({
           </p>
         </div>
       )}
+
+      {/* 융합 지식 생태계 연관 분야 */}
+      {(() => {
+        const selectedConvergenceLink = convergenceLinks.find(
+          (link) => link.sourceId === `chain:${chain.id}` || link.targetId === `chain:${chain.id}`
+        );
+        if (!selectedConvergenceLink) return null;
+        return (
+          <div className="mt-5 rounded-lg border border-pink-500/20 bg-pink-500/5 p-4 text-xs text-pink-300">
+            <div className="flex items-center gap-1.5 font-semibold text-pink-400">
+              <Sparkles className="size-4 shrink-0" />
+              <span className="font-semibold text-sm">융합 지식 생태계 연관 분야</span>
+            </div>
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+              {selectedConvergenceLink.description}
+            </p>
+            <div className="mt-3 flex items-center justify-between">
+              <span className="font-medium text-[10px] text-pink-300/80 max-w-[65%] truncate">
+                {selectedConvergenceLink.label}
+              </span>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="h-7 border-pink-500/30 bg-pink-500/10 px-2 text-[10px] font-semibold text-pink-200 hover:bg-pink-500/20 hover:text-white"
+                onClick={() => {
+                  const targetChainId =
+                    selectedConvergenceLink.sourceId === `chain:${chain.id}`
+                      ? selectedConvergenceLink.targetId.replace("chain:", "")
+                      : selectedConvergenceLink.sourceId.replace("chain:", "");
+                  onNavigateToChain?.(targetChainId);
+                }}
+              >
+                바로가기
+                <ChevronRight className="ml-1 size-3" />
+              </Button>
+            </div>
+          </div>
+        );
+      })()}
     </aside>
   );
 }

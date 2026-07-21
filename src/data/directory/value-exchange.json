@@ -1,0 +1,229 @@
+{
+  "categoryId": "life-health",
+  "categoryName": "?앸챸怨?嫄닿컯",
+  "lastUpdated": "2026-06-25",
+  "entries": [
+    {
+      "siteName": "DART 전자공시시스템",
+      "url": "https://dart.fss.or.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "가치와 신용",
+        "시장과 경제",
+        "기업 공시 정보"
+      ],
+      "tags": [
+        "전자공시",
+        "재무제표",
+        "기업분석",
+        "금융감독원"
+      ],
+      "description": "금융감독원이 운영하는 기업 재무제표, 사업보고서 등 전자공시 정보 시스템"
+    },
+    {
+      "siteName": "한국거래소 KRX",
+      "url": "https://www.krx.co.kr",
+      "organizationType": "Public",
+      "categoryPath": [
+        "가치와 신용",
+        "시장과 경제",
+        "증권 거래소"
+      ],
+      "tags": [
+        "주식",
+        "증권",
+        "거래소",
+        "자본시장"
+      ],
+      "description": "유가증권, 코스닥, 파생상품 등 한국 자본시장 거래를 관장하는 증권 거래소"
+    },
+    {
+      "siteName": "한국은행 경제통계시스템 ECOS",
+      "url": "https://ecos.bok.or.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "가치와 신용",
+        "시장과 경제",
+        "거시경제 통계"
+      ],
+      "tags": [
+        "경제통계",
+        "금리",
+        "환율",
+        "GDP",
+        "한국은행"
+      ],
+      "description": "한국은행이 제공하는 금리, 환율, GDP 등 거시경제 통계 데이터 시스템"
+    },
+    {
+      "siteName": "금융감독원",
+      "url": "https://www.fss.or.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "가치와 신용",
+        "시장과 경제",
+        "금융 감독"
+      ],
+      "tags": [
+        "금융감독",
+        "소비자보호",
+        "금융시장",
+        "규제"
+      ],
+      "description": "금융 기관 감독, 소비자 보호, 금융 시장 안정을 담당하는 금융 감독 기관"
+    },
+    {
+      "siteName": "K-Startup",
+      "url": "https://www.k-startup.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "가치와 신용",
+        "비즈니스와 창업",
+        "창업 지원 포털"
+      ],
+      "tags": [
+        "창업",
+        "스타트업",
+        "자금",
+        "멘토링"
+      ],
+      "description": "중소벤처기업부가 운영하는 스타트업 창업 지원 포털로 창업 교육, 자금, 멘토링 제공"
+    },
+    {
+      "siteName": "소상공인시장진흥공단",
+      "url": "https://www.semas.or.kr",
+      "organizationType": "Public",
+      "categoryPath": [
+        "가치와 신용",
+        "비즈니스와 창업",
+        "소상공인 지원"
+      ],
+      "tags": [
+        "소상공인",
+        "전통시장",
+        "경영컨설팅",
+        "자금지원"
+      ],
+      "description": "소상공인 및 전통시장 지원 사업, 경영 컨설팅, 자금 지원을 제공하는 공공기관"
+    },
+    {
+      "siteName": "Invest KOREA",
+      "url": "https://www.investkorea.org",
+      "organizationType": "Public",
+      "categoryPath": [
+        "가치와 신용",
+        "비즈니스와 창업",
+        "외국인 투자 유치"
+      ],
+      "tags": [
+        "투자",
+        "KOTRA",
+        "비즈니스",
+        "해외투자"
+      ],
+      "description": "KOTRA가 운영하는 외국인 투자 유치 및 한국 비즈니스 환경 정보 제공 포털"
+    },
+    {
+      "siteName": "국세청 홈택스",
+      "url": "https://www.nts.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "가치와 신용",
+        "시장과 경제",
+        "세금 행정"
+      ],
+      "tags": [
+        "세금",
+        "국세청",
+        "신고",
+        "납세"
+      ],
+      "description": "세금 신고, 납부, 조회를 온라인으로 처리하는 국세청 전자세금 서비스"
+    },
+    {
+      "siteName": "한국무역협회 KITA",
+      "url": "https://www.kita.net",
+      "organizationType": "Public",
+      "categoryPath": [
+        "가치와 신용",
+        "비즈니스와 창업",
+        "무역 지원"
+      ],
+      "tags": [
+        "무역",
+        "수출입",
+        "해외시장",
+        "통계"
+      ],
+      "description": "수출입 무역 통계, 해외시장 정보, 무역 지원 서비스를 제공하는 무역 단체"
+    },
+    {
+      "siteName": "나라장터",
+      "url": "https://www.g2b.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "가치와 신용",
+        "비즈니스와 창업",
+        "공공 조달"
+      ],
+      "tags": [
+        "조달",
+        "입찰",
+        "정부계약",
+        "나라장터"
+      ],
+      "description": "정부 조달과 공공 입찰 정보를 통합 제공하는 전자조달 시스템"
+    },
+    {
+      "siteName": "한국벤처투자",
+      "url": "https://www.kvic.or.kr",
+      "organizationType": "Public",
+      "categoryPath": [
+        "가치와 신용",
+        "비즈니스와 창업",
+        "벤처 투자"
+      ],
+      "tags": [
+        "벤처",
+        "투자",
+        "펀드",
+        "스타트업"
+      ],
+      "description": "벤처 펀드 운영, 스타트업 투자, 벤처 생태계 육성을 담당하는 정책 금융기관"
+    },
+    {
+      "siteName": "대한상공회의소",
+      "url": "https://www.korcham.net",
+      "organizationType": "Public",
+      "categoryPath": [
+        "가치와 신용",
+        "비즈니스와 창업",
+        "경제 단체"
+      ],
+      "tags": [
+        "상공회의소",
+        "경영",
+        "산업",
+        "기업"
+      ],
+      "description": "기업 경영 지원, 산업 정책 건의, 무역 인증 서비스를 제공하는 경제 단체"
+    },
+    {
+      "siteName": "한국수출입은행",
+      "url": "https://www.koreaexim.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "가치와 신용",
+        "시장과 경제",
+        "수출입 금융"
+      ],
+      "tags": [
+        "수출입",
+        "금융",
+        "해외투자",
+        "정책금융"
+      ],
+      "description": "수출입 금융, 해외투자 지원, 경제협력 자금을 제공하는 정책 금융기관"
+    }
+  ]
+}

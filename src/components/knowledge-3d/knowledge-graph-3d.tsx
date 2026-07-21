@@ -3,17 +3,19 @@
 import { Html, Line, OrbitControls, Stars } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ChevronLeft, ChevronRight, ExternalLink, RotateCcw, Search, Sparkles } from "lucide-react";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { Button } from "@/components/ui/button";
 import { googleSearchUrl, openExternalUrl } from "@/lib/external-links";
 import {
   buildKnowledgeGraph,
   collectDescendantIds,
+  findGraphNode,
   TYPE_LABEL,
 } from "@/lib/knowledge-graph";
 import { layoutGraph, type PositionedNode } from "@/lib/knowledge-layout";
 import { PreviewPanel } from "@/components/preview-panel";
+import { convergenceLinks, workflowCategories } from "@/data/workflow-categories";
 
 const SPHERE_SIZE: Record<string, number> = {
   root: 1.1,
@@ -183,6 +185,7 @@ function Scene({
   hoveredId,
   onSelect,
   onHover,
+  onUserControlStart,
   focus,
   controlsRef,
   activeIds,
@@ -192,6 +195,7 @@ function Scene({
   hoveredId: string | null;
   onSelect: (item: PositionedNode) => void;
   onHover: (id: string | null) => void;
+  onUserControlStart: () => void;
   focus: React.MutableRefObject<FocusState>;
   controlsRef: React.MutableRefObject<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
   activeIds: Set<string> | null;
@@ -201,6 +205,43 @@ function Scene({
     [positioned],
   );
 
+  const activeConvergenceLines = useMemo(() => {
+    const list: {
+      key: string;
+      points: [THREE.Vector3, THREE.Vector3];
+      color: string;
+      label: string;
+      active: boolean;
+    }[] = [];
+
+    const nodeMap = new Map<string, PositionedNode>();
+    for (const p of positioned) {
+      nodeMap.set(p.node.id, p);
+    }
+
+    for (const link of convergenceLinks) {
+      const sourceNode = nodeMap.get(link.sourceId);
+      const targetNode = nodeMap.get(link.targetId);
+
+      if (sourceNode && targetNode) {
+        const isSelectedOrHovered =
+          selectedId === link.sourceId ||
+          selectedId === link.targetId ||
+          hoveredId === link.sourceId ||
+          hoveredId === link.targetId;
+
+        list.push({
+          key: `convergence-${link.id}`,
+          points: [sourceNode.position, targetNode.position],
+          color: "#d946ef",
+          label: link.label,
+          active: isSelectedOrHovered,
+        });
+      }
+    }
+    return list;
+  }, [positioned, selectedId, hoveredId]);
+
   return (
     <>
       <color attach="background" args={["#070b14"]} />
@@ -209,6 +250,45 @@ function Scene({
       <pointLight position={[0, 0, 0]} intensity={2.2} distance={40} color="#9fd8ff" />
       <directionalLight position={[10, 12, 8]} intensity={0.6} />
       <Stars radius={120} depth={60} count={3500} factor={4} saturation={0} fade speed={0.6} />
+
+      {/* 융합 연결선 (Convergence Lines) */}
+      {activeConvergenceLines.map((line) => (
+        <Line
+          key={line.key}
+          points={line.points}
+          color={line.color}
+          lineWidth={line.active ? 2.5 : 0.8}
+          dashed
+          dashScale={1}
+          dashSize={0.4}
+          gapSize={0.2}
+          transparent
+          opacity={line.active ? 0.95 : 0.18}
+        />
+      ))}
+
+      {/* 융합 연결선 텍스트 레이블 */}
+      {activeConvergenceLines.map((line) => {
+        if (!line.active) return null;
+        const midPoint = new THREE.Vector3()
+          .addVectors(line.points[0], line.points[1])
+          .multiplyScalar(0.5);
+        return (
+          <Html
+            key={`label-${line.key}`}
+            position={midPoint}
+            center
+            distanceFactor={15}
+            style={{ pointerEvents: "none", userSelect: "none" }}
+            zIndexRange={[25, 0]}
+          >
+            <div className="flex items-center gap-1.5 rounded-full border border-pink-500/50 bg-[#070b14]/90 px-2.5 py-1 text-center text-[10px] font-bold text-pink-300 backdrop-blur-md shadow-lg shadow-pink-500/20">
+              <Sparkles className="size-2.5 text-pink-400" />
+              <span>{line.label}</span>
+            </div>
+          </Html>
+        );
+      })}
 
       {edges.map((item) => {
         const isEdgeActive = activeIds
@@ -230,8 +310,8 @@ function Scene({
                   ? 0.9
                   : 0.05
                 : hoveredId === item.node.id || selectedId === item.node.id
-                ? 0.9
-                : 0.28
+                  ? 0.9
+                  : 0.28
             }
           />
         );
@@ -258,10 +338,7 @@ function Scene({
         maxDistance={55}
         rotateSpeed={0.6}
         zoomSpeed={0.8}
-        onStart={() => {
-          // eslint-disable-next-line react-hooks/immutability
-          focus.current.animating = false;
-        }}
+        onStart={onUserControlStart}
       />
     </>
   );
@@ -293,6 +370,13 @@ export function KnowledgeGraph3D() {
     () => positioned.find((item) => item.node.id === selectedId)?.node ?? null,
     [positioned, selectedId],
   );
+
+  const selectedConvergenceLink = useMemo(() => {
+    if (!selectedId) return null;
+    return convergenceLinks.find(
+      (link) => link.sourceId === selectedId || link.targetId === selectedId,
+    ) ?? null;
+  }, [selectedId]);
 
   const activeIds = useMemo(() => {
     if (!selectedId || selectedId === "root") return null;
@@ -332,11 +416,65 @@ export function KnowledgeGraph3D() {
     return set;
   }, [selectedId, positioned]);
 
+  const handleUserControlStart = useCallback(() => {
+    focus.current.animating = false;
+  }, []);
+
   const flyTo = useCallback((position: THREE.Vector3, type: string) => {
     focus.current.target.copy(position);
     focus.current.distance = FOCUS_DISTANCE[type] ?? 8;
     focus.current.dirty = true;
   }, []);
+
+  const lastFocusedId = useRef<string | null>(null);
+
+  // Autofocus camera on the selected node once its 3D position is calculated
+  useEffect(() => {
+    if (!selectedId) return;
+    const item = positioned.find((p) => p.node.id === selectedId);
+    if (item) {
+      if (lastFocusedId.current !== selectedId) {
+        focus.current.target.copy(item.position);
+        focus.current.distance = FOCUS_DISTANCE[item.node.type] ?? 8;
+        focus.current.dirty = true;
+        focus.current.animating = true;
+        lastFocusedId.current = selectedId;
+      }
+    }
+  }, [selectedId, positioned]);
+
+  // Select target node and expand all its ancestors to make it visible
+  const handleSelectTargetById = useCallback((targetId: string) => {
+    const node = findGraphNode(root, targetId);
+    if (!node) return;
+
+    const ancestorsToExpand: string[] = ["root"];
+    let targetCategoryId = "";
+    let targetSectionId = "";
+
+    for (const cat of workflowCategories) {
+      for (const sec of cat.sections) {
+        if (sec.chainIds.includes(targetId.replace("chain:", ""))) {
+          targetCategoryId = `cat:${cat.id}`;
+          targetSectionId = `sec:${cat.id}:${sec.id}`;
+          break;
+        }
+      }
+    }
+
+    if (targetCategoryId) ancestorsToExpand.push(targetCategoryId);
+    if (targetSectionId) ancestorsToExpand.push(targetSectionId);
+
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      for (const id of ancestorsToExpand) {
+        next.add(id);
+      }
+      return [...next];
+    });
+
+    setSelectedId(targetId);
+  }, [root]);
 
   const handleSelect = useCallback(
     (item: PositionedNode) => {
@@ -372,6 +510,7 @@ export function KnowledgeGraph3D() {
     [flyTo],
   );
 
+
   const handleClosePreview = useCallback(() => {
     setPreviewUrl(null);
     setPreviewTitle(null);
@@ -399,6 +538,7 @@ export function KnowledgeGraph3D() {
             hoveredId={hoveredId}
             onSelect={handleSelect}
             onHover={setHoveredId}
+            onUserControlStart={handleUserControlStart}
             focus={focus}
             controlsRef={controlsRef}
             activeIds={activeIds}
@@ -527,6 +667,35 @@ export function KnowledgeGraph3D() {
                 </div>
               )}
 
+              {/* 융합 지식 생태계 연관 분야 */}
+              {selectedConvergenceLink && (
+                <div className="mt-3 rounded-lg border border-pink-500/25 bg-pink-500/5 p-2.5 text-xs text-pink-300">
+                  <div className="flex items-center gap-1.5 font-bold">
+                    <Sparkles className="size-3 text-pink-400" />
+                    <span>융합 지식 생태계 연관 분야</span>
+                  </div>
+                  <p className="mt-1 text-white/80 leading-relaxed font-normal">
+                    {selectedConvergenceLink.description}
+                  </p>
+                  <div className="mt-2 flex justify-end">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const targetId =
+                          selectedConvergenceLink.sourceId === selectedId
+                            ? selectedConvergenceLink.targetId
+                            : selectedConvergenceLink.sourceId;
+                        handleSelectTargetById(targetId);
+                      }}
+                      className="inline-flex items-center gap-1 rounded bg-pink-500/20 px-2.5 py-1 text-[10px] font-semibold text-pink-200 transition-colors hover:bg-pink-500/30"
+                    >
+                      <span>연관 분야로 이동</span>
+                      <ChevronRight className="size-3" />
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {selectedNode.type !== "step" && selectedNode.childCount > 0 && (
                 <p className="mt-3 text-[11px] text-white/40">
                   노드를 클릭하면 {expanded.has(selectedNode.id) ? "접을" : "펼칠"} 수 있습니다.
@@ -540,19 +709,17 @@ export function KnowledgeGraph3D() {
       {/* Right side: Mini Browser (Preview Panel) */}
       {previewUrl && (
         <div
-          className={`absolute inset-y-0 right-0 z-50 transition-all duration-300 flex flex-col bg-background ${
-            isCollapsed
-              ? "w-0 border-l-transparent pointer-events-none"
-              : "w-full lg:relative lg:w-1/2 border-l border-white/10 pointer-events-auto"
-          }`}
+          className={`absolute inset-y-0 right-0 z-50 transition-all duration-300 flex flex-col bg-background ${isCollapsed
+            ? "w-0 border-l-transparent pointer-events-none"
+            : "w-full lg:relative lg:w-1/2 border-l border-white/10 pointer-events-auto"
+            }`}
         >
           {/* Collapse/Expand toggle button */}
           <button
             type="button"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className={`absolute top-1/2 left-0 -translate-y-1/2 z-[60] flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#070b14]/90 text-white/70 shadow-md hover:bg-black hover:text-white transition-all duration-200 cursor-pointer focus:outline-none pointer-events-auto backdrop-blur-md ${
-              isCollapsed ? "-translate-x-full" : "-translate-x-1/2"
-            }`}
+            className={`absolute top-1/2 left-0 -translate-y-1/2 z-[60] flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#070b14]/90 text-white/70 shadow-md hover:bg-black hover:text-white transition-all duration-200 cursor-pointer focus:outline-none pointer-events-auto backdrop-blur-md ${isCollapsed ? "-translate-x-full" : "-translate-x-1/2"
+              }`}
             title={isCollapsed ? "브라우저 열기" : "브라우저 접기"}
           >
             {isCollapsed ? (

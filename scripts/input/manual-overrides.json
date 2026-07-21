@@ -1,0 +1,537 @@
+{
+  "https://www.data.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "공공 데이터 플랫폼"],
+    "tags": ["공공데이터", "API", "오픈데이터", "정부"]
+  },
+  "https://db.history.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["존재와 이성", "역사와 사상", "한국사 사료 아카이브"],
+    "tags": ["역사", "사료", "아카이브", "국사편찬위원회"]
+  },
+  "https://www.aks.ac.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["존재와 이성", "역사와 사상", "한국학 연구"],
+    "tags": ["한국학", "인문학", "문화", "연구"]
+  },
+  "https://www.museum.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["존재와 이성", "역사와 사상", "문화유산 전시"],
+    "tags": ["박물관", "문화유산", "역사", "전시"]
+  },
+  "https://www.nl.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["존재와 이성", "학습과 인지", "학술 자료 열람"],
+    "tags": ["도서관", "학술자료", "아카이브", "출판물"]
+  },
+  "http://www.kmooc.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["존재와 이성", "학습과 인지", "온라인 공개강좌"],
+    "tags": ["MOOC", "교육", "학습", "온라인강좌"]
+  },
+  "https://www.edunet.net": {
+    "organizationType": "Government",
+    "categoryPath": ["존재와 이성", "학습과 인지", "교과 교육 자료"],
+    "tags": ["교육", "교육과정", "학습", "교육부"]
+  },
+  "https://www.riss.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["존재와 이성", "학습과 인지", "학술연구정보"],
+    "tags": ["학술", "논문", "연구", "학위논문"]
+  },
+  "https://www.dbpia.co.kr": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["존재와 이성", "학습과 인지", "학술 데이터베이스"],
+    "tags": ["학술지", "논문", "연구", "데이터베이스"]
+  },
+  "https://www.kci.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["존재와 이성", "학습과 인지", "학술지 인용 분석"],
+    "tags": ["학술지", "인용", "연구재단", "KCI"]
+  },
+  "https://www.knou.ac.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["존재와 이성", "학습과 인지", "원격 대학교육"],
+    "tags": ["평생교육", "학위", "원격학습", "방송통신대"]
+  },
+  "https://www.kpa.or.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["존재와 이성", "심리·행동과학", "심리학 학술 연구"],
+    "tags": ["심리학", "심리상담", "행동과학", "학회"]
+  },
+  "https://dart.fss.or.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["가치와 신용", "시장과 경제", "기업 공시 정보"],
+    "tags": ["전자공시", "재무제표", "기업분석", "금융감독원"]
+  },
+  "https://www.krx.co.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["가치와 신용", "시장과 경제", "증권 거래소"],
+    "tags": ["주식", "증권", "거래소", "자본시장"]
+  },
+  "https://ecos.bok.or.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["가치와 신용", "시장과 경제", "거시경제 통계"],
+    "tags": ["경제통계", "금리", "환율", "GDP", "한국은행"]
+  },
+  "https://www.fss.or.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["가치와 신용", "시장과 경제", "금융 감독"],
+    "tags": ["금융감독", "소비자보호", "금융시장", "규제"]
+  },
+  "https://www.k-startup.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["가치와 신용", "비즈니스와 창업", "창업 지원 포털"],
+    "tags": ["창업", "스타트업", "자금", "멘토링"]
+  },
+  "https://www.semas.or.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["가치와 신용", "비즈니스와 창업", "소상공인 지원"],
+    "tags": ["소상공인", "전통시장", "경영컨설팅", "자금지원"]
+  },
+  "https://www.investkorea.org": {
+    "organizationType": "Public",
+    "categoryPath": ["가치와 신용", "비즈니스와 창업", "외국인 투자 유치"],
+    "tags": ["투자", "KOTRA", "비즈니스", "해외투자"]
+  },
+  "https://www.scourt.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "법과 제도", "판례 검색"],
+    "tags": ["판례", "법원", "재판", "사법부"]
+  },
+  "https://www.ccourt.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "법과 제도", "헌법 재판"],
+    "tags": ["헌법", "위헌심판", "헌법소원", "헌법재판소"]
+  },
+  "https://www.gov.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "행정과 공공정책", "전자정부 포털"],
+    "tags": ["정부", "민원", "행정", "전자정부"]
+  },
+  "https://www.assembly.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "행정과 공공정책", "국회 입법 정보"],
+    "tags": ["국회", "의안", "입법", "회의록"]
+  },
+  "https://www.moef.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "행정과 공공정책", "재정 정책"],
+    "tags": ["재정", "예산", "경제정책", "기획재정부"]
+  },
+  "https://www.pipc.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "법과 제도", "개인정보 보호"],
+    "tags": ["개인정보", "프라이버시", "규제", "가이드라인"]
+  },
+  "https://www.behance.net": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "포트폴리오 플랫폼"],
+    "tags": ["디자인", "포트폴리오", "크리에이티브", "Adobe"]
+  },
+  "https://dribbble.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "디자인 커뮤니티"],
+    "tags": ["UI", "UX", "디자인", "커뮤니티"]
+  },
+  "https://www.canva.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "그래픽 디자인 도구"],
+    "tags": ["디자인", "템플릿", "그래픽", "콘텐츠제작"]
+  },
+  "https://fonts.google.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "타이포그래피"],
+    "tags": ["폰트", "타이포그래피", "웹폰트", "오픈소스"]
+  },
+  "https://unsplash.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "이미지 에셋"],
+    "tags": ["사진", "이미지", "에셋", "무료"]
+  },
+  "https://www.mmca.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["표현과 감성", "콘텐츠와 미디어", "현대미술 전시"],
+    "tags": ["미술관", "현대미술", "전시", "예술"]
+  },
+  "https://www.kobis.or.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["표현과 감성", "콘텐츠와 미디어", "영화 통계"],
+    "tags": ["영화", "박스오피스", "콘텐츠", "영상"]
+  },
+  "https://www.weather.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "기상 관측"],
+    "tags": ["기상", "기후", "날씨", "관측데이터"]
+  },
+  "https://www.nasa.gov": {
+    "organizationType": "Government",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "우주 탐사"],
+    "tags": ["우주", "NASA", "천문", "항공우주"]
+  },
+  "https://earthobservatory.nasa.gov": {
+    "organizationType": "Government",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "지구 관측"],
+    "tags": ["위성", "지구관측", "기후변화", "환경"]
+  },
+  "https://www.me.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "환경 정책"],
+    "tags": ["환경", "대기", "수질", "폐기물"]
+  },
+  "https://www.kisti.re.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "과학기술 정보"],
+    "tags": ["과학기술", "슈퍼컴퓨팅", "연구데이터", "KISTI"]
+  },
+  "https://scholar.google.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["존재와 이성", "학습과 인지", "학술 논문 검색"],
+    "tags": ["학술", "논문검색", "구글", "연구"]
+  },
+  "https://www.kdca.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["생명과 건강", "생명과 의학보건", "감염병 예방"],
+    "tags": ["질병관리", "감염병", "역학", "보건"]
+  },
+  "https://www.nhis.or.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["생명과 건강", "생명과 의학보건", "건강보험"],
+    "tags": ["건강보험", "의료비", "건강검진", "사회보험"]
+  },
+  "https://pubmed.ncbi.nlm.nih.gov": {
+    "organizationType": "Government",
+    "categoryPath": ["생명과 건강", "생명과 의학보건", "의학 논문 검색"],
+    "tags": ["의학", "논문", "생명과학", "PubMed"]
+  },
+  "https://www.nih.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["생명과 건강", "생명과 의학보건", "보건의료 연구"],
+    "tags": ["보건", "연구", "임상", "감염병"]
+  },
+  "https://www.mohw.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["생명과 건강", "생명과 의학보건", "보건복지 정책"],
+    "tags": ["보건", "복지", "의료정책", "건강"]
+  },
+  "https://www.foodsafetykorea.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["생명과 건강", "농학과 웰니스", "식품 안전 정보"],
+    "tags": ["식품안전", "영양", "리콜", "식약처"]
+  },
+  "https://www.rda.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["생명과 건강", "농학과 웰니스", "농업 기술 연구"],
+    "tags": ["농업", "작물", "스마트팜", "농촌진흥청"]
+  },
+  "https://www.nifs.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["생명과 건강", "농학과 웰니스", "수산 자원 연구"],
+    "tags": ["수산", "해양", "어업", "연구"]
+  },
+  "https://www.mfds.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["생명과 건강", "농학과 웰니스", "의약품 안전 규제"],
+    "tags": ["식약처", "의약품", "의료기기", "안전관리"]
+  },
+  "https://www.hira.or.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["생명과 건강", "생명과 의학보건", "의료 질 평가"],
+    "tags": ["건강보험", "의료비심사", "빅데이터", "의료질"]
+  },
+  "https://github.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "코드 호스팅"],
+    "tags": ["개발", "코드", "Git", "협업", "오픈소스"]
+  },
+  "https://stackoverflow.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "개발 Q&A"],
+    "tags": ["프로그래밍", "질의응답", "개발", "커뮤니티"]
+  },
+  "https://developer.mozilla.org": {
+    "organizationType": "Public",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "웹 표준 문서"],
+    "tags": ["웹표준", "HTML", "CSS", "JavaScript", "MDN"]
+  },
+  "https://huggingface.co": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "인공지능과 데이터", "AI 모델 허브"],
+    "tags": ["AI", "머신러닝", "오픈소스", "모델"]
+  },
+  "https://www.kaggle.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "인공지능과 데이터", "데이터 사이언스"],
+    "tags": ["데이터", "경진대회", "머신러닝", "분석"]
+  },
+  "https://vercel.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "프론트엔드 배포"],
+    "tags": ["배포", "호스팅", "Next.js", "클라우드"]
+  },
+  "https://cloud.google.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "클라우드 인프라"],
+    "tags": ["클라우드", "GCP", "AI", "인프라"]
+  },
+  "https://aws.amazon.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "클라우드 인프라"],
+    "tags": ["클라우드", "AWS", "서버", "인프라"]
+  },
+  "https://www.docker.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "컨테이너 기술"],
+    "tags": ["Docker", "컨테이너", "DevOps", "배포"]
+  },
+  "https://www.typescriptlang.org": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "프로그래밍 언어"],
+    "tags": ["TypeScript", "프로그래밍", "타입시스템", "JavaScript"]
+  },
+  "https://nextjs.org": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "웹 프레임워크"],
+    "tags": ["Next.js", "React", "프레임워크", "프론트엔드"]
+  },
+  "https://react.dev": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "UI 라이브러리"],
+    "tags": ["React", "UI", "컴포넌트", "프론트엔드"]
+  },
+  "https://tailwindcss.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "CSS 프레임워크"],
+    "tags": ["CSS", "스타일링", "유틸리티", "디자인시스템"]
+  },
+  "https://supabase.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "BaaS 데이터베이스"],
+    "tags": ["데이터베이스", "PostgreSQL", "인증", "오픈소스"]
+  },
+  "https://www.semicon.or.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["도구와 지능", "하드웨어 공학", "반도체 산업 정보"],
+    "tags": ["반도체", "산업동향", "기술", "시장통계"]
+  },
+  "https://www.kedi.re.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["존재와 이성", "학습과 인지", "교육 정책 연구"],
+    "tags": ["교육", "정책연구", "통계", "학교평가"]
+  },
+  "https://www.hangeul.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["존재와 이성", "역사와 사상", "한글 문화"],
+    "tags": ["한글", "언어학", "문자", "문화"]
+  },
+  "https://www.coursera.org": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["존재와 이성", "학습과 인지", "온라인 대학 강좌"],
+    "tags": ["MOOC", "교육", "학위", "자격증"]
+  },
+  "https://www.ted.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["존재와 이성", "학습과 인지", "전문 강연"],
+    "tags": ["강연", "교육", "기술", "사상"]
+  },
+  "https://www.khan.co.kr": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["존재와 이성", "역사와 사상", "시사 보도"],
+    "tags": ["뉴스", "시사", "사회", "문화"]
+  },
+  "https://www.nts.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["가치와 신용", "시장과 경제", "세금 행정"],
+    "tags": ["세금", "국세청", "신고", "납세"]
+  },
+  "https://www.kita.net": {
+    "organizationType": "Public",
+    "categoryPath": ["가치와 신용", "비즈니스와 창업", "무역 지원"],
+    "tags": ["무역", "수출입", "해외시장", "통계"]
+  },
+  "https://www.g2b.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["가치와 신용", "비즈니스와 창업", "공공 조달"],
+    "tags": ["조달", "입찰", "정부계약", "나라장터"]
+  },
+  "https://www.kvic.or.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["가치와 신용", "비즈니스와 창업", "벤처 투자"],
+    "tags": ["벤처", "투자", "펀드", "스타트업"]
+  },
+  "https://www.korcham.net": {
+    "organizationType": "Public",
+    "categoryPath": ["가치와 신용", "비즈니스와 창업", "경제 단체"],
+    "tags": ["상공회의소", "경영", "산업", "기업"]
+  },
+  "https://www.koreaexim.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["가치와 신용", "시장과 경제", "수출입 금융"],
+    "tags": ["수출입", "금융", "해외투자", "정책금융"]
+  },
+  "https://www.ftc.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "법과 제도", "공정거래 규제"],
+    "tags": ["공정거래", "소비자보호", "규제", "독점"]
+  },
+  "https://www.acrc.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "행정과 공공정책", "국민 고충 처리"],
+    "tags": ["국민권익", "부패방지", "행정심판", "민원"]
+  },
+  "https://www.moleg.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "법과 제도", "법령 정비"],
+    "tags": ["법제", "입법", "법률해석", "정부입법"]
+  },
+  "https://www.kipris.or.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "법과 제도", "지식재산권 검색"],
+    "tags": ["특허", "상표", "디자인", "지식재산"]
+  },
+  "https://www.kca.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "행정과 공공정책", "소비자 보호"],
+    "tags": ["소비자", "피해구제", "비교정보", "안전"]
+  },
+  "https://www.moj.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["규범과 질서", "법과 제도", "법무 행정"],
+    "tags": ["법무부", "인권", "출입국", "법률행정"]
+  },
+  "https://coolors.co": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "컬러 팔레트 도구"],
+    "tags": ["컬러", "팔레트", "디자인", "색상"]
+  },
+  "https://lottiefiles.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "모션 애니메이션"],
+    "tags": ["애니메이션", "모션", "JSON", "UI"]
+  },
+  "https://www.kocca.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["표현과 감성", "콘텐츠와 미디어", "문화콘텐츠 진흥"],
+    "tags": ["콘텐츠", "게임", "방송", "애니메이션"]
+  },
+  "https://www.kidp.or.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "산업 디자인 진흥"],
+    "tags": ["디자인", "트렌드", "인력양성", "산업디자인"]
+  },
+  "https://www.pexels.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "이미지·영상 에셋"],
+    "tags": ["사진", "영상", "에셋", "무료"]
+  },
+  "https://color.adobe.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "컬러 디자인 도구"],
+    "tags": ["Adobe", "컬러", "접근성", "디자인"]
+  },
+  "https://www.awwwards.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["표현과 감성", "창작과 디자인", "웹 디자인 어워드"],
+    "tags": ["웹디자인", "UI", "UX", "트렌드"]
+  },
+  "https://home.cern": {
+    "organizationType": "Public",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "입자물리 연구"],
+    "tags": ["물리", "입자가속기", "CERN", "실험"]
+  },
+  "https://www.kasi.re.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "천문 관측"],
+    "tags": ["천문", "우주", "관측", "천문연구원"]
+  },
+  "https://www.kriss.re.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "표준 과학 연구"],
+    "tags": ["표준", "측정", "물성", "과학"]
+  },
+  "https://www.ibs.re.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "기초과학 연구"],
+    "tags": ["기초과학", "수학", "물리", "연구"]
+  },
+  "https://www.kaeri.re.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "원자력 연구"],
+    "tags": ["원자력", "방사선", "핵에너지", "안전"]
+  },
+  "https://www.krict.re.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "화학 연구"],
+    "tags": ["화학", "소재", "그린화학", "의약화학"]
+  },
+  "https://www.airkorea.or.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["물질과 우주", "기초 자연과학", "대기질 측정"],
+    "tags": ["대기오염", "미세먼지", "환경", "실시간"]
+  },
+  "https://www.who.int": {
+    "organizationType": "Public",
+    "categoryPath": ["생명과 건강", "생명과 의학보건", "글로벌 보건 정책"],
+    "tags": ["WHO", "보건", "감염병", "국제"]
+  },
+  "https://www.nrc.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["생명과 건강", "생명과 의학보건", "재활 의료"],
+    "tags": ["재활", "장애인", "보조기기", "의료"]
+  },
+  "https://ncov.kdca.go.kr": {
+    "organizationType": "Government",
+    "categoryPath": ["생명과 건강", "생명과 의학보건", "감염병 정보"],
+    "tags": ["감염병", "예방접종", "방역", "코로나"]
+  },
+  "https://www.kspo.or.kr": {
+    "organizationType": "Public",
+    "categoryPath": ["생명과 건강", "농학과 웰니스", "체육 진흥"],
+    "tags": ["체육", "스포츠", "건강", "체력"]
+  },
+  "https://www.python.org": {
+    "organizationType": "Public",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "프로그래밍 언어"],
+    "tags": ["Python", "프로그래밍", "언어", "오픈소스"]
+  },
+  "https://www.npmjs.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "패키지 레지스트리"],
+    "tags": ["npm", "JavaScript", "패키지", "Node.js"]
+  },
+  "https://code.visualstudio.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "코드 에디터"],
+    "tags": ["IDE", "에디터", "개발도구", "VSCode"]
+  },
+  "https://openai.com": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "인공지능과 데이터", "AI 연구"],
+    "tags": ["AI", "GPT", "인공지능", "API"]
+  },
+  "https://www.tensorflow.org": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "인공지능과 데이터", "딥러닝 프레임워크"],
+    "tags": ["머신러닝", "딥러닝", "TensorFlow", "Google"]
+  },
+  "https://pytorch.org": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "인공지능과 데이터", "딥러닝 프레임워크"],
+    "tags": ["딥러닝", "PyTorch", "머신러닝", "Meta"]
+  },
+  "https://www.electronjs.org": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "데스크톱 앱 프레임워크"],
+    "tags": ["Electron", "데스크톱", "크로스플랫폼", "앱"]
+  },
+  "https://kubernetes.io": {
+    "organizationType": "Public",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "컨테이너 오케스트레이션"],
+    "tags": ["Kubernetes", "컨테이너", "DevOps", "배포"]
+  },
+  "https://www.elastic.co": {
+    "organizationType": "Enterprise",
+    "categoryPath": ["도구와 지능", "소프트웨어 공학", "검색 엔진 플랫폼"],
+    "tags": ["Elasticsearch", "검색", "로그분석", "모니터링"]
+  }
+}

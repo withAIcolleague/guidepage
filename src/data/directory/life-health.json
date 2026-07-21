@@ -1,0 +1,245 @@
+{
+  "categoryId": "life-health",
+  "categoryName": "?앸챸怨?嫄닿컯",
+  "lastUpdated": "2026-06-25",
+  "entries": [
+    {
+      "siteName": "질병관리청",
+      "url": "https://www.kdca.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "생명과 건강",
+        "생명과 의학보건",
+        "감염병 예방"
+      ],
+      "tags": [
+        "질병관리",
+        "감염병",
+        "역학",
+        "보건"
+      ],
+      "description": "감염병 예방, 국민건강 통계, 질병 역학 조사를 수행하는 국가 보건 기관"
+    },
+    {
+      "siteName": "국민건강보험공단",
+      "url": "https://www.nhis.or.kr",
+      "organizationType": "Public",
+      "categoryPath": [
+        "생명과 건강",
+        "생명과 의학보건",
+        "건강보험"
+      ],
+      "tags": [
+        "건강보험",
+        "의료비",
+        "건강검진",
+        "사회보험"
+      ],
+      "description": "건강보험 가입, 의료비 지원, 건강검진 서비스를 제공하는 사회보험 기관"
+    },
+    {
+      "siteName": "PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov",
+      "organizationType": "Government",
+      "categoryPath": [
+        "생명과 건강",
+        "생명과 의학보건",
+        "의학 논문 검색"
+      ],
+      "tags": [
+        "의학",
+        "논문",
+        "생명과학",
+        "PubMed"
+      ],
+      "description": "미국 국립의학도서관이 운영하는 생명과학 및 의학 논문 데이터베이스 검색 서비스"
+    },
+    {
+      "siteName": "국립보건연구원",
+      "url": "https://www.nih.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "생명과 건강",
+        "생명과 의학보건",
+        "보건의료 연구"
+      ],
+      "tags": [
+        "보건",
+        "연구",
+        "임상",
+        "감염병"
+      ],
+      "description": "감염병, 만성질환, 유전체 연구 등 국가 보건의료 기초·임상 연구를 수행하는 기관"
+    },
+    {
+      "siteName": "보건복지부",
+      "url": "https://www.mohw.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "생명과 건강",
+        "생명과 의학보건",
+        "보건복지 정책"
+      ],
+      "tags": [
+        "보건",
+        "복지",
+        "의료정책",
+        "건강"
+      ],
+      "description": "국민 건강, 사회복지, 의료 정책을 총괄하는 중앙행정기관"
+    },
+    {
+      "siteName": "식품안전나라",
+      "url": "https://www.foodsafetykorea.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "생명과 건강",
+        "농학과 웰니스",
+        "식품 안전 정보"
+      ],
+      "tags": [
+        "식품안전",
+        "영양",
+        "리콜",
+        "식약처"
+      ],
+      "description": "식품의약품안전처가 운영하는 식품 안전 정보, 영양 성분, 리콜 정보 통합 포털"
+    },
+    {
+      "siteName": "농촌진흥청",
+      "url": "https://www.rda.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "생명과 건강",
+        "농학과 웰니스",
+        "농업 기술 연구"
+      ],
+      "tags": [
+        "농업",
+        "작물",
+        "스마트팜",
+        "농촌진흥청"
+      ],
+      "description": "농업 기술 연구, 작물 재배 정보, 스마트팜 기술을 보급하는 국가 농업 연구기관"
+    },
+    {
+      "siteName": "국립수산과학원",
+      "url": "https://www.nifs.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "생명과 건강",
+        "농학과 웰니스",
+        "수산 자원 연구"
+      ],
+      "tags": [
+        "수산",
+        "해양",
+        "어업",
+        "연구"
+      ],
+      "description": "수산자원 및 해양 환경 연구, 어업 기술 개발을 위한 국립 연구기관"
+    },
+    {
+      "siteName": "식품의약품안전처",
+      "url": "https://www.mfds.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "생명과 건강",
+        "농학과 웰니스",
+        "의약품 안전 규제"
+      ],
+      "tags": [
+        "식약처",
+        "의약품",
+        "의료기기",
+        "안전관리"
+      ],
+      "description": "식품, 의약품, 의료기기의 안전 관리와 규제를 담당하는 중앙행정기관"
+    },
+    {
+      "siteName": "건강보험심사평가원",
+      "url": "https://www.hira.or.kr",
+      "organizationType": "Public",
+      "categoryPath": [
+        "생명과 건강",
+        "생명과 의학보건",
+        "의료 질 평가"
+      ],
+      "tags": [
+        "건강보험",
+        "의료비심사",
+        "빅데이터",
+        "의료질"
+      ],
+      "description": "의료비 심사, 의료 질 평가, 보건의료 빅데이터를 제공하는 보건 기관"
+    },
+    {
+      "siteName": "세계보건기구 WHO",
+      "url": "https://www.who.int",
+      "organizationType": "Public",
+      "categoryPath": [
+        "생명과 건강",
+        "생명과 의학보건",
+        "글로벌 보건 정책"
+      ],
+      "tags": [
+        "WHO",
+        "보건",
+        "감염병",
+        "국제"
+      ],
+      "description": "글로벌 보건 정책, 감염병 대응, 건강 통계를 총괄하는 국제 보건 기구"
+    },
+    {
+      "siteName": "국립재활원",
+      "url": "https://www.nrc.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "생명과 건강",
+        "생명과 의학보건",
+        "재활 의료"
+      ],
+      "tags": [
+        "재활",
+        "장애인",
+        "보조기기",
+        "의료"
+      ],
+      "description": "장애인 재활 의료, 보조기기 연구, 재활 전문 교육을 수행하는 국립 의료기관"
+    },
+    {
+      "siteName": "감염병 포털",
+      "url": "https://ncov.kdca.go.kr",
+      "organizationType": "Government",
+      "categoryPath": [
+        "생명과 건강",
+        "생명과 의학보건",
+        "감염병 정보"
+      ],
+      "tags": [
+        "감염병",
+        "예방접종",
+        "방역",
+        "코로나"
+      ],
+      "description": "질병관리청의 감염병 현황, 예방접종, 격리 지침을 안내하는 공공 보건 포털"
+    },
+    {
+      "siteName": "국민체육진흥공단",
+      "url": "https://www.kspo.or.kr",
+      "organizationType": "Public",
+      "categoryPath": [
+        "생명과 건강",
+        "농학과 웰니스",
+        "체육 진흥"
+      ],
+      "tags": [
+        "체육",
+        "스포츠",
+        "건강",
+        "체력"
+      ],
+      "description": "체육 진흥, 스포츠 복지, 체력 측정 프로그램을 운영하는 체육 공공기관"
+    }
+  ]
+}
