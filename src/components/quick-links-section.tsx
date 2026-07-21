@@ -188,13 +188,38 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     setQuery("");
   };
 
-  const selectSection = (section: WorkflowCategorySection) => {
-    if (chainsForSection(section).length === 0) return;
+  const applySectionSelection = (
+    section: WorkflowCategorySection,
+    sectionIndex: number,
+  ) => {
+    const chains = chainsForSection(section);
 
-    setSectionPage(activeCategory?.sections.findIndex((item) => item.id === section.id) ?? 0);
+    setSectionPage(sectionIndex);
     setActiveSectionId(section.id);
-    setActiveChainId(null);
+    setActiveChainId(chains[0]?.id ?? null);
     setSelectedItem(null);
+  };
+
+  const selectSection = (section: WorkflowCategorySection) => {
+    const sectionIndex = activeCategory?.sections.findIndex(
+      (item) => item.id === section.id,
+    ) ?? -1;
+    if (sectionIndex < 0) return;
+
+    applySectionSelection(section, sectionIndex);
+  };
+
+  const moveSection = (offset: number) => {
+    if (!activeCategory) return;
+
+    const nextIndex = Math.min(
+      Math.max(sectionPageIndex + offset, 0),
+      activeCategory.sections.length - 1,
+    );
+    const nextSection = activeCategory.sections[nextIndex];
+    if (!nextSection) return;
+
+    applySectionSelection(nextSection, nextIndex);
   };
 
   const selectChain = (chainId: string) => {
@@ -494,7 +519,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
-                      onClick={() => setSectionPage((page) => Math.max(page - 1, 0))}
+                      onClick={() => moveSection(-1)}
                       disabled={sectionPageIndex === 0}
                       className="inline-flex size-8 items-center justify-center rounded-md border border-border bg-card text-muted-foreground shadow-sm transition-colors disabled:opacity-40"
                       aria-label="이전 중분류"
@@ -506,11 +531,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                     </span>
                     <button
                       type="button"
-                      onClick={() =>
-                        setSectionPage((page) =>
-                          Math.min(page + 1, activeCategory.sections.length - 1),
-                        )
-                      }
+                      onClick={() => moveSection(1)}
                       disabled={sectionPageIndex === activeCategory.sections.length - 1}
                       className="inline-flex size-8 items-center justify-center rounded-md border border-border bg-card text-muted-foreground shadow-sm transition-colors disabled:opacity-40"
                       aria-label="다음 중분류"
