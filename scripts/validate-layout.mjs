@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+﻿import { readFileSync } from "node:fs";
 
 const quickLinksSource = readFileSync("src/components/quick-links-section.tsx", "utf8");
 const previewPanelSource = readFileSync("src/components/preview-panel.tsx", "utf8");
@@ -36,16 +36,20 @@ const checks = [
     ),
   },
   {
-    name: "detail panel keeps directory window for active middle category",
+    name: "right panel is limited to directory and iframe preview",
     pass:
-      /activeSection && \(/.test(quickLinksSource) &&
+      /activeSection \? \(/.test(quickLinksSource) &&
       /<DirectoryPanel/.test(quickLinksSource) &&
       /entries=\{activeDirEntries\}/.test(quickLinksSource) &&
+      /activeUrl=\{activeDirectoryUrl\}/.test(quickLinksSource) &&
+      /onSelectEntry=\{selectDirectoryEntry\}/.test(quickLinksSource) &&
+      /<PreviewPanel/.test(quickLinksSource) &&
+      /data-preview-empty="true"/.test(quickLinksSource) &&
+      !/WorkflowDetailPanel/.test(quickLinksSource) &&
       /getDirectoryEntries\(activeCategoryId, activeSectionName\)/.test(
         quickLinksSource,
       ),
-  },
-  {
+  },  {
     name: "detail panel has viewport height cap and internal scroll",
     pass:
       /xl:max-h-\[calc\(100vh-1\.5rem\)\]/.test(quickLinksSource) &&

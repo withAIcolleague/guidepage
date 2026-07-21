@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Building2, ExternalLink, Globe, Hash, User } from "lucide-react";
 import { useState } from "react";
@@ -40,12 +40,16 @@ interface DirectoryPanelProps {
   entries: ClassifiedSite[];
   categoryName?: string;
   compact?: boolean;
+  activeUrl?: string | null;
+  onSelectEntry?: (entry: ClassifiedSite) => void;
 }
 
 export function DirectoryPanel({
   entries,
   categoryName,
   compact = false,
+  activeUrl,
+  onSelectEntry,
 }: DirectoryPanelProps) {
   const [filter, setFilter] = useState<string | null>(null);
 
@@ -130,41 +134,80 @@ export function DirectoryPanel({
 
       {/* 사이트 목록 */}
       <div className={`${compact ? "mt-2" : "mt-3"} grid gap-1.5`}>
-        {filteredEntries.map((entry) => (
-          <a
-            key={entry.url}
-            href={entry.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-start gap-3 rounded-md border border-transparent px-2.5 py-2 transition-colors hover:border-border hover:bg-muted/40"
-          >
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2">
-                <span className="truncate text-sm font-medium text-foreground group-hover:text-foreground">
-                  {entry.siteName}
-                </span>
-                <OrgTypeBadge type={entry.organizationType} />
-              </div>
-              <p className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
-                {entry.description}
-              </p>
-              {entry.tags.length > 0 && (
-                <div className="mt-1 flex flex-wrap gap-1">
-                  {entry.tags.slice(0, 4).map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center gap-0.5 text-[10px] text-muted-foreground/70"
-                    >
-                      <Hash className="size-2" />
-                      {tag}
-                    </span>
-                  ))}
+        {filteredEntries.map((entry) => {
+          const active = activeUrl === entry.url;
+          const className = `group flex items-start gap-3 rounded-md border px-2.5 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+            active
+              ? "border-foreground/30 bg-foreground text-background"
+              : "border-transparent hover:border-border hover:bg-muted/40"
+          }`;
+          const content = (
+            <>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`truncate text-sm font-medium ${
+                      active ? "text-background" : "text-foreground group-hover:text-foreground"
+                    }`}
+                  >
+                    {entry.siteName}
+                  </span>
+                  <OrgTypeBadge type={entry.organizationType} />
                 </div>
-              )}
-            </div>
-            <ExternalLink className="mt-1 size-3.5 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
-          </a>
-        ))}
+                <p
+                  className={`mt-0.5 line-clamp-1 text-xs ${
+                    active ? "text-background/70" : "text-muted-foreground"
+                  }`}
+                >
+                  {entry.description}
+                </p>
+                {entry.tags.length > 0 && (
+                  <div className="mt-1 flex flex-wrap gap-1">
+                    {entry.tags.slice(0, 4).map((tag) => (
+                      <span
+                        key={tag}
+                        className={`inline-flex items-center gap-0.5 text-[10px] ${
+                          active ? "text-background/60" : "text-muted-foreground/70"
+                        }`}
+                      >
+                        <Hash className="size-2" />
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <ExternalLink
+                className={`mt-1 size-3.5 shrink-0 transition-opacity ${
+                  active
+                    ? "text-background/70 opacity-100"
+                    : "text-muted-foreground opacity-0 group-hover:opacity-100"
+                }`}
+              />
+            </>
+          );
+
+          return onSelectEntry ? (
+            <button
+              key={entry.url}
+              type="button"
+              onClick={() => onSelectEntry(entry)}
+              className={className}
+            >
+              {content}
+            </button>
+          ) : (
+            <a
+              key={entry.url}
+              href={entry.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={className}
+            >
+              {content}
+            </a>
+          );
+        })}
       </div>
     </div>
   );

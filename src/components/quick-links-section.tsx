@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { ChevronLeft, ChevronRight, Layers } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -8,10 +8,9 @@ import { Button } from "@/components/ui/button";
 import { PreviewPanel } from "@/components/preview-panel";
 import { WorkflowCanvas } from "@/components/workflow-canvas";
 import { WorkflowChainTabs } from "@/components/workflow-chain-tabs";
-import { WorkflowDetailPanel } from "@/components/workflow-detail-panel";
 import { WorkflowSearch } from "@/components/workflow-search";
-import { WorkflowSearchResults } from "@/components/workflow-search-results";
 import type { SelectedWorkflowItem, WorkflowSearchResult } from "@/components/workflow-types";
+import type { ClassifiedSite } from "@/data/directory/directory-schema";
 import {
   workflowCategories,
   type WorkflowCategory,
@@ -87,6 +86,8 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
   const [activeChainId, setActiveChainId] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<SelectedWorkflowItem | null>(null);
+  const [selectedDirectoryEntry, setSelectedDirectoryEntry] =
+    useState<ClassifiedSite | null>(null);
   const [sectionPage, setSectionPage] = useState(0);
   const [query, setQuery] = useState("");
 
@@ -102,21 +103,18 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
   const selectedNode = selectedItem
     ? (findNode(selectedItem.chainId, selectedItem.nodeRole) ?? null)
     : null;
-  const selectedUrl =
+  const selectedWorkflowUrl =
     selectedItem && selectedNode
       ? selectedItem.mode === "theory"
         ? selectedNode.theoryUrl
         : selectedNode.tools[selectedItem.toolIndex ?? 0]?.url
       : undefined;
-  const selectedTitle =
+  const selectedWorkflowTitle =
     selectedItem && selectedNode
       ? selectedItem.mode === "theory"
         ? `${selectedNode.role} - 이론`
         : selectedNode.tools[selectedItem.toolIndex ?? 0]?.name
       : undefined;
-  const previewOpen = Boolean(selectedUrl && selectedTitle);
-  const hasSearchQuery = query.trim().length > 0;
-  const searchScopeLabel = activeSection?.name ?? activeCategory?.name ?? "전체 워크플로우";
   const sectionPageIndex = activeCategory
     ? Math.min(sectionPage, Math.max(activeCategory.sections.length - 1, 0))
     : 0;
@@ -135,7 +133,15 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     activeCategoryId && activeSectionName
       ? getDirectoryEntries(activeCategoryId, activeSectionName)
       : [];
-
+  const activeDirectoryEntry =
+    selectedDirectoryEntry &&
+    activeDirEntries.some((entry) => entry.url === selectedDirectoryEntry.url)
+      ? selectedDirectoryEntry
+      : null;
+  const selectedUrl = selectedWorkflowUrl ?? activeDirectoryEntry?.url;
+  const selectedTitle = selectedWorkflowTitle ?? activeDirectoryEntry?.siteName;
+  const previewOpen = Boolean(selectedUrl && selectedTitle);
+  const activeDirectoryUrl = selectedWorkflowUrl ? null : activeDirectoryEntry?.url ?? null;
   const searchResults: WorkflowSearchResult[] = (() => {
     const normalizedQuery = normalize(query);
     if (!normalizedQuery) return [];
@@ -184,6 +190,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     setActiveSectionId(null);
     setActiveChainId(null);
     setSelectedItem(null);
+    setSelectedDirectoryEntry(null);
     setSectionPage(0);
     setQuery("");
   };
@@ -198,6 +205,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     setActiveSectionId(section.id);
     setActiveChainId(chains[0]?.id ?? null);
     setSelectedItem(null);
+    setSelectedDirectoryEntry(null);
   };
 
   const selectSection = (section: WorkflowCategorySection) => {
@@ -229,6 +237,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
 
   const selectNode = (chainId: string, node: FlowNode) => {
     setActiveChainId(chainId);
+    setSelectedDirectoryEntry(null);
     setSelectedItem({
       chainId,
       nodeRole: node.role,
@@ -243,6 +252,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     setActiveCategoryId(taxonomy?.category.id ?? activeCategoryId);
     setActiveSectionId(taxonomy?.section.id ?? activeSectionId);
     setActiveChainId(chainId);
+    setSelectedDirectoryEntry(null);
     setSelectedItem({
       chainId,
       nodeRole: node.role,
@@ -260,6 +270,7 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     setActiveSectionId(result.section.id);
     setActiveChainId(result.chain.id);
     setSectionPage(sectionIndex >= 0 ? sectionIndex : 0);
+    setSelectedDirectoryEntry(null);
     setSelectedItem({
       chainId: result.chain.id,
       nodeRole: result.node.role,
@@ -274,23 +285,14 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
     setActiveSectionId(null);
     setActiveChainId(null);
     setSelectedItem(null);
+    setSelectedDirectoryEntry(null);
     setSectionPage(0);
     setQuery("");
   };
 
-  const navigateToChainId = (chainId: string) => {
-    const taxonomy = findTaxonomyByChain(chainId);
-    if (!taxonomy) return;
-
-    const { category, section } = taxonomy;
-    const sectionIndex = category.sections.findIndex((s) => s.id === section.id);
-
-    setActiveCategoryId(category.id);
-    setActiveSectionId(section.id);
-    setActiveChainId(chainId);
+  const selectDirectoryEntry = (entry: ClassifiedSite) => {
+    setSelectedDirectoryEntry(entry);
     setSelectedItem(null);
-    setSectionPage(sectionIndex >= 0 ? sectionIndex : 0);
-    setQuery("");
   };
 
   const renderSectionButton = (section: WorkflowCategorySection) => {
@@ -506,7 +508,6 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
                 onQueryChange={setQuery}
                 onClear={() => setQuery("")}
                 onSelectResult={selectSearchResult}
-                showResults={false}
               />
             </div>
 
@@ -589,77 +590,46 @@ export function QuickLinksSection({ onDetailModeChange }: QuickLinksSectionProps
             </div>
 
             <aside className="min-w-0 space-y-3 xl:sticky xl:top-3 xl:max-h-[calc(100vh-1.5rem)] xl:overflow-y-auto">
-              {hasSearchQuery ? (
-                <div className="rounded-lg border border-border bg-card p-4 shadow-sm">
-                  <div className="mb-3">
-                    <div className="text-xs font-medium uppercase text-muted-foreground">
-                      맥락 검색
-                    </div>
-                    <h2 className="mt-1 text-lg font-semibold tracking-tight">
-                      검색 결과
-                    </h2>
-                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                      {searchScopeLabel} 안에서 연결되는 세부분류, 단계, 도구를
-                      확인합니다.
-                    </p>
-                  </div>
-                  <WorkflowSearchResults
-                    results={searchResults}
-                    onSelectResult={selectSearchResult}
-                    query={query}
-                    scopeLabel={searchScopeLabel}
-                  />
-                </div>
-              ) : activeChain ? (
-                <>
-                  <WorkflowDetailPanel
-                    chain={activeChain}
-                    selectedItem={selectedItem}
-                    selectedNode={selectedNode}
-                    onSelectTheory={(node) => selectNode(activeChain.id, node)}
-                    onSelectTool={(node, toolIndex) =>
-                      selectTool(activeChain.id, node, toolIndex)
-                    }
-                    onNavigateToChain={navigateToChainId}
-                    sticky={false}
-                  />
-
-                  {selectedUrl && selectedTitle && (
-                    <PreviewPanel
-                      url={selectedUrl}
-                      title={selectedTitle}
-                      isOpen={previewOpen}
-                      mode="embedded"
-                      onClose={() => setSelectedItem(null)}
-                    />
-                  )}
-
-                  {activeSection && (
-                    <DirectoryPanel
-                      entries={activeDirEntries}
-                      categoryName={activeSectionName ?? activeSection.name}
-                    />
-                  )}
-                </>
+              {activeSection ? (
+                <DirectoryPanel
+                  entries={activeDirEntries}
+                  categoryName={activeSectionName ?? activeSection.name}
+                  activeUrl={activeDirectoryUrl}
+                  onSelectEntry={selectDirectoryEntry}
+                />
               ) : (
-                <>
-                  <div className="rounded-lg border border-dashed border-border bg-card p-5 text-sm text-muted-foreground shadow-sm">
-                    <div className="text-xs font-medium uppercase">분류 기준</div>
-                    <h2 className="mt-2 text-lg font-semibold tracking-tight text-foreground">
-                      {activeSection?.name ?? activeCategory.name}
-                    </h2>
-                    <p className="mt-2 leading-6">
-                      중분류와 세부분류를 선택하면 이 영역이 해당 맥락의 검색,
-                      이론, 도구, 미리보기 패널로 전환됩니다.
-                    </p>
-                  </div>
-                  {activeSection && (
-                    <DirectoryPanel
-                      entries={activeDirEntries}
-                      categoryName={activeSectionName ?? activeSection.name}
-                    />
-                  )}
-                </>
+                <div className="rounded-lg border border-dashed border-border bg-card p-5 text-sm text-muted-foreground shadow-sm">
+                  <div className="text-xs font-medium uppercase">디렉토리</div>
+                  <p className="mt-2 leading-6">
+                    중분류를 선택하면 해당 맥락의 디렉토리 링크가 이 영역에 표시됩니다.
+                  </p>
+                </div>
+              )}
+
+              {selectedUrl && selectedTitle ? (
+                <PreviewPanel
+                  url={selectedUrl}
+                  title={selectedTitle}
+                  isOpen={previewOpen}
+                  mode="embedded"
+                  onClose={() => {
+                    setSelectedItem(null);
+                    setSelectedDirectoryEntry(null);
+                  }}
+                />
+              ) : (
+                <div
+                  data-preview-empty="true"
+                  className="flex min-h-[520px] flex-col justify-center rounded-lg border border-dashed border-border bg-card p-5 text-sm text-muted-foreground shadow-sm xl:min-h-[640px]"
+                >
+                  <div className="text-xs font-medium uppercase">iframe</div>
+                  <h2 className="mt-2 text-lg font-semibold tracking-tight text-foreground">
+                    링크 미리보기
+                  </h2>
+                  <p className="mt-2 leading-6">
+                    디렉토리 항목이나 왼쪽 단계의 이론/도구를 선택하면 이 영역에 내부 브라우저가 열립니다.
+                  </p>
+                </div>
               )}
             </aside>
           </div>
