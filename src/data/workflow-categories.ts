@@ -16,35 +16,41 @@ export type WorkflowCategory = {
 export const workflowCategories: WorkflowCategory[] = [
   {
     id: "being-reason",
-    name: "존재와 이성",
-    description: "철학적 사유, 역사적 흐름, 인지학습 과정을 통해 존재의 근본을 성찰",
-    icon: "🏛️",
+    name: "근원과 질서",
+    description: "존재의 가장 밑바닥에 있는 규칙과 물질에 대한 탐구",
+    icon: "🏺",
     sections: [
       {
-        id: "history-humanities",
-        name: "역사와 사상",
-        description: "시간 속에서 축적된 인류의 문화, 미술사, 음악사 및 인문 철학적 흐름 탐구",
-        chainIds: ["art-history", "music-history-chain"],
+        id: "pure-forms",
+        name: "순수 형식",
+        description: "수와 도형, 논리, 증명 체계가 추상적 질서로 정립되어 온 흐름",
+        chainIds: ["pure-forms-history"],
       },
       {
-        id: "learning-growth",
-        name: "학습과 인지",
-        description: "학습 전략, 지식 습득 과정 및 교육과 성장의 시스템 설계",
-        chainIds: ["learning-growth"],
+        id: "micro-world",
+        name: "미시 세계",
+        description: "물질의 최소 단위와 보이지 않는 작용을 원자론, 화학, 양자론으로 이해해 온 흐름",
+        chainIds: ["micro-world-history"],
       },
       {
-        id: "psychology-behavior",
-        name: "심리·행동과학",
-        description: "인간의 인지, 심리, 의사결정의 심리학적 구조 분석",
-        chainIds: ["decision-analysis"],
+        id: "macro-world",
+        name: "거시 세계",
+        description: "운동, 힘, 중력, 시공간을 통해 큰 규모의 자연 질서를 설명해 온 흐름",
+        chainIds: ["macro-world-history"],
+      },
+      {
+        id: "cosmic-structure",
+        name: "우주 구조",
+        description: "천문 관측과 우주론을 통해 세계의 전체 구조를 상상하고 검증해 온 흐름",
+        chainIds: ["cosmic-structure-history"],
       },
     ],
   },
   {
     id: "value-exchange",
-    name: "가치와 신용",
-    description: "가치를 평가하고, 재화와 신용을 거래하며, 비즈니스를 사업화하는 시장 시스템",
-    icon: "📈",
+    name: "사회와 시스템",
+    description: "인간이 모여 살기 위해 만든 규칙과 구조",
+    icon: "🏛️",
     sections: [
       {
         id: "market-economics",
@@ -58,14 +64,6 @@ export const workflowCategories: WorkflowCategory[] = [
         description: "아이디어를 실체적인 비즈니스로 만들고 사업화하는 실행 체계",
         chainIds: ["startup-build"],
       },
-    ],
-  },
-  {
-    id: "norms-governance",
-    name: "규범과 질서",
-    description: "법률적 규범 수립, 공공 정책 조율 및 공동체의 행정적 거버넌스 체계",
-    icon: "⚖️",
-    sections: [
       {
         id: "law-policy",
         name: "법과 제도",
@@ -81,9 +79,29 @@ export const workflowCategories: WorkflowCategory[] = [
     ],
   },
   {
+    id: "norms-governance",
+    name: "마음과 안식",
+    description: "보이지 않는 내면 세계와 인지 능력을 탐구",
+    icon: "🧠",
+    sections: [
+      {
+        id: "learning-growth",
+        name: "학습과 인지",
+        description: "학습 전략, 지식 습득 과정 및 교육과 성장의 시스템 설계",
+        chainIds: ["learning-growth"],
+      },
+      {
+        id: "psychology-behavior",
+        name: "심리·행동과학",
+        description: "인간의 인지, 심리, 의사결정의 심리학적 구조 분석",
+        chainIds: ["decision-analysis"],
+      },
+    ],
+  },
+  {
     id: "expression-sensation",
-    name: "표현과 감성",
-    description: "미적 감각, 대중적 감성을 창작물과 미디어로 표출하고 공감하는 영역",
+    name: "표현과 소통",
+    description: "인간이 내부의 아이디어를 외부로 전달하고 기록하는 방식",
     icon: "🎨",
     sections: [
       {
@@ -101,23 +119,23 @@ export const workflowCategories: WorkflowCategory[] = [
     ],
   },
   {
-    id: "matter-cosmos",
-    name: "물질과 우주",
-    description: "자연 세계와 물리 현상의 이론 모델을 검증하고 기후/지구를 분석하는 기초 과학",
-    icon: "🔬",
+    id: "history-records",
+    name: "역사와 기록",
+    description: "시간의 흐름에 따라 축적된 인간과 우주의 궤적",
+    icon: "📖",
     sections: [
       {
-        id: "natural-sciences",
-        name: "기초 자연과학",
-        description: "물리, 화학적 발견 및 지구 환경/기후 변화 관측",
-        chainIds: ["climate-environment-data"],
+        id: "history-humanities",
+        name: "역사와 사상",
+        description: "시간 속에서 축적된 인류의 문화, 미술사, 음악사 및 인문 철학적 흐름 탐구",
+        chainIds: ["art-history", "music-history-chain"],
       },
     ],
   },
   {
     id: "life-health",
-    name: "생명과 건강",
-    description: "유기체 과학, 의료 보건 돌봄과 먹거리 생산(농업) 및 웰빙을 연결하는 생명 도메인",
+    name: "생명과 환경",
+    description: "유기적으로 살아 움직이는 모든 존재와 그들의 터전",
     icon: "🌱",
     sections: [
       {
@@ -136,8 +154,8 @@ export const workflowCategories: WorkflowCategory[] = [
   },
   {
     id: "tools-intelligence",
-    name: "도구와 지능",
-    description: "기술적 구현체 제작, 소프트웨어 공학, 인프라 배포 및 인공지능/분산 네트워크 구축",
+    name: "인공물과 기술",
+    description: "인간이 생존과 편의를 위해 자연을 가공해 만든 모든 도구와 지식",
     icon: "⚙️",
     sections: [
       {
@@ -158,6 +176,15 @@ export const workflowCategories: WorkflowCategory[] = [
         description: "반도체 제조 미세 공정 및 물리 인프라 가치 사슬",
         chainIds: ["semiconductor-process"],
       },
+    ],
+  },
+  {
+    id: "belief-religion",
+    name: "신념과 종교",
+    description: "보이지 않는 초자연적 영역에 대한 인간의 믿음 체계",
+    icon: "☸️",
+    sections: [
+
     ],
   },
 ];

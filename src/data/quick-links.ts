@@ -1634,6 +1634,186 @@ export const workflowChains: WorkflowChain[] = [
                 searchQuery: "도매시장 경매 결과 실시간 낙찰 낙찰단가 조회"
             }
         ],
-    }
+    },
 
+    {
+        id: "pure-forms-history",
+        name: "순수 형식의 역사",
+        description: "도형과 수의 직관에서 공리, 논리, 현대 수학 기초론으로 이어지는 추상 질서의 발전 흐름",
+        icon: "📐",
+        gradient: "from-sky-500 to-indigo-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "Euclid's Elements", url: "https://mathcs.clarku.edu/~djoyce/java/elements/elements.html" },
+                    { name: "MacTutor History of Mathematics", url: "https://mathshistory.st-andrews.ac.uk" }
+                ],
+                role: "고대 기하학: 도형, 비례, 증명을 통해 질서를 형식화",
+                theoryUrl: "https://en.wikipedia.org/wiki/Euclidean_geometry",
+                searchQuery: "유클리드 원론 기하학 증명 역사"
+            },
+            {
+                tools: [
+                    { name: "Stanford Encyclopedia of Philosophy", url: "https://plato.stanford.edu" },
+                    { name: "Internet Encyclopedia of Philosophy", url: "https://iep.utm.edu" }
+                ],
+                role: "논리학과 공리: 참과 증명의 규칙을 독립된 체계로 정리",
+                theoryUrl: "https://en.wikipedia.org/wiki/Logic",
+                searchQuery: "아리스토텔레스 논리학 공리 체계 역사"
+            },
+            {
+                tools: [
+                    { name: "Wolfram MathWorld", url: "https://mathworld.wolfram.com" },
+                    { name: "Khan Academy Algebra", url: "https://www.khanacademy.org/math/algebra" }
+                ],
+                role: "대수와 해석: 수, 기호, 함수로 변화와 관계를 계산",
+                theoryUrl: "https://en.wikipedia.org/wiki/Algebra",
+                searchQuery: "대수학 해석학 역사 함수 미적분 발전"
+            },
+            {
+                tools: [
+                    { name: "nLab", url: "https://ncatlab.org" },
+                    { name: "ProofWiki", url: "https://proofwiki.org" }
+                ],
+                role: "현대 수학 기초론: 집합, 구조, 형식주의로 수학의 기반을 재검토",
+                theoryUrl: "https://en.wikipedia.org/wiki/Foundations_of_mathematics",
+                searchQuery: "수학 기초론 집합론 형식주의 괴델 불완전성"
+            }
+        ],
+    },
+    {
+        id: "micro-world-history",
+        name: "미시 세계의 발견",
+        description: "원자론적 상상에서 화학 원소, 전자와 원자핵, 양자역학으로 이어지는 물질 이해의 발전 흐름",
+        icon: "⚛️",
+        gradient: "from-violet-500 to-fuchsia-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "Atomic Heritage Foundation", url: "https://ahf.nuclearmuseum.org" },
+                    { name: "Britannica Atom", url: "https://www.britannica.com/science/atom" }
+                ],
+                role: "원자론: 세계를 더 이상 나눌 수 없는 입자의 조합으로 상상",
+                theoryUrl: "https://en.wikipedia.org/wiki/Atomism",
+                searchQuery: "데모크리토스 원자론 고대 자연철학"
+            },
+            {
+                tools: [
+                    { name: "Royal Society of Chemistry", url: "https://www.rsc.org" },
+                    { name: "PubChem", url: "https://pubchem.ncbi.nlm.nih.gov" }
+                ],
+                role: "근대 화학: 원소, 반응, 주기율로 물질의 규칙성을 정리",
+                theoryUrl: "https://en.wikipedia.org/wiki/History_of_chemistry",
+                searchQuery: "근대 화학 라부아지에 돌턴 주기율표 역사"
+            },
+            {
+                tools: [
+                    { name: "Nobel Prize Physics", url: "https://www.nobelprize.org/prizes/lists/all-nobel-prizes-in-physics/" },
+                    { name: "CERN", url: "https://home.cern" }
+                ],
+                role: "전자와 원자핵: 보이지 않는 내부 구조를 실험으로 분해",
+                theoryUrl: "https://en.wikipedia.org/wiki/Atomic_nucleus",
+                searchQuery: "전자 발견 러더퍼드 원자핵 실험 역사"
+            },
+            {
+                tools: [
+                    { name: "Quantum Country", url: "https://quantum.country" },
+                    { name: "Qiskit Learning", url: "https://learning.quantum.ibm.com" }
+                ],
+                role: "양자역학: 측정, 확률, 파동함수로 미시 세계의 규칙을 재정의",
+                theoryUrl: "https://en.wikipedia.org/wiki/Quantum_mechanics",
+                searchQuery: "양자역학 역사 플랑크 보어 하이젠베르크 슈뢰딩거"
+            }
+        ],
+    },
+    {
+        id: "macro-world-history",
+        name: "거시 세계의 법칙",
+        description: "천상과 지상의 운동을 하나의 법칙으로 묶고, 중력과 시공간 개념으로 확장해 온 흐름",
+        icon: "🪐",
+        gradient: "from-amber-500 to-orange-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "Galileo Project", url: "https://galileo.rice.edu" },
+                    { name: "NASA History", url: "https://history.nasa.gov" }
+                ],
+                role: "관측과 운동: 천상 운동과 지상 운동을 수학적으로 비교",
+                theoryUrl: "https://en.wikipedia.org/wiki/Classical_mechanics",
+                searchQuery: "갈릴레이 운동 법칙 고전역학 역사"
+            },
+            {
+                tools: [
+                    { name: "Newton Project", url: "https://www.newtonproject.ox.ac.uk" },
+                    { name: "Principia Online", url: "https://cudl.lib.cam.ac.uk/view/PR-ADV-B-00039-00001" }
+                ],
+                role: "뉴턴 역학: 힘과 중력으로 자연 현상을 하나의 법칙 아래 묶음",
+                theoryUrl: "https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion",
+                searchQuery: "뉴턴 프린키피아 만유인력 고전역학"
+            },
+            {
+                tools: [
+                    { name: "Einstein Online", url: "https://www.einstein-online.info" },
+                    { name: "Nobel Prize Relativity", url: "https://www.nobelprize.org/prizes/themes/relativity-the-general-theory/" }
+                ],
+                role: "상대성 이론: 시간, 공간, 중력을 관측자와 기하학의 문제로 재구성",
+                theoryUrl: "https://en.wikipedia.org/wiki/Theory_of_relativity",
+                searchQuery: "특수 상대성 일반 상대성 역사 시공간 중력"
+            },
+            {
+                tools: [
+                    { name: "NASA Exoplanet Archive", url: "https://exoplanetarchive.ipac.caltech.edu" },
+                    { name: "ESA Science", url: "https://www.esa.int/Science_Exploration" }
+                ],
+                role: "현대 천체물리: 별, 은하, 행성계를 관측 데이터로 모델링",
+                theoryUrl: "https://en.wikipedia.org/wiki/Astrophysics",
+                searchQuery: "현대 천체물리 별 은하 외계행성 관측 데이터"
+            }
+        ],
+    },
+    {
+        id: "cosmic-structure-history",
+        name: "우주 구조의 상상과 검증",
+        description: "신화적 우주관에서 지동설, 팽창 우주, 현대 우주론과 외계 생명 탐색으로 이어지는 세계관의 변화",
+        icon: "🌌",
+        gradient: "from-slate-500 to-cyan-500",
+        nodes: [
+            {
+                tools: [
+                    { name: "World History Encyclopedia", url: "https://www.worldhistory.org" },
+                    { name: "Internet Sacred Text Archive", url: "https://sacred-texts.com" }
+                ],
+                role: "신화적 우주관: 세계의 질서를 서사, 상징, 천체 주기로 설명",
+                theoryUrl: "https://en.wikipedia.org/wiki/Cosmology_in_ancient_religion",
+                searchQuery: "고대 우주관 신화 천문 상징 역사"
+            },
+            {
+                tools: [
+                    { name: "Copernicus Project", url: "https://copernicus.torun.pl/en/" },
+                    { name: "Library of Congress Astronomy", url: "https://www.loc.gov/collections/finding-our-place-in-the-cosmos-with-carl-sagan/" }
+                ],
+                role: "지구중심설에서 태양중심설로: 관측과 수학 모델이 세계의 중심을 이동시킴",
+                theoryUrl: "https://en.wikipedia.org/wiki/Heliocentrism",
+                searchQuery: "지구중심설 태양중심설 코페르니쿠스 갈릴레이 역사"
+            },
+            {
+                tools: [
+                    { name: "NASA Universe", url: "https://science.nasa.gov/universe/" },
+                    { name: "ESA Planck", url: "https://www.esa.int/Science_Exploration/Space_Science/Planck" }
+                ],
+                role: "팽창 우주와 빅뱅: 은하 후퇴와 우주배경복사로 우주의 역사를 추론",
+                theoryUrl: "https://en.wikipedia.org/wiki/Big_Bang",
+                searchQuery: "빅뱅 우주론 허블 우주배경복사 역사"
+            },
+            {
+                tools: [
+                    { name: "SETI Institute", url: "https://www.seti.org" },
+                    { name: "NASA Astrobiology", url: "https://astrobiology.nasa.gov" }
+                ],
+                role: "외계 생명과 우주 탐색: 생명의 조건과 지성의 가능성을 과학적으로 탐구",
+                theoryUrl: "https://en.wikipedia.org/wiki/Astrobiology",
+                searchQuery: "우주생물학 SETI 외계 생명 탐색 과학"
+            }
+        ],
+    },
 ];

@@ -77,7 +77,7 @@ const checks = [
   { query: "의사결정", expectedChainId: "decision-analysis" },
   { query: "지역사회", expectedChainId: "community-issue-analysis" },
   { query: "미디어 반응", expectedChainId: "public-opinion-media-analysis" },
-  { query: "기후", expectedChainId: "climate-environment-data" },
+  { query: "양자", expectedChainId: "micro-world-history" },
   { query: "건강 정보", expectedChainId: "health-information-verification" },
   { query: "생활습관", expectedChainId: "lifestyle-health-planning" },
   { query: "서비스 약관", expectedChainId: "terms-policy-review" },
